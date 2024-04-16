@@ -1,4 +1,4 @@
-import { ChildService } from "./ChildService";
+import { CardService } from "./CardService";
 
 export const Services = () => {
     const data = [
@@ -21,7 +21,7 @@ export const Services = () => {
         },
     ];
     return (
-        <div className="px-20 my-20 font-bold">
+        <div className="px-20 my-20 font-bold bg-app-2 bg-no-repeat bg-contain bg-center">
             <p className="uppercase text-primary tracking-widest">Dịch vụ nổi bật</p>
             <div className="flex gap-10 ">
                 <div className="flex flex-col basis-1/2 gap-3 pr-20">
@@ -36,7 +36,7 @@ export const Services = () => {
                 </div>
                 <div className="flex flex-col basis-1/2 gap-10">
                     {data.map((item) => (
-                        <ChildService
+                        <CardService
                             key={item.imageUrl}
                             imageUrl={item.imageUrl}
                             title={item.title}

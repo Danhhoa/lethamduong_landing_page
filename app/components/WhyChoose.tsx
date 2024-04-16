@@ -26,9 +26,9 @@ export const WhyChoose = () => {
                 Các ưu điểm vượt trội về dịch vụ so với các nhà cung cấp khác trên thị trường
             </p>
 
-            <div className="flex flex-wrap items-center justify-center gap-5">
+            <div className="flex flex-wrap justify-between">
                 {data.map((item, index) => (
-                    <AdCard key={index} imageUrl={item.imageUrl} text={item.text} className="basis-[45%] p-10" />
+                    <AdCard key={index} imageUrl={item.imageUrl} text={item.text} className="lg:basis-[49%] p-8 mt-3" />
                 ))}
             </div>
         </div>

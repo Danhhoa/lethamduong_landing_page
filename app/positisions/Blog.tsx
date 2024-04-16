@@ -1,0 +1,41 @@
+import { Button } from "@/components/ui/button";
+import { BlogCard } from "../components/BlogCard";
+
+export const Blog = () => {
+    const data = [
+        {
+            img: "/blog/blog-1.png",
+            text: "Cách chọn ngày tốt hợp tuổi để chuyển nhà",
+        },
+        {
+            img: "/blog/blog-2.png",
+            text: "Trong quá trình chuyển nhà thì đồ đạc bị mất hoặc hư hỏng sẽ như thế nào?",
+        },
+        {
+            img: "/blog/blog-3.png",
+            text: "Những lưu ý khi chuyển nhà Bắc Nam - Chuyển nhà từ Hà Nội vào HCM...",
+        },
+        {
+            img: "/blog/blog-4.png",
+            text: "Công ty chuyển văn phòng cần thanh lý nội thất bàn ghế làm việc ở đâu?",
+        },
+    ];
+    return (
+        <div className="p-20 flex flex-col gap-5">
+            <div className="text-primary text-center font-bold uppercase tracking-widest">Blog</div>
+            <div className="flex flex-wrap mt-2">
+                {data.map((item) => (
+                    <BlogCard img={item.img} text={item.text} />
+                ))}
+            </div>
+            <Button
+                size={"lg"}
+                variant={"outline"}
+                color=""
+                className="mx-auto  text-primary bg-primary-foreground border-primary"
+            >
+                Tải Thêm
+            </Button>
+        </div>
+    );
+};

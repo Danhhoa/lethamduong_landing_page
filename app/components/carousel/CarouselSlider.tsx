@@ -76,14 +76,18 @@ export const CarouselSlider: FC<Props> = ({ slides, options }) => {
         >
             <CarouselContent>
                 {slides.map((slide, index) => (
-                    <>
-                        <CarouselItem key={`${slide.imageUrl}-${index}`} className="">
-                            <div className="p-1">
-                                <Image src={slide.imageUrl} alt="" width={375} height={500} className="h-auto" />
-                            </div>
-                            <p className="text-center text-blue-700 text-xl px-10">{slide.text}</p>
-                        </CarouselItem>
-                    </>
+                    <CarouselItem key={`${slide.imageUrl}-${index}`} className="">
+                        <div className="p-1">
+                            <Image
+                                src={slide.imageUrl}
+                                alt={slide.text}
+                                width={375}
+                                height={500}
+                                className="w-auto h-auto"
+                            />
+                        </div>
+                        <p className="text-center text-blue-700 text-xl px-10">{slide.text}</p>
+                    </CarouselItem>
                 ))}
             </CarouselContent>
 

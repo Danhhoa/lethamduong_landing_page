@@ -67,6 +67,11 @@ const config = {
                 "accordion-down": "accordion-down 0.2s ease-out",
                 "accordion-up": "accordion-up 0.2s ease-out",
             },
+            backgroundImage: {
+                "app-2": 'url("/backgrounds/background-2.png")',
+                "app-3": 'url("/backgrounds/background-3.png")',
+                "app-4": 'url("/backgrounds/background-4.png")',
+            },
         },
     },
     plugins: [require("tailwindcss-animate")],

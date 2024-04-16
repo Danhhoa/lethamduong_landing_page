@@ -8,12 +8,12 @@ import { ScanToDownload } from "./ScanToDownload";
 
 export const Header = () => {
     return (
-        <nav className="flex justify-between px-14 items-center h-[80px] bg-[#FFDD2D] z-50">
+        <nav className="flex justify-between px-14 items-center h-[80px] bg-secondary">
             <Link href="/" className="uppercase">
                 <Image src={"/logo.png"} alt="nvm-logo" width={127} height={48}></Image>
             </Link>
             <div className="flex items-center">
-                <div className="flex gap-5 text-[#5D4E00] font-semibold">
+                <div className="lg:flex xl:gap-5 lg:gap-3 lg-text-sm text-[#5D4E00] font-semibold hidden">
                     <Link href="#" className=" ">
                         Dịch vụ
                     </Link>
@@ -28,7 +28,7 @@ export const Header = () => {
                 <PopoverTrigger className="px-5 py-3 rounded-lg bg-primary">
                     <div className="flex justify-center items-center gap-3">
                         <Image src={"/mobile.png"} alt="" width={28} height={28} />
-                        <p className="text-white font-semibold ">Tải Ứng Dụng</p>
+                        <p className="text-white font-semibold lg:block hidden">Tải Ứng Dụng</p>
                         <Image src={"/chevron-up.png"} alt="" width={16} height={16} />
                     </div>
                 </PopoverTrigger>

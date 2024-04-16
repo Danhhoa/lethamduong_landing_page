@@ -28,7 +28,7 @@ export const Features = () => {
         },
     ];
     return (
-        <div className="px-20 my-20 font-bold">
+        <div className="p-20 my-20 font-bold bg-app-3 bg-cover bg-center bg-no-repeat">
             <p className="uppercase text-primary tracking-widest">Tính năng ứng dụng</p>
             <div className="flex gap-10">
                 <div className="flex flex-col basis-1/2 gap-3">

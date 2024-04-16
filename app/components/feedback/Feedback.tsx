@@ -59,7 +59,7 @@ export const Feedback = () => {
         },
     ];
     return (
-        <div className="flex flex-col justify-center items-center gap-10 mt-20">
+        <div className="flex flex-col justify-center items-center gap-10 mt-20 px-20">
             <div className="text-primary font-bold uppercase tracking-widest">CẢM NHẬN KHÁCH HÀNG TRÊN GOOGLE</div>
             <div className="flex flex-wrap gap-5">
                 <Card className="basis-1/3 p-10 min-w-[350px]">
