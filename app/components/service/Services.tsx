@@ -21,7 +21,7 @@ export const Services = () => {
         },
     ];
     return (
-        <div className="px-20 my-20 font-bold bg-app-2 bg-no-repeat bg-contain bg-center">
+        <div id="services" className="px-20 my-20 font-bold bg-app-2 bg-no-repeat bg-contain bg-center scroll-mt-24">
             <p className="uppercase text-primary tracking-widest">Dịch vụ nổi bật</p>
             <div className="flex gap-10 ">
                 <div className="flex flex-col basis-1/2 gap-3 pr-20">

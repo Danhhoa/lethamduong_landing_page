@@ -1,26 +1,24 @@
 "use client";
-
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import Image from "next/image";
 import Link from "next/link";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Button } from "@/components/ui/button";
 import { ScanToDownload } from "./ScanToDownload";
 
 export const Header = () => {
     return (
-        <nav className="flex justify-between px-14 items-center h-[80px] bg-secondary">
+        <nav className="sticky top-0 flex justify-between px-14 items-center h-[80px] bg-secondary">
             <Link href="/" className="uppercase">
                 <Image src={"/logo.png"} alt="nvm-logo" width={127} height={48}></Image>
             </Link>
             <div className="flex items-center">
                 <div className="lg:flex xl:gap-5 lg:gap-3 lg-text-sm text-[#5D4E00] font-semibold hidden">
-                    <Link href="#" className=" ">
+                    <Link href="#services" className="">
                         Dịch vụ
                     </Link>
-                    <Link href="#">Tại sao chọn Vietnam Moving</Link>
-                    <Link href="#">Tính năng</Link>
-                    <Link href="#">Khách hàng & Cảm nhận</Link>
-                    <Link href="#">Blog</Link>
+                    <Link href="#why_choose">Tại sao chọn Vietnam Moving</Link>
+                    <Link href="#features">Tính năng</Link>
+                    <Link href="#feedback">Khách hàng & Cảm nhận</Link>
+                    <Link href="#blog">Blog</Link>
                 </div>
             </div>
 
