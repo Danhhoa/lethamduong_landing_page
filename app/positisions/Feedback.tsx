@@ -1,8 +1,8 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { StarIcon } from "../icons/StarIcon";
+import { StarIcon } from "../components/icons/StarIcon";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import Image from "next/image";
-import { FeedbackCard } from "./FeedbackCard";
+import { FeedbackCard } from "../components/FeedbackCard";
 
 export const Feedback = () => {
     const feedbackStar = [

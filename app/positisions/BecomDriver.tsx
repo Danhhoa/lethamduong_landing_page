@@ -1,5 +1,5 @@
 import { ScanToDownload } from "../components/ScanToDownload";
-import { CardService } from "../components/service/CardService";
+import { CardService } from "./CardService";
 
 export const BecomeDriver = () => {
     const data = [

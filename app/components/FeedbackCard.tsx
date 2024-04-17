@@ -4,7 +4,7 @@ import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Avatar, AvatarImage } from "@radix-ui/react-avatar";
 import Image from "next/image";
 import { FC } from "react";
-import { StarIcon } from "../icons/StarIcon";
+import { StarIcon } from "./icons/StarIcon";
 
 interface Props {
     avt: string;

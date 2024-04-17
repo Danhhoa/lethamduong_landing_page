@@ -24,8 +24,8 @@ export const Blog = () => {
         <div id="blog" className="p-20 flex flex-col gap-5 scroll-mt-24">
             <div className="text-primary text-center font-bold uppercase tracking-widest">Blog</div>
             <div className="lg:grid-cols-2 grid-cols-1 gap-4 grid">
-                {data.map((item) => (
-                    <BlogCard img={item.img} text={item.text} />
+                {data.map((item, index) => (
+                    <BlogCard key={index} img={item.img} text={item.text} />
                 ))}
             </div>
             <Button

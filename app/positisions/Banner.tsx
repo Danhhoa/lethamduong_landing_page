@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ScanToDownload } from "../ScanToDownload";
+import { ScanToDownload } from "../components/ScanToDownload";
 
 export const Banner = () => {
     return (

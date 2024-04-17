@@ -1,4 +1,4 @@
-import { AdCard } from "./AdCard";
+import { AdCard } from "../components/AdCard";
 
 export const WhyChoose = () => {
     const data = [

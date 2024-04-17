@@ -1,12 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { ScanToDownload } from "./ScanToDownload";
+import { ScanToDownload } from "../components/ScanToDownload";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { cn } from "@/lib/utils";
-import { CarouselSlider } from "./carousel/CarouselSlider";
-import { CarouselDots } from "./carousel/CarouselSlider copy";
+import { CarouselSlider } from "../components/carousel/CarouselSlider";
+import { CarouselDots } from "../components/carousel/CarouselSlider copy";
 
 export const Features = () => {
     const data = [

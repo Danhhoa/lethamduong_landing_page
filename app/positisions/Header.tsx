@@ -2,7 +2,7 @@
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import Image from "next/image";
 import Link from "next/link";
-import { ScanToDownload } from "./ScanToDownload";
+import { ScanToDownload } from "../components/ScanToDownload";
 
 export const Header = () => {
     return (

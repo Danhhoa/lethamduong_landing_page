@@ -51,19 +51,19 @@ export const Footer = () => {
                     </div>
                 </div>
                 <div className="flex flex-col gap-8">
-                    <Link href={"#"} className="hover:text-secondary">
+                    <Link href={"#services"} className="hover:text-secondary">
                         Dịch vụ
                     </Link>
-                    <Link href={"#"} className="hover:text-secondary">
+                    <Link href={"#why_choose"} className="hover:text-secondary">
                         Tại sao chọn Vietnam Moving
                     </Link>
-                    <Link href={"#"} className="hover:text-secondary">
+                    <Link href={"#features"} className="hover:text-secondary">
                         Tính năng
                     </Link>
-                    <Link href={"#"} className="hover:text-secondary">
-                        s Khách hàng & Cảm nhận
+                    <Link href={"#feedback"} className="hover:text-secondary">
+                        Khách hàng & Cảm nhận
                     </Link>
-                    <Link href={"#"} className="hover:text-secondary">
+                    <Link href={"#blog"} className="hover:text-secondary">
                         Blog
                     </Link>
                 </div>
