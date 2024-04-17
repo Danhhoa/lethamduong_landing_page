@@ -6,7 +6,7 @@ import { ScanToDownload } from "../components/ScanToDownload";
 
 export const Header = () => {
     return (
-        <nav className="sticky top-0 flex justify-between px-14 items-center h-[80px] bg-secondary">
+        <nav className="sticky top-0 flex justify-between lg:px-14 md:px-10 px-5 items-center h-[80px] bg-secondary z-10">
             <Link href="/" className="uppercase">
                 <Image src={"/logo.png"} alt="nvm-logo" width={127} height={48}></Image>
             </Link>
@@ -33,9 +33,9 @@ export const Header = () => {
                 <PopoverContent align="end" className="rounded-lg lg:min-w-[450px] min-w-[350px]">
                     <div className="flex flex-col gap-3 text-[#545454] font-medium">
                         <p className="">Tải ứng dụng dành cho khách hàng</p>
-                        <ScanToDownload text="Quét mã để tải ứng dụng cho IOS & Android" />
+                        <ScanToDownload />
                         <p className="">Tải ứng dụng dành cho tài xế</p>
-                        <ScanToDownload text="Quét mã để tải ứng dụng cho IOS & Android" />
+                        <ScanToDownload />
                     </div>
                 </PopoverContent>
             </Popover>

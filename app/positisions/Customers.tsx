@@ -11,7 +11,7 @@ export const Customers = () => {
     return (
         <div className="flex flex-col justify-center items-center gap-16">
             <div className="text-primary font-bold uppercase tracking-widest">KHÁCH HÀNG CỦA VIETNAM MOVING</div>
-            <div className="flex gap-10">
+            <div className="flex flex-wrap lg:gap-8 gap-3">
                 {data.map((img, index) => (
                     <Image key={index} src={img} alt="" width={225} height={110} />
                 ))}

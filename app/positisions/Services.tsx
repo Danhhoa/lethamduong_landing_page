@@ -21,26 +21,30 @@ export const Services = () => {
         },
     ];
     return (
-        <div id="services" className="px-20 my-20 font-bold bg-app-2 bg-no-repeat bg-contain bg-center scroll-mt-24">
+        <div
+            id="services"
+            className="lg:m-20 md:m-10 m-5 font-bold bg-app-2 bg-no-repeat bg-contain bg-center scroll-mt-24"
+        >
             <p className="uppercase text-primary tracking-widest">Dịch vụ nổi bật</p>
-            <div className="flex gap-10 ">
-                <div className="flex flex-col basis-1/2 gap-3 pr-20">
-                    <p className="text-5xl text-blue-800 font-black leading-[67px]">
+            <div className="flex flex-wrap lg:flex-row flex-col justify-between">
+                <div className="flex flex-col lg:basis-[50%] gap-3">
+                    <p className="lg:text-5xl text-4xl lg:!leading-[67px] leading-[50px] lg:max-w-[540px] text-blue-800 font-black">
                         Cung cấp dịch vụ vận chuyển tốt nhất với chi phí thấp trong và ngoài nước
                     </p>
-                    <p className="max-w-[520px] text-lg font-normal text-gray-600">
+                    <p className="max-w-[520px] lg:text-lg font-normal text-gray-600">
                         Không chỉ hỗ trợ cung cấp cho khách hàng nội địa và ngoại quốc các dịch vụ dịch chuyển trong
                         nước, công ty còn mở rộng dịch vụ ra nước ngoài. Với những dịch vụ vận chuyển quốc tế, Vietnam
                         Moving thực sự khẳng định được quy mô và đẳng cấp của mình.
                     </p>
                 </div>
-                <div className="flex flex-col basis-1/2 gap-10">
+                <div className="flex flex-col lg:basis-[45%] gap-10">
                     {data.map((item) => (
                         <CardService
                             key={item.imageUrl}
                             imageUrl={item.imageUrl}
                             title={item.title}
                             subTitle={item.subTitle}
+                            className=""
                         />
                     ))}
                 </div>

@@ -20,19 +20,16 @@ export const BecomeDriver = () => {
         },
     ];
     return (
-        <div className="relative p-20 my-20 font-bold bg-[url('/backgrounds/background-4.png')]">
-            <div className="before:absolute before:top-10 before:left-0 before:w-full before:h-[550px] before:bg-[linear-gradient(to_right,rgba(72,85,99,0.65)_0%,rgba(41,50,60,1)_100%)]"></div>
-            <div className="relative flex gap-10 z-3">
-                <div className="flex flex-col basis-1/2 gap-3 pr-20">
-                    <p className="text-5xl text-secondary font-black leading-[67px]">
+        <div className="relative lg:p-20 lg:my-20 px-10 my-10 font-bold bg-[url('/backgrounds/background-4.png')]">
+            <div className="before:absolute before:top-10 before:left-0 before:w-full before:lg:h-[550px] before:h-[950px] before:bg-[linear-gradient(to_right,rgba(72,85,99,0.75)_0%,rgba(41,50,60,1)_100%)]"></div>
+            <div className="relative flex lg:flex-row flex-col gap-10 z-3 pt-14">
+                <div className="flex flex-col lg:basis-[50%] gap-3">
+                    <p className="lg:text-5xl text-4xl lg:!leading-[67px] leading-[50px] lg:max-w-[540px] text-secondary font-black">
                         Trở thành đối tác tài xế của Vietnam Moving với nhiều lợi ích ưu đãi
                     </p>
-                    <ScanToDownload
-                        text="Quét mã để tải ứng dụng cho iOS & Android"
-                        className="w-[70%] text-white bg-[#34383D] mt-10"
-                    ></ScanToDownload>
+                    <ScanToDownload className="lg:max-w-[70%] text-white bg-[#34383D] mt-10" />
                 </div>
-                <div className="flex flex-col basis-1/2 gap-10">
+                <div className="flex flex-col lg:basis-[45%] gap-10">
                     {data.map((item) => (
                         <CardService
                             key={item.imageUrl}

@@ -20,7 +20,7 @@ export const WhyChoose = () => {
         },
     ];
     return (
-        <div id="why_choose" className="flex flex-col gap-5 items-center my-20 px-20 scroll-mt-24">
+        <div id="why_choose" className="flex flex-col gap-5 items-center lg:m-20 md:m-10 m-5 scroll-mt-24">
             <p className="uppercase text-primary font-bold tracking-widest">Tại sao chọn Vietnam Moving</p>
             <p className="text-center text-5xl text-blue-800 font-black max-w-[725px] leading-[67px]">
                 Các ưu điểm vượt trội về dịch vụ so với các nhà cung cấp khác trên thị trường
