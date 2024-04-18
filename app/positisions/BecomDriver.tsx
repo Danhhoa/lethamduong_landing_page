@@ -20,14 +20,15 @@ export const BecomeDriver = () => {
         },
     ];
     return (
-        <div className="relative lg:p-20 lg:my-20 px-10 my-10 font-bold bg-[url('/backgrounds/background-4.png')]">
-            <div className="before:absolute before:top-10 before:left-0 before:w-full before:lg:h-[550px] before:h-[950px] before:bg-[linear-gradient(to_right,rgba(72,85,99,0.75)_0%,rgba(41,50,60,1)_100%)]"></div>
+        //relative lg:p-20 lg:my-20 px-10 my-10 font-bold bg-[url('/backgrounds/background-4.png')]
+        <div className="relative lg:p-20 px-10 font-bold bg-[linear-gradient(to_right,rgba(72,85,99,0.75)_0%,rgba(41,50,60,1)_100%)]">
+            <div className="before:absolute before:top-[-20px] before:left-0 before:w-full before:lg:h-[700px] before:h-[950px] before:bg-[url('/backgrounds/background-4.png')] before:bg-cover before:bg-top"></div>
             <div className="relative flex lg:flex-row flex-col gap-10 z-3 pt-14">
                 <div className="flex flex-col lg:basis-[50%] gap-3">
                     <p className="lg:text-5xl text-4xl lg:!leading-[67px] leading-[50px] lg:max-w-[540px] text-secondary font-black">
                         Trở thành đối tác tài xế của Vietnam Moving với nhiều lợi ích ưu đãi
                     </p>
-                    <ScanToDownload className="lg:max-w-[70%] text-white bg-[#34383D] mt-10" />
+                    <ScanToDownload className="lg:md:max-w-[50%] md:max-w-[60%] max-h-[120px] text-white bg-[#34383D] mt-10" />
                 </div>
                 <div className="flex flex-col lg:basis-[45%] gap-10">
                     {data.map((item) => (

@@ -43,7 +43,7 @@ export const Features = () => {
                         cách tải về ứng dụng của chúng tôi trên App Store và Google Play Store
                     </p>
                     <div className="max-w-[60%] mt-20">
-                        <ScanToDownload className="text-white bg-[#002439]" />
+                        <ScanToDownload className="text-white bg-[#002439] max-h-[120px] w-[70%]" />
                     </div>
                 </div>
                 <div className="">
