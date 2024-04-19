@@ -19,8 +19,7 @@ export const Customers = () => {
                         alt=""
                         width={225}
                         height={110}
-                        objectFit="cover"
-                        className="md:w-[225px] w-[125px] h-full top-0 left-0 object-cover"
+                        className="md:w-[225px] w-[125px] h-full"
                     />
                 ))}
             </div>
