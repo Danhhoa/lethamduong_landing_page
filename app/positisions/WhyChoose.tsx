@@ -20,15 +20,17 @@ export const WhyChoose = () => {
         },
     ];
     return (
-        <div id="why_choose" className="flex flex-col gap-5 items-center lg:m-20 md:m-10 m-5 scroll-mt-24">
-            <p className="uppercase text-primary font-bold tracking-widest">Tại sao chọn Vietnam Moving</p>
-            <p className="text-center text-5xl text-blue-800 font-black max-w-[725px] leading-[67px]">
+        <div id="why_choose" className="flex flex-col gap-5 items-center lg:m-20 md:m-10 m-5 mt-10 scroll-mt-24">
+            <p className="uppercase text-xl text-primary text-center font-bold tracking-widest">
+                Tại sao chọn Vietnam Moving
+            </p>
+            <p className="text-center lg:text-5xl text-[40px] text-blue-800 font-black max-w-[725px] lg:leading-[67px] leading-[50px]">
                 Các ưu điểm vượt trội về dịch vụ so với các nhà cung cấp khác trên thị trường
             </p>
 
-            <div className="flex flex-wrap justify-between">
+            <div className="grid lg:grid-cols-2 gap-4">
                 {data.map((item, index) => (
-                    <AdCard key={index} imageUrl={item.imageUrl} text={item.text} className="lg:basis-[49%] p-8 mt-3" />
+                    <AdCard key={index} imageUrl={item.imageUrl} text={item.text} className="p-8" />
                 ))}
             </div>
         </div>

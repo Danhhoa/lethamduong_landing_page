@@ -13,12 +13,13 @@ export const MobileMenu = () => {
     const toggleMobileMenu = () => {
         setOpenMenu(!openMennu);
     };
+
     return (
         <>
             <Image src="/icons/hambuger.png" alt="" width={32} height={32} onClick={toggleMobileMenu} />
             <div
                 className={cn(
-                    "fixed top-0 left-0 md:w-[70%] w-full z-30 backdrop-sepia-0 bg-white/[97%] py-5 h-full overflow-y-scroll ease-in-out duration-300",
+                    "fixed top-0 left-0 lg:w-[70%] w-full z-30 backdrop-sepia-0 bg-white/[97%] py-5 h-full overflow-y-scroll ease-in-out duration-300",
                     { "translate-x-0": openMennu, "translate-x-full": !openMennu }
                 )}
             >
@@ -26,19 +27,19 @@ export const MobileMenu = () => {
                     <Image src={"/icons/cross.png"} alt="" width={32} height={32} onClick={toggleMobileMenu} />
                 </div>
                 <div className="flex flex-col justify-center items-center text-xl text-gray-700 gap-5">
-                    <Link href={"#services"} className="">
+                    <Link href={"#services"} onClick={toggleMobileMenu}>
                         Dịch vụ
                     </Link>
-                    <Link href={"#whyChoose"} className="">
+                    <Link href={"#why_choose"} onClick={toggleMobileMenu}>
                         Tại sao chọn VieNam Moving
                     </Link>
-                    <Link href={"#fetures"} className="">
+                    <Link href={"#features"} onClick={toggleMobileMenu}>
                         Tính năng
                     </Link>
-                    <Link href={"#feedback"} className="">
+                    <Link href={"#feedback"} onClick={toggleMobileMenu}>
                         Khách hàng & cảm nhận
                     </Link>
-                    <Link href={"#blog"} className="">
+                    <Link href={"#blog"} onClick={toggleMobileMenu}>
                         Blog
                     </Link>
                     <p className="text-base text-gray-400 mt-3">Tổng đài hỗ trợ (miễn phí)</p>

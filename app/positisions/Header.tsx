@@ -9,12 +9,12 @@ import { useState } from "react";
 export const Header = () => {
     const [openPop, setOpenPop] = useState(false);
     return (
-        <nav className="sticky top-0 flex justify-between lg:px-14 md:px-10 px-5 items-center h-[80px] bg-secondary z-10">
+        <nav className="fixed w-full top-0 flex justify-between items-center h-[80px] lg:px-12 md:px-10 px-5  bg-secondary z-10 ">
             <Link href="/" className="uppercase">
                 <Image src={"/logo/logo.png"} alt="nvm-logo" width={127} height={48} />
             </Link>
             <div className="flex items-center">
-                <div className="xl:flex xl:gap-5 lg:gap-3 lg-text-sm text-[#5D4E00] font-semibold hidden">
+                <div className="lg:flex xl:gap-7 lg:gap-2 lg-text-sm text-[14px] text-[#5D4E00] font-semibold hidden">
                     <Link href="#services" className="">
                         Dịch vụ
                     </Link>
@@ -25,9 +25,9 @@ export const Header = () => {
                 </div>
             </div>
 
-            <div className="flex justify-end ml-auto">
+            <div className="flex justify-end lg:ml-0 ml-auto">
                 <Popover onOpenChange={() => setOpenPop(!openPop)}>
-                    <PopoverTrigger className="px-5 py-3 rounded-lg bg-primary">
+                    <PopoverTrigger className="xl:px-5 xl:py-3 px-3 py-2 rounded-lg bg-primary">
                         <div className="flex justify-center items-center gap-3">
                             <Image src={"/icons/mobile.png"} alt="" width={28} height={28} />
                             <p className="text-white font-semibold lg:block hidden">Tải Ứng Dụng</p>
@@ -48,7 +48,7 @@ export const Header = () => {
                     </PopoverContent>
                 </Popover>
             </div>
-            <div className="ml-4 md:hidden">
+            <div className="ml-4 lg:hidden">
                 <MobileMenu />
             </div>
         </nav>
