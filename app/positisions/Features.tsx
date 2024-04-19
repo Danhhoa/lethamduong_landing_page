@@ -34,7 +34,7 @@ export const Features = () => {
         >
             <p className="uppercase text-primary tracking-widest">Tính năng ứng dụng</p>
             <div className="flex lg:flex-row flex-col gap-10">
-                <div className="flex flex-col basis-[60%] gap-3">
+                <div className="flex flex-col xl:basis-[40%] basis-[60%] gap-3">
                     <p className=" lg:text-5xl text-4xl text-blue-800 font-black lg:leading-[67px] leading-[49px]">
                         Ứng dụng cung cấp bạn các dịch vụ với trải nghiệm tốt nhất từ Vietnam Moving
                     </p>
