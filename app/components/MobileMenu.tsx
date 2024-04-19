@@ -53,10 +53,12 @@ export const MobileMenu = () => {
                         <Image src={"/icons/youtube.png"} alt="youtube-icon" width={30} height={30} />
                         <Image src={"/icons/pinterest.png"} alt="pinterest-icon" width={30} height={30} />
                     </div>
-                    <p className="text-base text-gray-400 mt-5">Tải ứng dụng dành cho khách hàng</p>
-                    <ScanToDownload className="bg-[#24263C] text-white" />
-                    <p className="text-base text-gray-400 mt-5">Tải ứng dụng dành cho tài xế</p>
-                    <ScanToDownload className="bg-[#24263C] text-white" />
+                    <div className="p-10">
+                        <p className="text-base text-gray-400 mt-5">Tải ứng dụng dành cho khách hàng</p>
+                        <ScanToDownload className="bg-[#24263C] text-white" />
+                        <p className="text-base text-gray-400 mt-5">Tải ứng dụng dành cho tài xế</p>
+                        <ScanToDownload className="bg-[#24263C] text-white" />
+                    </div>
                 </div>
             </div>
         </>

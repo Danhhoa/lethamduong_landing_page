@@ -1,4 +1,6 @@
+import Image from "next/image";
 import { CardService } from "./CardService";
+import { PhoneContact } from "../components/PhoneContact";
 
 export const Services = () => {
     const data = [
@@ -25,6 +27,9 @@ export const Services = () => {
             id="services"
             className="lg:m-20 md:m-10 m-5 font-bold bg-app-2 bg-no-repeat bg-contain bg-center scroll-mt-24"
         >
+            <div className="relative flex justify-end h-[100px]">
+                <PhoneContact />
+            </div>
             <p className="uppercase text-primary tracking-widest">Dịch vụ nổi bật</p>
             <div className="flex flex-wrap lg:flex-row flex-col justify-between">
                 <div className="flex flex-col lg:basis-[50%] gap-3">
