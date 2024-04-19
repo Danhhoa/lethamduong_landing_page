@@ -29,12 +29,12 @@ export const Header = () => {
                 <Popover onOpenChange={() => setOpenPop(!openPop)}>
                     <PopoverTrigger className="xl:px-5 xl:py-3 px-3 py-2 rounded-lg bg-primary">
                         <div className="flex justify-center items-center gap-3">
-                            <Image src={"/icons/mobile.png"} alt="" width={28} height={28} />
+                            <Image src={"/icons/mobile.svg"} alt="" width={28} height={28} />
                             <p className="text-white font-semibold lg:block hidden">Tải Ứng Dụng</p>
                             {openPop ? (
-                                <Image src={"/icons/chevron-up.png"} alt="" width={16} height={16} />
+                                <Image src={"/icons/chevron-up.svg"} alt="" width={16} height={16} />
                             ) : (
-                                <Image src={"/icons/chevron-down.png"} alt="" width={16} height={16} />
+                                <Image src={"/icons/chevron-down.svg"} alt="" width={16} height={16} />
                             )}
                         </div>
                     </PopoverTrigger>

@@ -16,7 +16,7 @@ export const MobileMenu = () => {
 
     return (
         <>
-            <Image src="/icons/hambuger.png" alt="" width={32} height={32} onClick={toggleMobileMenu} />
+            <Image src="/icons/hambuger.svg" alt="" width={32} height={32} onClick={toggleMobileMenu} />
             <div
                 className={cn(
                     "fixed top-0 left-0 lg:w-[70%] w-full z-30 backdrop-sepia-0 bg-white/[97%] py-5 h-full overflow-y-scroll ease-in-out duration-300",
@@ -24,7 +24,7 @@ export const MobileMenu = () => {
                 )}
             >
                 <div className="flex justify-end mb-5 mr-5 flex-1">
-                    <Image src={"/icons/cross.png"} alt="" width={32} height={32} onClick={toggleMobileMenu} />
+                    <Image src={"/icons/cross.svg"} alt="" width={32} height={32} onClick={toggleMobileMenu} />
                 </div>
                 <div className="flex flex-col justify-center items-center text-xl text-gray-700 gap-5">
                     <Link href={"#services"} onClick={toggleMobileMenu}>

@@ -20,7 +20,7 @@ export const BecomeDriver = () => {
         },
     ];
     return (
-        <div className="relative lg:p-20 md:p-10 p-5 font-bold bg-[linear-gradient(to_right,rgba(72,85,99,0.75)_0%,rgba(41,50,60,1)_100%)]">
+        <div className="relative lg:p-20 md:p-10 p-5 font-bold bg-[linear-gradient(to_right,rgba(72,85,99,1)_0%,rgba(41,50,60,1)_100%)]">
             <div className="before:absolute before:top-[-20px] before:left-0 before:w-full before:lg:h-[700px] before:h-[950px] before:bg-[url('/backgrounds/background-4.png')] before:bg-cover before:bg-top"></div>
             <div className="relative flex lg:flex-row flex-col gap-10 z-3 pt-14">
                 <div className="flex flex-col lg:basis-[50%] gap-3">
