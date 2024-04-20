@@ -3,6 +3,8 @@ import { Inter } from "next/font/google";
 import { Header } from "./positisions/Header";
 import "./globals.css";
 import { Footer } from "./positisions/Footer";
+import Head from "next/head";
+import Link from "next/link";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,12 +19,17 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en" className="scroll-smooth scroll-mt-24">
-            <body className={inter.className}>
-                <Header />
-                {children}
-                <Footer />
-            </body>
-        </html>
+        <>
+            <Head>
+                <Link rel="icon" href={"/favicon.ico"}></Link>
+            </Head>
+            <html lang="en" className="scroll-smooth scroll-mt-24">
+                <body className={inter.className}>
+                    <Header />
+                    {children}
+                    <Footer />
+                </body>
+            </html>
+        </>
     );
 }

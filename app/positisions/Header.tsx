@@ -5,12 +5,13 @@ import Link from "next/link";
 import { MobileMenu } from "../components/MobileMenu";
 import { ScanToDownload } from "../components/ScanToDownload";
 import { useState } from "react";
+import { cn } from "@/lib/utils";
 
 export const Header = () => {
     const [openPop, setOpenPop] = useState(false);
     return (
         <nav className="fixed w-full top-0 flex justify-between items-center h-[80px] lg:px-12 md:px-10 px-5  bg-secondary z-10 ">
-            <Link href="/" className="uppercase">
+            <Link href="/">
                 <Image src={"/logo/logo.png"} alt="nvm-logo" width={127} height={48} />
             </Link>
             <div className="flex items-center">
@@ -31,11 +32,13 @@ export const Header = () => {
                         <div className="flex justify-center items-center gap-3">
                             <Image src={"/icons/mobile.svg"} alt="" width={28} height={28} />
                             <p className="text-white font-semibold lg:block hidden">Tải Ứng Dụng</p>
-                            {openPop ? (
-                                <Image src={"/icons/chevron-up.svg"} alt="" width={16} height={16} />
-                            ) : (
-                                <Image src={"/icons/chevron-down.svg"} alt="" width={16} height={16} />
-                            )}
+                            <Image
+                                src={"/icons/chevron-down.svg"}
+                                alt=""
+                                width={16}
+                                height={16}
+                                className={cn("transition ease-in-out ", { "rotate-180": openPop })}
+                            />
                         </div>
                     </PopoverTrigger>
                     <PopoverContent align="end" className="rounded-lg lg:min-w-[450px] min-w-[350px]">

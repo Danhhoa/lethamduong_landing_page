@@ -65,7 +65,7 @@ export const Feedback = () => {
         >
             <div className="text-primary font-bold uppercase tracking-widest">CẢM NHẬN KHÁCH HÀNG TRÊN GOOGLE</div>
             <div className="flex lg:flex-row md:flex-col flex-wrap gap-5">
-                <Card className="basis-[30%] md:p-10 p-3 lg:min-w-[350px] min-w-full">
+                <Card className="basis-[30%] md:p-10 p-3 lg:min-w-[350px] min-w-full mx-auto">
                     <CardContent className="p-0">
                         <div className="flex flex-col gap-5">
                             {feedbackStar.map((item, index) => (
@@ -81,7 +81,7 @@ export const Feedback = () => {
                         </div>
                     </CardContent>
                 </Card>
-                <div className="flex flex-wrap lg:basis-[55%] gap-3">
+                <div className="flex flex-wrap xl:basis-[65%] gap-3">
                     {googleFeedback.map((item, index) => (
                         <FeedbackCard
                             key={`${item.avt}-${index}`}
