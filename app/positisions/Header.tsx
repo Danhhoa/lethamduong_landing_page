@@ -15,7 +15,7 @@ export const Header = () => {
                 <Image src={"/logo/logo.png"} alt="nvm-logo" width={127} height={48} />
             </Link>
             <div className="flex items-center">
-                <div className="lg:flex xl:gap-7 lg:gap-2 lg-text-sm text-[14px] text-[#5D4E00] font-semibold hidden">
+                <div className="lg:flex xl:gap-7 gap-3 xl:text-base lg:text-sm text-[#5D4E00] font-semibold hidden">
                     <Link href="#services" className="">
                         Dịch vụ
                     </Link>
@@ -44,14 +44,14 @@ export const Header = () => {
                     <PopoverContent align="end" className="rounded-lg lg:min-w-[450px] min-w-[350px]">
                         <div className="flex flex-col gap-3 text-[#545454] font-medium">
                             <p className="">Tải ứng dụng dành cho khách hàng</p>
-                            <ScanToDownload />
+                            <ScanToDownload width={120} height={120} />
                             <p className="">Tải ứng dụng dành cho tài xế</p>
-                            <ScanToDownload />
+                            <ScanToDownload width={120} height={120} />
                         </div>
                     </PopoverContent>
                 </Popover>
             </div>
-            <div className="ml-4 lg:hidden">
+            <div className="ml-4 lg:hidden cursor-pointer">
                 <MobileMenu />
             </div>
         </nav>

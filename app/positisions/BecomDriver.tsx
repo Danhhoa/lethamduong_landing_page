@@ -27,7 +27,11 @@ export const BecomeDriver = () => {
                     <p className="lg:text-5xl text-4xl lg:!leading-[67px] leading-[50px] lg:max-w-[540px] text-secondary font-black">
                         Trở thành đối tác tài xế của Vietnam Moving với nhiều lợi ích ưu đãi
                     </p>
-                    <ScanToDownload className="lg:md:max-w-[50%] md:max-w-[60%] max-h-[120px] text-white bg-[#34383D] mt-10" />
+                    <ScanToDownload
+                        width={120}
+                        height={120}
+                        className="xl:max-w-[50%] md:max-w-[80%] max-h-[120px] text-white bg-[#34383D] mt-10 self-start"
+                    />
                 </div>
                 <div className="flex flex-col lg:basis-[45%] gap-10">
                     {data.map((item) => (

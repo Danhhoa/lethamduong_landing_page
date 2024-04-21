@@ -30,8 +30,8 @@ export const Services = () => {
             <div className="relative flex justify-end h-[100px]">
                 <PhoneContact />
             </div>
-            <p className="uppercase text-primary tracking-widest">Dịch vụ nổi bật</p>
-            <div className="flex flex-wrap lg:flex-row flex-col justify-between">
+            <p className="uppercase text-primary text-xl tracking-widest">Dịch vụ nổi bật</p>
+            <div className="flex flex-wrap lg:flex-row flex-col justify-between mt-5">
                 <div className="flex flex-col lg:basis-[50%] gap-3">
                     <p className="lg:text-5xl text-4xl lg:!leading-[67px] leading-[50px] lg:max-w-[540px] text-blue-800 font-black">
                         Cung cấp dịch vụ vận chuyển tốt nhất với chi phí thấp trong và ngoài nước

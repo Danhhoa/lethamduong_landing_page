@@ -18,7 +18,7 @@ export const Banner = () => {
                         Tìm hiểu thêm
                     </Button>
                 </Link>
-                <ScanToDownload className="self-start mt-10 lg:max-w-[60%] max-w-[90%]" />
+                <ScanToDownload width={120} height={120} className="self-start mt-10 lg:max-w-[60%] max-w-[90%]" />
             </div>
         </div>
     );
