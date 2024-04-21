@@ -42,7 +42,7 @@ export const Services = () => {
                         Moving thực sự khẳng định được quy mô và đẳng cấp của mình.
                     </p>
                 </div>
-                <div className="flex flex-col lg:basis-[45%] gap-10">
+                <div className="flex flex-col lg:basis-[45%] gap-10 lg:mt-0 mt-5">
                     {data.map((item) => (
                         <CardService
                             key={item.imageUrl}
