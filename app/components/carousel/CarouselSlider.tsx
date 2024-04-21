@@ -1,9 +1,8 @@
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
-import { EmblaOptionsType, EmblaCarouselType } from "embla-carousel";
+import { Carousel, CarouselApi, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import { EmblaOptionsType } from "embla-carousel";
 import Autoplay from "embla-carousel-autoplay";
-import useEmblaCarousel from "embla-carousel-react";
 import Image from "next/image";
-import { FC, ReactNode, useCallback, useEffect, useState } from "react";
+import { FC, ReactNode, useEffect, useState } from "react";
 import { DotButton } from "./CarouselButton";
 
 interface Props {
@@ -11,60 +10,42 @@ interface Props {
     options?: EmblaOptionsType;
 }
 
-export const CarouselSlider: FC<Props> = ({ slides, options }) => {
-    // // const [isPlaying, setIsPlaying] = useState(false);
-    // // const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay({ playOnInit: true, delay: 3000 })]);
-    // const [emblaRef, emblaApi] = useEmblaCarousel(options);
-    // const [prevBtnDisabled, setPrevBtnDisabled] = useState(true);
-    // const [nextBtnDisabled, setNextBtnDisabled] = useState(true);
-    // const [selectedIndex, setSelectedIndex] = useState(0);
-    // const [scrollSnaps, setScrollSnaps] = useState<number[]>([]);
+export const CarouselSlider: FC<Props> = ({ slides, options = {} }) => {
+    const [api, setApi] = useState<CarouselApi>();
+    const [current, setCurrent] = useState(0);
+    const [current2, setCurrent2] = useState<number>(-1);
+    const [count, setCount] = useState(0);
 
-    // // useEffect(() => {
-    // //     const autoplay = emblaApi?.plugins()?.autoplay;
-    // //     if (!autoplay) return;
+    useEffect(() => {
+        if (!api) {
+            return;
+        }
 
-    // //     setIsPlaying(autoplay.isPlaying());
-    // //     emblaApi
-    // //         .on("autoplay:play", () => setIsPlaying(true))
-    // //         .on("autoplay:stop", () => setIsPlaying(false))
-    // //         .on("reInit", () => setIsPlaying(autoplay.isPlaying()));
-    // // }, [emblaApi]);
+        setCount(api.scrollSnapList().length);
+        setCurrent(api.selectedScrollSnap() + 1);
 
-    // // console.log({ isPlaying });
+        api.on("select", () => {
+            setCurrent(api.selectedScrollSnap() + 1);
+        });
+    }, [api]);
 
-    // const scrollTo = useCallback((index: number) => emblaApi && emblaApi.scrollTo(index), [emblaApi]);
-    // const onInit = useCallback((emblaApi: EmblaCarouselType) => {
-    //     console.log("***", emblaApi.scrollSnapList());
+    useEffect(() => {
+        if (!api) {
+            return;
+        }
+        api.scrollTo(current2);
 
-    //     setScrollSnaps(emblaApi.scrollSnapList());
-    // }, []);
-
-    // const onSelect = useCallback((emblaApi: EmblaCarouselType) => {
-    //     setSelectedIndex(emblaApi.selectedScrollSnap());
-    //     setPrevBtnDisabled(!emblaApi.canScrollPrev());
-    //     setNextBtnDisabled(!emblaApi.canScrollNext());
-    // }, []);
-
-    // useEffect(() => {
-    //     if (!emblaApi) return;
-
-    //     console.log("run");
-
-    //     onInit(emblaApi);
-    //     onSelect(emblaApi);
-    //     emblaApi.on("reInit", onInit);
-    //     emblaApi.on("reInit", onSelect);
-    //     emblaApi.on("select", onSelect);
-    // }, [emblaApi, onInit, onSelect]);
-
-    // console.log(scrollSnaps);
+        if ((api?.plugins() as any)?.autoplay.isPlaying()) {
+            (api?.plugins() as any)?.autoplay.stop();
+        }
+    }, [current2]);
 
     return (
         <Carousel
             plugins={[
                 Autoplay({
                     delay: 2000,
+                    stopOnInteraction: false,
                 }),
             ]}
             opts={{
@@ -72,12 +53,12 @@ export const CarouselSlider: FC<Props> = ({ slides, options }) => {
                 loop: true,
             }}
             className="w-full max-w-sm"
-            // ref={emblaRef}
+            setApi={setApi}
         >
             <CarouselContent>
                 {slides.map((slide, index) => (
                     <CarouselItem key={`${slide.imageUrl}-${index}`} className="">
-                        <div className="p-1">
+                        <div className="">
                             <Image
                                 src={slide.imageUrl}
                                 alt={slide.text}
@@ -86,25 +67,16 @@ export const CarouselSlider: FC<Props> = ({ slides, options }) => {
                                 className="w-auto h-auto"
                             />
                         </div>
-                        <p className="text-center text-blue-700 text-xl px-10">{slide.text}</p>
                     </CarouselItem>
                 ))}
             </CarouselContent>
 
-            {/* <div
-                style={{
-                    backgroundColor: "transparent",
-                    touchAction: "manipulation",
-                    cursor: "pointer",
-                    border: 0,
-                    padding: 0,
-                    margin: 0,
-                }}
-            >
-                {scrollSnaps.map((_, index) => (
-                    <DotButton key={index} onClick={() => scrollTo(index)} />
+            <div className="relative flex gap-3 items-center justify-center top-[-40px]">
+                {Array.from(Array(count).keys()).map((_, index) => (
+                    <DotButton key={index} onClick={() => setCurrent2(index)} active={index === current - 1} />
                 ))}
-            </div> */}
+            </div>
+            <p className="text-center text-blue-700 text-xl lg:px-10 px-5">{slides[current - 1]?.text}</p>
         </Carousel>
     );
 };
