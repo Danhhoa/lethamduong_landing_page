@@ -25,7 +25,7 @@ export const Features = () => {
     ];
     return (
         <div
-            id="features"
+            id="tinh-nang"
             className="lg:m-20 md:m-10 m-5 mt-10 font-bold bg-app-3 bg-cover bg-center bg-no-repeat scroll-mt-24"
         >
             <p className="uppercase text-primary text-xl tracking-widest">Tính năng ứng dụng</p>

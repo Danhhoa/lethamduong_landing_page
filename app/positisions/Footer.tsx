@@ -30,19 +30,23 @@ export const Footer = () => {
                     </div>
                 </div>
                 <div className="flex flex-col lg:items-start items-center lg:gap-8 gap-5">
-                    <Link href={"#services"} className="hover:text-secondary">
+                    <Link href={"#dich-vu"} aria-label="Đi đến các dịch vụ" className="hover:text-secondary">
                         Dịch vụ
                     </Link>
-                    <Link href={"#why_choose"} className="hover:text-secondary">
+                    <Link
+                        href={"#tai-sao-chon-vnm"}
+                        aria-label="Đi đến tại sao chọn VNM"
+                        className="hover:text-secondary"
+                    >
                         Tại sao chọn Vietnam Moving
                     </Link>
-                    <Link href={"#features"} className="hover:text-secondary">
+                    <Link href={"#tinh-nang"} aria-label="Đi đến các tính năng" className="hover:text-secondary">
                         Tính năng
                     </Link>
-                    <Link href={"#feedback"} className="hover:text-secondary">
+                    <Link href={"#danh-gia"} aria-label="Đi đến các đánh giá" className="hover:text-secondary">
                         Khách hàng & Cảm nhận
                     </Link>
-                    <Link href={"#blog"} className="hover:text-secondary">
+                    <Link href={"#blog"} aria-label="Đi đến các blog" className="hover:text-secondary">
                         Blog
                     </Link>
                 </div>

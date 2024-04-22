@@ -11,18 +11,26 @@ export const Header = () => {
     const [openPop, setOpenPop] = useState(false);
     return (
         <nav className="fixed w-full top-0 flex justify-between items-center h-[80px] lg:px-12 md:px-10 px-5  bg-secondary z-10 ">
-            <Link href="/">
+            <Link href="/" aria-label="Về trang chủ">
                 <Image src={"/logo/logo.png"} alt="nvm-logo" width={127} height={48} />
             </Link>
             <div className="flex items-center">
                 <div className="lg:flex xl:gap-7 gap-3 xl:text-base lg:text-sm text-[#5D4E00] font-semibold hidden">
-                    <Link href="#services" className="">
+                    <Link href="#dich-vu" aria-label="Đi đến các dịch vụ">
                         Dịch vụ
                     </Link>
-                    <Link href="#why_choose">Tại sao chọn Vietnam Moving</Link>
-                    <Link href="#features">Tính năng</Link>
-                    <Link href="#feedback">Khách hàng & Cảm nhận</Link>
-                    <Link href="#blog">Blog</Link>
+                    <Link href="#tai-sao-chon-vnm" aria-label="Đi đến tại sao chọn VNM">
+                        Tại sao chọn Vietnam Moving
+                    </Link>
+                    <Link href="#tinh-nang" aria-label="Đi đến các tính năng">
+                        Tính năng
+                    </Link>
+                    <Link href="#danh-gia" aria-label="Đi đến các đánh giá">
+                        Khách hàng & Cảm nhận
+                    </Link>
+                    <Link href="#blog" aria-label="Đi đến các blog">
+                        Blog
+                    </Link>
                 </div>
             </div>
 

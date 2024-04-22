@@ -60,7 +60,7 @@ export const Feedback = () => {
     ];
     return (
         <div
-            id="feedback"
+            id="danh-gia"
             className="flex flex-col justify-center items-center gap-10 lg:m-20 md:m-10 m-5 mt-10 scroll-mt-24"
         >
             <div className="text-primary font-bold uppercase tracking-widest">CẢM NHẬN KHÁCH HÀNG TRÊN GOOGLE</div>

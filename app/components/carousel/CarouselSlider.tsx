@@ -73,7 +73,12 @@ export const CarouselSlider: FC<Props> = ({ slides, options = {} }) => {
 
             <div className="relative flex gap-3 items-center justify-center top-[-40px]">
                 {Array.from(Array(count).keys()).map((_, index) => (
-                    <DotButton key={index} onClick={() => setCurrent2(index)} active={index === current - 1} />
+                    <DotButton
+                        key={index}
+                        aria-label="slider button"
+                        onClick={() => setCurrent2(index)}
+                        active={index === current - 1}
+                    />
                 ))}
             </div>
             <p className="text-center text-blue-700 text-xl lg:px-10 px-5">{slides[current - 1]?.text}</p>

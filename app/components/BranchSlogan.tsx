@@ -6,13 +6,13 @@ export const BranchSlogan = () => {
             <div className="flex">
                 <Image src={"/logo/biiline-logo.png"} alt="" width={114} height={114} className="self-start" />
                 <div className="p-5">
-                    <h3 className="text-[#174EA2] font-bold ">Sản phẩm phát triển bởi Công ty CP Công Nghệ BIILINE</h3>
-                    <h4 className="md:text-normal text-sm leading-6">
+                    <h1 className="text-[#174EA2] font-bold ">Sản phẩm phát triển bởi Công ty CP Công Nghệ BIILINE</h1>
+                    <p className="md:text-normal text-sm leading-6">
                         <strong>BIILINE</strong> với kinh nghiệm nhiều năm trong việc phát triển các sản phẩm kĩ thuật
                         số.
                         <br />
                         Hãy liên hệ với chúng tôi để mang sản phẩm của bạn đến với nhiều người dùng.
-                    </h4>
+                    </p>
                 </div>
             </div>
 

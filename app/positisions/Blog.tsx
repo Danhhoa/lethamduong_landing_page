@@ -31,7 +31,7 @@ export const Blog = () => {
             <Button
                 size={"lg"}
                 variant={"outline"}
-                color=""
+                aria-label="Tải Thêm"
                 className="mx-auto  text-primary bg-primary-foreground border-primary"
             >
                 Tải Thêm

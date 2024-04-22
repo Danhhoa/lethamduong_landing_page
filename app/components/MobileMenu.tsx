@@ -27,19 +27,19 @@ export const MobileMenu = () => {
                     <Image src={"/icons/cross.svg"} alt="" width={32} height={32} onClick={toggleMobileMenu} />
                 </div>
                 <div className="flex flex-col justify-center items-center text-xl text-gray-700 gap-5">
-                    <Link href={"#services"} onClick={toggleMobileMenu}>
+                    <Link href={"#dich-vu"} aria-label="Đi đến các dịch vụ" onClick={toggleMobileMenu}>
                         Dịch vụ
                     </Link>
-                    <Link href={"#why_choose"} onClick={toggleMobileMenu}>
+                    <Link href={"#tai-sao-chon-vnm"} aria-label="Đi đến tại sao chọn VNM" onClick={toggleMobileMenu}>
                         Tại sao chọn VieNam Moving
                     </Link>
-                    <Link href={"#features"} onClick={toggleMobileMenu}>
+                    <Link href={"#tinh-nang"} aria-label="Đi đến các tính năng" onClick={toggleMobileMenu}>
                         Tính năng
                     </Link>
-                    <Link href={"#feedback"} onClick={toggleMobileMenu}>
+                    <Link href={"#danh-gia"} aria-label="Đi đến các đánh giá" onClick={toggleMobileMenu}>
                         Khách hàng & cảm nhận
                     </Link>
-                    <Link href={"#blog"} onClick={toggleMobileMenu}>
+                    <Link href={"#blog"} aria-label="Đi đến các blog" onClick={toggleMobileMenu}>
                         Blog
                     </Link>
                     <p className="text-base text-gray-400 mt-3">Tổng đài hỗ trợ (miễn phí)</p>

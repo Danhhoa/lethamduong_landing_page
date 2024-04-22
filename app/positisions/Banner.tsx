@@ -13,8 +13,8 @@ export const Banner = () => {
                     Nhằm nâng cao chất lượng dịch vụ cùng mang đến sự tiện lợi cho trải nghiệm người dùng, Vietnam
                     Moving xin giới thiệu ứng dụng di động hoàn toàn mới. Hãy cùng tải xuống và trải nghiệm bạn nhé!
                 </p>
-                <Link href={"#services"}>
-                    <Button size={"lg"} className="self-start">
+                <Link href={"#dich-vu"} aria-label="Đi đến các dịch vụ">
+                    <Button size={"lg"} className="self-start" aria-label=" Tìm hiểu thêm">
                         Tìm hiểu thêm
                     </Button>
                 </Link>

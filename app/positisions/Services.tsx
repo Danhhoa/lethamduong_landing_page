@@ -24,7 +24,7 @@ export const Services = () => {
     ];
     return (
         <div
-            id="services"
+            id="dich-vu"
             className="lg:m-20 md:m-10 m-5 font-bold bg-app-2 bg-no-repeat bg-contain bg-center scroll-mt-24"
         >
             <div className="relative flex justify-end h-[100px]">

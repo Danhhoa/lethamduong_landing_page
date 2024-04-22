@@ -20,7 +20,7 @@ export const WhyChoose = () => {
         },
     ];
     return (
-        <div id="why_choose" className="flex flex-col gap-5 items-center lg:m-20 md:m-10 m-5 mt-10 scroll-mt-24">
+        <div id="tai-sao-chon-vnm" className="flex flex-col gap-5 items-center lg:m-20 md:m-10 m-5 mt-10 scroll-mt-24">
             <p className="uppercase text-xl text-primary text-center font-bold tracking-widest">
                 Tại sao chọn Vietnam Moving
             </p>
