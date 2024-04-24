@@ -1,13 +1,12 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
-import { ScanToDownload } from "./ScanToDownload";
-import { cn } from "@/lib/utils";
 import { useState } from "react";
+import { ScanToDownload } from "./ScanToDownload";
 
 export const MobileMenu = () => {
-    //transition-all duration-500 transform -translate-x-full
     const [openMennu, setOpenMenu] = useState(false);
 
     const toggleMobileMenu = () => {
@@ -43,15 +42,33 @@ export const MobileMenu = () => {
                         Blog
                     </Link>
                     <p className="text-base text-gray-400 mt-3">Tổng đài hỗ trợ (miễn phí)</p>
-                    <p className="text">Hotline: 1800 7011 (8h - 21h30)</p>
+                    <span>
+                        Hotline:&nbsp;
+                        <Link href={"tel:18007011"} className="hover:text-primary">
+                            1800 7011
+                        </Link>
+                        &nbsp;(8h - 21h30)
+                    </span>
                     <p className="text-base text-gray-400 mt-3">Kết nối với chúng tôi</p>
                     <div className="flex gap-5 justify-center items-center">
-                        <Image src={"/icons/x.png"} alt="x-icon" width={30} height={30} />
-                        <Image src={"/icons/facebook.png"} alt="facebook-icon" width={30} height={30} />
-                        <Image src={"/icons/instagram.png"} alt="instagram-icon" width={30} height={30} />
-                        <Image src={"/icons/m.png"} alt="m-icon" width={30} height={30} />
-                        <Image src={"/icons/youtube.png"} alt="youtube-icon" width={30} height={30} />
-                        <Image src={"/icons/pinterest.png"} alt="pinterest-icon" width={30} height={30} />
+                        <Link href={"https://twitter.com/vietnam_moving"} target="_blank">
+                            <Image src={"/icons/x.png"} alt="x-icon" width={30} height={30} />
+                        </Link>
+                        <Link href={"https://www.facebook.com/VietnamMoving/"} target="_blank">
+                            <Image src={"/icons/facebook.png"} alt="facebook-icon" width={30} height={30} />
+                        </Link>
+                        <Link href={"https://www.instagram.com/vietnammoving/"} target="_blank">
+                            <Image src={"/icons/instagram.png"} alt="instagram-icon" width={30} height={30} />
+                        </Link>
+                        <Link href={"#"} target="_blank">
+                            <Image src={"/icons/m.png"} alt="m-icon" width={30} height={30} />
+                        </Link>
+                        <Link href={"https://www.youtube.com/channel/UCsaG2CpWA7BWLH66gI925vQ"} target="_blank">
+                            <Image src={"/icons/youtube.png"} alt="youtube-icon" width={30} height={30} />
+                        </Link>
+                        <Link href={"https://www.pinterest.com/vietnammovingofficial/"} target="_blank">
+                            <Image src={"/icons/pinterest.png"} alt="pinterest-icon" width={30} height={30} />
+                        </Link>
                     </div>
                     <div className="px-10">
                         <p className="text-base text-center text-gray-400 mt-5 mb-3">
@@ -64,6 +81,7 @@ export const MobileMenu = () => {
                         />
                         <p className="text-base text-center text-gray-400 mt-5 mb-3">Tải ứng dụng dành cho tài xế</p>
                         <ScanToDownload
+                            type="driver"
                             width={80}
                             height={80}
                             className="text-sm bg-[#24263C] text-white max-h-[80px] max-w-[300px] mx-auto"

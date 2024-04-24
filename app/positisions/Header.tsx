@@ -1,14 +1,15 @@
 "use client";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import { MobileMenu } from "../components/MobileMenu";
 import { ScanToDownload } from "../components/ScanToDownload";
-import { useState } from "react";
-import { cn } from "@/lib/utils";
 
 export const Header = () => {
     const [openPop, setOpenPop] = useState(false);
+
     return (
         <nav className="fixed w-full top-0 flex justify-between items-center h-[80px] lg:px-12 md:px-10 px-5  bg-secondary z-10 ">
             <Link href="/" aria-label="Về trang chủ">
@@ -54,7 +55,7 @@ export const Header = () => {
                             <p className="">Tải ứng dụng dành cho khách hàng</p>
                             <ScanToDownload width={120} height={120} />
                             <p className="">Tải ứng dụng dành cho tài xế</p>
-                            <ScanToDownload width={120} height={120} />
+                            <ScanToDownload type="driver" width={120} height={120} />
                         </div>
                     </PopoverContent>
                 </Popover>

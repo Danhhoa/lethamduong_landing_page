@@ -52,10 +52,31 @@ export const Footer = () => {
                 </div>
                 <div className="flex flex-col lg:items-start items-center lg:gap-8 gap-5">
                     <div className="text-gray-600">Tổng đài hỗ trợ (miễn phí)</div>
-                    <div>Hotline: 1800 7011 (8h - 21h30)</div>
+                    <Link href={"tel:18007011"} className="hover:text-secondary">
+                        Hotline: 1800 7011 (8h - 21h30)
+                    </Link>
 
                     <div className="text-gray-600">Kết nối với chúng tôi</div>
-                    <div>Hotline: 1800 7011 (8h - 21h30)</div>
+                    <div className="flex gap-2">
+                        <Link href={"https://twitter.com/vietnam_moving"} target="_blank">
+                            <Image src={"/icons/x.png"} alt="x-icon" width={30} height={30} />
+                        </Link>
+                        <Link href={"https://www.facebook.com/VietnamMoving/"} target="_blank">
+                            <Image src={"/icons/facebook.png"} alt="facebook-icon" width={30} height={30} />
+                        </Link>
+                        <Link href={"https://www.instagram.com/vietnammoving/"} target="_blank">
+                            <Image src={"/icons/instagram.png"} alt="instagram-icon" width={30} height={30} />
+                        </Link>
+                        <Link href={"#"} target="_blank">
+                            <Image src={"/icons/m.png"} alt="m-icon" width={30} height={30} />
+                        </Link>
+                        <Link href={"https://www.youtube.com/channel/UCsaG2CpWA7BWLH66gI925vQ"} target="_blank">
+                            <Image src={"/icons/youtube.png"} alt="youtube-icon" width={30} height={30} />
+                        </Link>
+                        <Link href={"https://www.pinterest.com/vietnammovingofficial/"} target="_blank">
+                            <Image src={"/icons/pinterest.png"} alt="pinterest-icon" width={30} height={30} />
+                        </Link>
+                    </div>
                     <div className="lg:flex xl:hidden hidden flex-wrap gap-3 items-center self-center place-items-center place-self-center content-center">
                         <Certificate />
                     </div>
@@ -64,7 +85,7 @@ export const Footer = () => {
                     <div className="text-gray-600">Tải ứng dụng dành cho khách hàng</div>
                     <ScanToDownload width={120} height={120} className="bg-[#24263C] self-start" />
                     <div className="text-gray-600">Tải ứng dụng dành cho tài xế</div>
-                    <ScanToDownload width={120} height={120} className="bg-[#24263C] self-start" />
+                    <ScanToDownload type="driver" width={120} height={120} className="bg-[#24263C] self-start" />
                 </div>
                 <div className="lg:hidden flex flex-wrap lg:gap-5 gap-3 justify-center items-center self-center place-items-center place-self-center content-center">
                     <Certificate />

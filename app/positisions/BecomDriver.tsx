@@ -28,6 +28,7 @@ export const BecomeDriver = () => {
                         Trở thành đối tác tài xế của Vietnam Moving với nhiều lợi ích ưu đãi
                     </p>
                     <ScanToDownload
+                        type="driver"
                         width={120}
                         height={120}
                         className="xl:max-w-[50%] md:max-w-[80%] max-h-[120px] text-white bg-[#34383D] mt-10 self-start"
