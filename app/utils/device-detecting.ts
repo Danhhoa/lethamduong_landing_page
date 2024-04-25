@@ -1,4 +1,4 @@
-export type Device = "ios" | "android";
+export type Device = "ios" | "android" | "desktop";
 
 export const detectDevice = (): Device => {
     var userAgent = navigator.userAgent || navigator.vendor || (window as any).opera;
@@ -17,5 +17,5 @@ export const detectDevice = (): Device => {
         return "ios";
     }
 
-    return "ios";
+    return "desktop";
 };

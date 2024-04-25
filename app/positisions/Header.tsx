@@ -12,7 +12,7 @@ export const Header = () => {
 
     return (
         <nav className="fixed w-full top-0 flex justify-between items-center h-[80px] lg:px-12 md:px-10 px-5  bg-secondary z-10 ">
-            <Link href="/" aria-label="Về trang chủ">
+            <Link href="https://vietnammoving.com" aria-label="Về trang chủ">
                 <Image src={"/logo/logo.png"} alt="nvm-logo" width={127} height={48} />
             </Link>
             <div className="flex items-center">

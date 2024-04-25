@@ -8,7 +8,9 @@ export const Footer = () => {
         <div className="bg-[#00031C] lg:px-20 lg:pt-20 md:px-10 lg:pt-10 px-5 pt-10">
             <div className="grid xl:grid-cols-4 lg:grid-cols-2 grid-cols-1 lg:place-items-start place-items-center gap-10 text-[#D4D4D4]">
                 <div className="flex flex-col lg:items-start items-center lg:gap-8 gap-5">
-                    <Image src="/logo/logo-footer.png" alt="logo-img" width={220} height={60} />
+                    <Link href={"https://vietnammoving.com"}>
+                        <Image src="/logo/logo-footer.png" alt="logo-img" width={220} height={60} />
+                    </Link>
                     <span className="lg:px-0 px-20 lg:text-start text-center">
                         Địa chỉ:&nbsp;
                         <Link
