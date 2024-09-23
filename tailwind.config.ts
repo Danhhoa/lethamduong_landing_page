@@ -68,7 +68,7 @@ const config = {
                 "accordion-up": "accordion-up 0.2s ease-out",
             },
             backgroundImage: {
-                "app-2": 'url("/backgrounds/background-2.png")',
+                "landing-1": 'url("/banner/landing-background.png")',
                 "app-3": 'url("/backgrounds/background-3.png")',
                 "app-4": 'url("/backgrounds/background-4.png")',
             },
