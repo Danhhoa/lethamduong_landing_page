@@ -6,7 +6,7 @@ export const Banner = () => {
     return (
         <div className="w-full h-full bg-landing-1 bg-no-repeat bg-cover bg-top pt-10">
             <div className="flex lg:flex-row flex-col h-full">
-                <div className="flex flex-col items-start self-center px-48 mb-60 lg:gap-10 gap-5 lg:basis-1/2">
+                <div className="flex flex-col items-start self-center lg:pl-48  lg:mb-60 lg:gap-10 gap-5 lg:basis-1/2">
                     <p className="text-primary tracking-wide text-3xl font-semibold">
                         Trang thông tin chính thức và duy nhất
                     </p>
