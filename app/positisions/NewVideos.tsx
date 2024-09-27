@@ -1,11 +1,12 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 import Link from "next/link";
+import { useDimension } from "../hooks/useDimension";
 
 export const NewVideos = () => {
+    const { isMobile } = useDimension();
     const videos = [
         {
             url: "https://youtu.be/7JD1AuzKpG0",
@@ -31,7 +32,7 @@ export const NewVideos = () => {
     ];
     return (
         <div className="flex flex-col justify-center items-center gap-8 mt-20">
-            <h2 className="font-semibold text-4xl max-w-[40%] text-center">
+            <h2 className="font-semibold lg:text-4xl text-2xl lg:max-w-[40%] text-center px-10 py-5">
                 Những video mới nhất của TS Lê Thẩm Dương
             </h2>
             <Carousel
@@ -41,24 +42,24 @@ export const NewVideos = () => {
                 }}
                 plugins={[
                     Autoplay({
-                        delay: 2000,
+                        delay: 3000,
                     }),
                 ]}
-                className="w-full xl:max-w-[58%]"
+                className="w-full max-w-6xl"
             >
                 <CarouselContent className="">
                     {videos.map((video, index) => {
                         return (
                             <CarouselItem
                                 key={`${video.url}-${index}`}
-                                className="flex flex-col justify-center items-center lg:basis-1/3 md:basis-1/2 gap-4"
+                                className="flex flex-col justify-center items-center lg:basis-1/3 gap-4"
                             >
                                 <Image
                                     src={video.thumbnail}
                                     alt={video.label}
                                     width={1000}
                                     height={1000}
-                                    className="object-contain max-w-[350px] rounded-2xl"
+                                    className="object-contain lg:max-w-[350px] max-w-[450px] w-full p-2 rounded-2xl"
                                 />
                                 <span className="text-center font-semibold text-xl">{video.label}</span>
                                 <Link
@@ -71,8 +72,8 @@ export const NewVideos = () => {
                         );
                     })}
                 </CarouselContent>
-                <CarouselPrevious />
-                <CarouselNext />
+                {/* <CarouselPrevious hidden={isMobile} />
+                <CarouselNext hidden={isMobile} /> */}
             </Carousel>
         </div>
     );

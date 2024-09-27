@@ -3,10 +3,10 @@ import { ImageRotate } from "../components/ImageRotate";
 
 export const Contact = () => {
     return (
-        <div className=" bg-[#dce1e4]">
-            <div className="flex lg:flex-row flex-col lg:mx-48 md:mx-28 mt-40 pt-20">
-                <div className="flex flex-col gap-3 basis-1/2 px-20">
-                    <h2 className="text-4xl font-medium max-w-[432px]">
+        <div className="bg-[#dce1e4]">
+            <div className="flex lg:flex-row flex-col xl:mx-48 lg:mx-20 mt-20 md:px-10 px-5 py-10">
+                <div className="flex flex-col gap-3 lg:w-[50%]">
+                    <h2 className="font-semibold md:text-4xl text-2xl">
                         Liên hệ <br />
                         với TS Lê Thẩm Dương
                     </h2>
@@ -21,13 +21,17 @@ export const Contact = () => {
                         Thông tin liên hệ
                     </Link>
                 </div>
-                <div className="basis-1/2">
-                    <div className="flex gap-10 max-h-[500px]">
-                        <ImageRotate src="/thumbnails/contact-1.webp" alt="" className={`h-full w-[35%] rounded-lg`} />
+                <div className="lg:w-[50%] md:ml-10 mt-10">
+                    <div className="flex items-center justify-center lg:gap-10 gap-4 max-h-[500px]">
+                        <ImageRotate
+                            src="/thumbnails/contact-1.webp"
+                            alt=""
+                            className={`h-full w-[45%] md:mt-0 ounded-lg`}
+                        />
                         <ImageRotate
                             src="/thumbnails/contact-2.webp"
                             alt=""
-                            className={`h-full w-[35%] rounded-lg mt-10`}
+                            className={`h-full w-[45%] rounded-lg mt-10`}
                         />
                     </div>
                 </div>

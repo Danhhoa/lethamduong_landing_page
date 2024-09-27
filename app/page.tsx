@@ -3,6 +3,7 @@ import { Contact } from "./positisions/Contact";
 import { Customer } from "./positisions/Customer";
 import { IntroduceService } from "./positisions/IntroduceService";
 import { NewVideos } from "./positisions/NewVideos";
+import { News } from "./positisions/News";
 
 export default function HomePage() {
     return (
@@ -12,6 +13,7 @@ export default function HomePage() {
             <NewVideos />
             <Contact></Contact>
             <Customer></Customer>
+            <News></News>
         </div>
     );
 }
