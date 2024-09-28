@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ImageRotate } from "../components/ImageRotate";
+import { ImageRotate } from "../../components/ImageRotate";
 
 export const Contact = () => {
     return (

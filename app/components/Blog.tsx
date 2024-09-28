@@ -24,9 +24,9 @@ export const Blog: FC<Props> = (params) => {
             <Image
                 src={"https://lethamduong.edu.vn/wp-content/uploads/2021/12/quan-tri-rui-ro-980x549.webp"}
                 alt={alt}
-                width={1000}
-                height={1000}
-                className="w-full rounded-md"
+                width={340}
+                height={340}
+                className="w-full object-cover rounded-md"
             />
             <Link href={detailUrl} className="text-lg font-semibold px-5">
                 {title}

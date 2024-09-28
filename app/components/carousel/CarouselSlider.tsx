@@ -56,7 +56,7 @@ export const CarouselSlider: FC<Props> = ({ slides, options = {} }) => {
         >
             <CarouselContent>
                 {slides.map((slide, index) => (
-                    <CarouselItem key={index} className="lg:basis-1/3 basis-1/2">
+                    <CarouselItem key={index} className="lg:basis-1/3">
                         {slide}
                     </CarouselItem>
                 ))}

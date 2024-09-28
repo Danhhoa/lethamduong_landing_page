@@ -1,7 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { Blog } from "../components/Blog";
-import { CarouselSlider } from "../components/carousel/CarouselSlider";
+import { Blog } from "../../components/Blog";
+import { CarouselSlider } from "../../components/carousel/CarouselSlider";
 
 export const News = () => {
     const data = [
@@ -37,7 +37,7 @@ export const News = () => {
     return (
         <div className="flex flex-col items-center justify-center mt-20 py-10 gap-5 bg-[#dce1e4]">
             <h2 className="md:text-4xl text-2xl font-semibold">Tin Tức</h2>
-            <div className="mx-auto px-20">
+            <div className="mx-auto lg:px-20 px-5 md:max-w-5xl max-w-sm">
                 <CarouselSlider
                     slides={data.map((item, index) => {
                         return (
