@@ -6,10 +6,12 @@ import Link from "next/link";
 import { useState } from "react";
 import { MobileMenu } from "../components/MobileMenu";
 import { useScroll } from "../hooks/useScroll";
+import { useRouter } from "next/navigation";
 
 export const Header = () => {
     const [openPop, setOpenPop] = useState(false);
     const { isScrolled } = useScroll();
+    const router = useRouter();
 
     const trainingCalendar = [
         {
@@ -29,7 +31,7 @@ export const Header = () => {
                 { "h-16": isScrolled }
             )}
         >
-            <div className="transition-all ease-linear duration-500">
+            <div className="transition-all">
                 <Image
                     src={"/logo/main-logo.png"}
                     alt="logo"
@@ -37,7 +39,10 @@ export const Header = () => {
                     height={80}
                     // fill
                     // objectFit="contain"
-                    className={cn("max-w-[450px] h-full left-0", { "max-w-sm": isScrolled })}
+                    className={cn("max-w-[450px] h-full left-0 ease-in-out duration-500 cursor-pointer", {
+                        "max-w-sm": isScrolled,
+                    })}
+                    onClick={() => router.push("/")}
                 />
             </div>
             <div className="lg:flex items-center font-semibold gap-8 hidden">
@@ -71,7 +76,7 @@ export const Header = () => {
                         </div>
                     </PopoverContent>
                 </Popover>
-                <Link href={"/gioi-thieu"} aria-label="Đi đến trang liên hệ" className="">
+                <Link href={"/lien-he"} aria-label="Đi đến trang liên hệ" className="">
                     Liên Hệ
                 </Link>
             </div>

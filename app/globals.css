@@ -14,6 +14,7 @@
         --primary-dark: 206 100% 10%; /*  #001d33 */
         --primary-light: 206 100% 20%; /*  #005799 */
         --primary-foreground: 0 85.7% 97.3%;
+        --primary-light-80: #d0d7e0;
         --secondary: 50, 100%, 59%; /* #FFDD2D */
         --secondary-foreground: 0 0% 9%;
         --muted: 0 0% 96.1%;
