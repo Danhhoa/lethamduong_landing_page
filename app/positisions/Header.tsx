@@ -4,10 +4,12 @@ import { Popover, PopoverContent, PopoverTrigger } from "@radix-ui/react-popover
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { MobileMenu } from "../../components/MobileMenu";
+import { MobileMenu } from "../components/MobileMenu";
+import { useScroll } from "../hooks/useScroll";
 
 export const Header = () => {
     const [openPop, setOpenPop] = useState(false);
+    const { isScrolled } = useScroll();
 
     const trainingCalendar = [
         {
@@ -21,8 +23,13 @@ export const Header = () => {
     ];
 
     return (
-        <nav className="fixed w-full top-0 flex justify-between items-center h-[80px] lg:px-18 md:px-10 px-5 bg-white z-10 border-b-2 border-blue-500">
-            <div className="">
+        <nav
+            className={cn(
+                "fixed w-full top-0 flex justify-between items-center h-24 lg:px-18 md:px-10 px-5 bg-white z-10 transition-all ease-linear duration-500",
+                { "h-16": isScrolled }
+            )}
+        >
+            <div className="transition-all ease-linear duration-500">
                 <Image
                     src={"/logo/main-logo.png"}
                     alt="logo"
@@ -30,7 +37,7 @@ export const Header = () => {
                     height={80}
                     // fill
                     // objectFit="contain"
-                    className="max-w-[450px] h-full left-0"
+                    className={cn("max-w-[450px] h-full left-0", { "max-w-sm": isScrolled })}
                 />
             </div>
             <div className="lg:flex items-center font-semibold gap-8 hidden">
