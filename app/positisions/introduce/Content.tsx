@@ -28,20 +28,18 @@ export const Content = () => {
         },
     ];
     return (
-        <div className="min-h-[1000px]">
-            <div className="max-w-[1170px] mx-auto  flex flex-col lg:gap-32 gap-10 lg:p-20 p-10">
-                {data.map((item, index) => {
-                    return (
-                        <IntroduceCard
-                            key={index}
-                            imageUrl={item.imageUrl}
-                            title={item.title}
-                            contents={item.contents}
-                            reverse={item.reverse}
-                        />
-                    );
-                })}
-            </div>
+        <div className="max-w-[1170px] mx-auto  flex flex-col lg:gap-32 gap-10 lg:p-20 p-10">
+            {data.map((item, index) => {
+                return (
+                    <IntroduceCard
+                        key={index}
+                        imageUrl={item.imageUrl}
+                        title={item.title}
+                        contents={item.contents}
+                        reverse={item.reverse}
+                    />
+                );
+            })}
         </div>
     );
 };
