@@ -74,6 +74,15 @@ const config = {
                 "app-3": 'url("/backgrounds/background-3.png")',
                 "app-4": 'url("/backgrounds/background-4.png")',
             },
+            backgroundSize: {
+                "80%": "80%",
+            },
+            backgroundColor: {
+                "light-90": "#e7ebef",
+                "light-80": "#d0d7e0",
+                "light-70": "#b8c4d0",
+                "light-60": "#a0b0c1",
+            },
         },
     },
     plugins: [require("tailwindcss-animate")],

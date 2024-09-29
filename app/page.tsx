@@ -1,8 +1,9 @@
-import { Banner } from "./positisions/Banner";
-import { Contact } from "./positisions/Contact";
-import { Customer } from "./positisions/Customer";
-import { IntroduceService } from "./positisions/IntroduceService";
-import { NewVideos } from "./positisions/NewVideos";
+import { Banner } from "./positisions/dashboard/Banner";
+import { Contact } from "./positisions/dashboard/Contact";
+import { Customer } from "./positisions/dashboard/Customer";
+import { IntroduceService } from "./positisions/dashboard/IntroduceService";
+import { NewVideos } from "./positisions/dashboard/NewVideos";
+import { News } from "./positisions/dashboard/News";
 
 export default function HomePage() {
     return (
@@ -10,8 +11,9 @@ export default function HomePage() {
             <Banner />
             <IntroduceService />
             <NewVideos />
-            <Contact></Contact>
-            <Customer></Customer>
+            <Contact />
+            <Customer />
+            <News />
         </div>
     );
 }

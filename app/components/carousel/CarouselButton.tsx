@@ -13,7 +13,7 @@ interface Props extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 export const DotButton: React.FC<Props> = ({ active, ...restProps }) => {
     return (
         <Button
-            className={cn("rounded-full w-3 h-3 m-0 p-0 bg-gray-300 hover:bg-blue-800", { "bg-blue-800": active })}
+            className={cn("rounded-full w-2 h-2 m-0 p-0 bg-gray-300 hover:bg-blue-800", { "bg-blue-800": active })}
             {...restProps}
         />
     );

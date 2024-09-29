@@ -5,24 +5,33 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { MobileMenu } from "../components/MobileMenu";
+import { useScroll } from "../hooks/useScroll";
+import { useRouter } from "next/navigation";
 
 export const Header = () => {
     const [openPop, setOpenPop] = useState(false);
+    const { isScrolled } = useScroll();
+    const router = useRouter();
 
     const trainingCalendar = [
         {
-            href: "",
+            href: "/lich-dao-tao/2023-2024",
             title: "2023 - 2024",
         },
         {
-            href: "",
+            href: "/lich-dao-tao/2024-2025",
             title: "2024 - 2025",
         },
     ];
 
     return (
-        <nav className="fixed w-full top-0 flex justify-between items-center h-[80px] lg:px-18 md:px-10 px-5 bg-white z-10 border-b-2 border-blue-500">
-            <div className="">
+        <nav
+            className={cn(
+                "fixed w-full top-0 flex justify-between items-center h-24 lg:px-18 md:px-10 px-5 bg-white z-10 transition-all ease-linear duration-500",
+                { "h-16": isScrolled }
+            )}
+        >
+            <div className="transition-all">
                 <Image
                     src={"/logo/main-logo.png"}
                     alt="logo"
@@ -30,7 +39,10 @@ export const Header = () => {
                     height={80}
                     // fill
                     // objectFit="contain"
-                    className="max-w-[450px] h-full left-0"
+                    className={cn("max-w-[450px] h-full left-0 ease-in-out duration-500 cursor-pointer", {
+                        "max-w-sm": isScrolled,
+                    })}
+                    onClick={() => router.push("/")}
                 />
             </div>
             <div className="lg:flex items-center font-semibold gap-8 hidden">
@@ -64,7 +76,7 @@ export const Header = () => {
                         </div>
                     </PopoverContent>
                 </Popover>
-                <Link href={"/gioi-thieu"} aria-label="Đi đến trang liên hệ" className="">
+                <Link href={"/lien-he"} aria-label="Đi đến trang liên hệ" className="">
                     Liên Hệ
                 </Link>
             </div>
