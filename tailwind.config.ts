@@ -77,6 +77,10 @@ const config = {
             backgroundSize: {
                 "80%": "80%",
             },
+            backgroundColor: {
+                "light-90": "#e7ebef",
+                "light-80": "#d0d7e0",
+            },
         },
     },
     plugins: [require("tailwindcss-animate")],
