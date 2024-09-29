@@ -16,6 +16,7 @@ import { DateRange } from "react-day-picker";
 export default function SheduleCoursePage({ params }: { params: { slug: string } }) {
     const [isOpen, setIsOpen] = useState(true);
     const [chooseCourse, setChooseCourse] = useState<number | null>(null);
+    const [chooseLocation, setchooseLocation] = useState<number | null>(null);
     const [date, setDate] = useState<DateRange | undefined>({
         from: new Date(2022, 0, 20),
         to: addDays(new Date(2022, 0, 20), 20),
@@ -156,8 +157,14 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
 
     return (
         <div className="flex items-center lg:flex-row flex-col justify-center bg-light-90 mt-[100px] py-20">
-            <div className={`sticky left-0 flex flex-col self-start bg-white min-h-[500px] rounded-lg px-4 divide-y-2`}>
-                <Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-[350px] space-y-2 m-3 py-5">
+            <div
+                className={`sticky left-0 top-[120px] flex flex-col self-start bg-white min-h-[500px] rounded-lg px-4 divide-y-2`}
+            >
+                <Collapsible
+                    open={isOpen}
+                    onOpenChange={setIsOpen}
+                    className="w-[350px] space-y-2 m-3 py-5 transition-all"
+                >
                     <div className="flex items-center justify-between space-x-4">
                         <h4 className="text-sm font-semibold">Chuyên đề</h4>
 
@@ -168,10 +175,10 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
                             </Button>
                         </CollapsibleTrigger>
                     </div>
-                    <CollapsibleContent className="space-y-2 flex flex-col gap-3">
+                    <CollapsibleContent className="space-y-2 flex flex-col gap-3 transition-all">
                         {courses.map((course, index) => {
                             return (
-                                <div key={index} className="ml-10 flex gap-4">
+                                <div key={index} className="ml-10 flex gap-4 ease-in-out duration-500">
                                     <Checkbox
                                         id={index.toString()}
                                         onClick={() => {
@@ -187,7 +194,6 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
                                     </label>
                                 </div>
                             );
-                            return <div className="rounded-md border px-4 py-3 font-mono text-xs">{course.title}</div>;
                         })}
                     </CollapsibleContent>
                 </Collapsible>
@@ -210,9 +216,9 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
                                     <Checkbox
                                         id={index.toString()}
                                         onClick={() => {
-                                            setChooseCourse(index);
+                                            setchooseLocation(index);
                                         }}
-                                        checked={index === chooseCourse}
+                                        checked={index === chooseLocation}
                                     />
                                     <label
                                         htmlFor={index.toString()}
