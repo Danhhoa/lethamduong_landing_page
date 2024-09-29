@@ -3,10 +3,8 @@ import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carouse
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 import Link from "next/link";
-import { useDimension } from "../../hooks/useDimension";
 
 export const NewVideos = () => {
-    const { isMobile } = useDimension();
     const videos = [
         {
             url: "https://youtu.be/7JD1AuzKpG0",

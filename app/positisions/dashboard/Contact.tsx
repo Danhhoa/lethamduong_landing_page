@@ -26,7 +26,7 @@ export const Contact = () => {
                         <ImageRotate
                             src="/thumbnails/contact-1.webp"
                             alt=""
-                            className={`h-full w-[45%] md:mt-0 ounded-lg`}
+                            className={`h-full w-[45%] rounded-lg md:mt-0`}
                         />
                         <ImageRotate
                             src="/thumbnails/contact-2.webp"
