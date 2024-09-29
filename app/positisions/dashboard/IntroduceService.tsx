@@ -19,7 +19,7 @@ export const IntroduceService = () => {
     ];
     return (
         <div className="flex flex-col">
-            <div className="lg:block flex flex-col-reverse items-center justify-center bg-gray-300">
+            <div className="lg:block flex flex-col-reverse items-center justify-center bg-light-90">
                 <iframe
                     src="https://www.youtube.com/embed/D0ccqQe3c_s?autoplay=0&mute=1&loop=0&color=white&controls=1&modestbranding=0&playsinline=1&rel=0"
                     allow="accelerometer; modestbranding; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -86,13 +86,13 @@ export const IntroduceService = () => {
                                 height={800}
                                 objectFit="cover"
                                 className={cn("w-full h-full", {
-                                    "rounded-ss-full": isReverse,
-                                    "rounded-ee-full": !isReverse,
+                                    "lg:rounded-s-full rounded-ss-full": isReverse,
+                                    "lg:rounded-e-full rounded-ee-full": !isReverse,
                                 })}
                             />
                         </div>
 
-                        <div className="flex items-center justify-center lg:basis-1/2 lg:min-h-[250px] min-h-[130px] rounded-ee-full">
+                        <div className="flex items-center justify-center lg:basis-1/2 lg:min-h-[250px] min-h-[130px]  rounded-ss-full">
                             <p className="flex items-center justify-center lg:text-5xl md:text-2xl font-bold">
                                 {service.title}
                             </p>

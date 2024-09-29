@@ -11,9 +11,9 @@ export default function HomePage() {
             <Banner />
             <IntroduceService />
             <NewVideos />
-            <Contact></Contact>
-            <Customer></Customer>
-            <News></News>
+            <Contact />
+            <Customer />
+            <News />
         </div>
     );
 }

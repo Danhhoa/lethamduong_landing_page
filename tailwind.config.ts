@@ -80,6 +80,8 @@ const config = {
             backgroundColor: {
                 "light-90": "#e7ebef",
                 "light-80": "#d0d7e0",
+                "light-70": "#b8c4d0",
+                "light-60": "#a0b0c1",
             },
         },
     },

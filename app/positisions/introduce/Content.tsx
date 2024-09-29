@@ -45,35 +45,3 @@ export const Content = () => {
         </div>
     );
 };
-
-import React from "react";
-
-export const AboutMe = () => {
-    return (
-        <div className="flex items-center justify-center h-screen bg-gray-100">
-            <div className="max-w-4xl bg-gray-200 p-8 rounded-lg shadow-lg flex items-center">
-                {/* Text Section */}
-                <div className="w-1/2">
-                    <h2 className="text-4xl font-bold mb-4">About Me</h2>
-                    <p className="text-gray-700 mb-6">
-                        We believe that people are our main asset. Our team consists of the great professionals with
-                        years of relevant experience. We have an awesome portfolio of successful cases that we are ready
-                        to share. Choosing our company will be your best decision.
-                    </p>
-                    <button className="bg-transparent hover:bg-gray-300 text-black font-semibold py-2 px-4 border border-gray-400 rounded">
-                        Book Consultation
-                    </button>
-                </div>
-
-                {/* Image Section */}
-                <div className="w-1/2">
-                    <img
-                        src="https://via.placeholder.com/500x500" // Replace this with your image source
-                        alt="Profile"
-                        className="rounded-lg shadow-lg"
-                    />
-                </div>
-            </div>
-        </div>
-    );
-};

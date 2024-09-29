@@ -19,7 +19,7 @@ export const Header = () => {
             title: "2023 - 2024",
         },
         {
-            href: "/lich-dao-tao/2023-2024/lich-dao-tao/2024-2025",
+            href: "/lich-dao-tao/2024-2025",
             title: "2024 - 2025",
         },
     ];

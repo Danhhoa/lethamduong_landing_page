@@ -12,7 +12,7 @@ export const IntroduceCard: FC<Props> = ({ imageUrl, title, contents, reverse })
     return (
         <div
             className={cn(
-                "flex lg:flex-row flex-col items-center gap-5 justify-between bg-[#a0b0c1] lg:px-20 lg:py-16 p-5 shadow-lg rounded-md",
+                "flex lg:flex-row flex-col items-center gap-5 justify-between bg-light-60 lg:px-20 lg:py-16 p-5 shadow-lg rounded-md",
                 {
                     "lg:flex-row-reverse": reverse,
                 }

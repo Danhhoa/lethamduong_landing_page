@@ -3,7 +3,7 @@ import { ImageRotate } from "../../components/ImageRotate";
 
 export const Contact = () => {
     return (
-        <div className="bg-[#dce1e4]">
+        <div className="bg-light-90">
             <div className="flex lg:flex-row flex-col xl:mx-48 lg:mx-20 mt-20 md:px-10 px-5 py-10">
                 <div className="flex flex-col gap-3 lg:w-[50%]">
                     <h2 className="font-semibold md:text-4xl text-2xl">
