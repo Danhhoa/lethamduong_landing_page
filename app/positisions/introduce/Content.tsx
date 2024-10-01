@@ -1,4 +1,5 @@
 import { IntroduceCard } from "@/app/components/IntroduceCard";
+import { DirAnimation, FadeInView } from "@/app/components/fade-in-view/FadeInView";
 
 export const Content = () => {
     const data = [
@@ -30,14 +31,17 @@ export const Content = () => {
     return (
         <div className="max-w-[1170px] mx-auto  flex flex-col lg:gap-32 gap-10 lg:p-20 p-10">
             {data.map((item, index) => {
+                const dir = ["l2r", "r2l", "b2t"];
+
                 return (
-                    <IntroduceCard
-                        key={index}
-                        imageUrl={item.imageUrl}
-                        title={item.title}
-                        contents={item.contents}
-                        reverse={item.reverse}
-                    />
+                    <FadeInView key={index} dir={dir[index] as DirAnimation}>
+                        <IntroduceCard
+                            imageUrl={item.imageUrl}
+                            title={item.title}
+                            contents={item.contents}
+                            reverse={item.reverse}
+                        />
+                    </FadeInView>
                 );
             })}
         </div>
