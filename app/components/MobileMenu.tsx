@@ -34,13 +34,13 @@ export const MobileMenu = () => {
                     <Link href={"lien-he"} aria-label="Đi đến trang liên hệ" onClick={toggleMobileMenu}>
                         Liên Hệ
                     </Link>
-                    <p className="text-base text-gray-400 mt-3">Kết nối với chúng tôi</p>
+                    <div className="mx-auto w-[80%] h-0.5 bg-slate-400 mt-20" />
                     <div className="flex gap-5 justify-center items-center">
                         <Link href={"https://www.facebook.com/lethamduong.edu.vn"} target="_blank">
                             <Image src={"/icons/facebook.png"} alt="facebook-icon" width={30} height={30} />
                         </Link>
                         <Link href={"https://www.youtube.com/c/lethamduongeduvn"} target="_blank">
-                            <Image src={"/icons/youtube.png"} alt="youtube-icon" width={30} height={30} />
+                            <Image src={"/icons/video.png"} alt="youtube-icon" width={30} height={30} />
                         </Link>
                     </div>
                 </div>

@@ -119,8 +119,10 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
 
     return (
         <div className="flex items-center lg:flex-row flex-col justify-center bg-light-90 mt-[100px] py-20">
-            <FilterCourse />
-            <div className="w-[1080px] p-5 self-end">
+            <div className="lg:max-w-1/3 lg:flex sm:hidden sticky left-0 top-[120px] flex-col self-start bg-white rounded-lg px-4 divide-y-2">
+                <FilterCourse />
+            </div>
+            <div className="lg:w-2/3 w-full p-5 self-end">
                 <Chrono
                     items={items}
                     mode="VERTICAL_ALTERNATING"
@@ -134,7 +136,7 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
                     disableToolbar={true}
                     className={{ card: "fade-in-view-b2t in-view" }}
                     slideShowType={""}
-                ></Chrono>
+                />
             </div>
         </div>
     );

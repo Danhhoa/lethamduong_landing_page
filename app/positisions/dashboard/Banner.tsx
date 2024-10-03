@@ -5,8 +5,8 @@ export const Banner = () => {
     return (
         <div className="w-full h-full bg-landing-1 bg-no-repeat bg-cover bg-top pt-10">
             <div className="flex lg:flex-row flex-col h-full">
-                <div className="flex flex-col items-start self-center lg:pl-48  lg:mb-60 lg:gap-10 gap-5 lg:basis-1/2">
-                    <p className="text-primary tracking-wide text-3xl font-semibold">
+                <div className="flex flex-col lg:basis-1/2 items-start self-start lg:gap-10 gap-5 lg:pl-20 px-10 lg:mt-20 mt-5">
+                    <p className="text-primary tracking-wide text-3x font-semibold">
                         Trang thông tin chính thức và duy nhất
                     </p>
                     <p className="text-primary text-5xl font-bold">TS Lê Thẩm Dương</p>

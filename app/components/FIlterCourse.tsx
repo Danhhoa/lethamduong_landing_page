@@ -40,9 +40,7 @@ export const FilterCourse = () => {
         },
     ];
     return (
-        <div
-            className={`sticky left-0 top-[120px] flex flex-col self-start bg-white min-h-[500px] rounded-lg px-4 divide-y-2`}
-        >
+        <>
             <Collapsible open={isOpen} onOpenChange={setIsOpen} className="w-[350px] space-y-2 m-3 py-5 transition-all">
                 <div className="flex items-center justify-between space-x-4">
                     <h4 className="text-sm font-semibold">Chuyên đề</h4>
@@ -147,6 +145,6 @@ export const FilterCourse = () => {
                     </PopoverContent>
                 </Popover>
             </div>
-        </div>
+        </>
     );
 };

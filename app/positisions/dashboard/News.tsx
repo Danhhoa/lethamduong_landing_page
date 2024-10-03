@@ -37,7 +37,7 @@ export const News = () => {
     return (
         <div className="flex flex-col items-center justify-center mt-20 py-10 gap-5 bg-light-90">
             <h2 className="md:text-4xl text-2xl font-semibold">Tin Tức</h2>
-            <div className="mx-auto lg:px-20 px-5 md:max-w-5xl max-w-sm">
+            <div className="mx-auto w-full lg:px-20 px-5 md:max-w-5xl max-w-sm">
                 <CarouselSlider
                     slides={data.map((item, index) => {
                         return (

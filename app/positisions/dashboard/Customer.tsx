@@ -3,7 +3,7 @@ import Image from "next/image";
 export const Customer = () => {
     return (
         <div className="flex flex-col items-center justify-center flex-wrap gap-5 mt-20">
-            <h2 className="text-4xl font-bold">Đối tác của chúng tôi</h2>
+            <h2 className="lg:text-4xl text-2xl font-bold px-5">Đối tác của chúng tôi</h2>
             <div className="flex lg:flex-row flex-col">
                 <div>
                     <Image src={"/customers/1.webp"} alt="" width={600} height={200} className="basis-1/2" />
