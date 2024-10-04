@@ -3,8 +3,8 @@ import Link from "next/link";
 
 export const Footer = () => {
     return (
-        <div className="bg-white flex-col gap-10 mt-10 px-10 border-t-2">
-            <div className="flex lg:flex-row flex-col justify-around lg:gap-10 gap-5 px-5 py-10">
+        <div className="bg-white flex-col gap-10 lg:px-10 px-5 border-t-2">
+            <div className="flex lg:flex-row flex-col justify-around lg:gap-10 gap-5  py-10">
                 <div className="flex flex-col ms-3">
                     <Image
                         src={"/logo/main-logo.png"}

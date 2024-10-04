@@ -7,11 +7,13 @@ import { useState } from "react";
 import { MobileMenu } from "../components/MobileMenu";
 import { useScroll } from "../hooks/useScroll";
 import { useRouter } from "next/navigation";
+import { useDimension } from "../hooks/useDimension";
 
 export const Header = () => {
     const [openPop, setOpenPop] = useState(false);
     const { isScrolled } = useScroll();
     const router = useRouter();
+    const { isMobile } = useDimension();
 
     const trainingCalendar = [
         {
@@ -33,15 +35,18 @@ export const Header = () => {
         >
             <div className="transition-all">
                 <Image
-                    src={"/logo/main-logo.png"}
+                    src={isMobile ? "/logo/main-logo-mobile.png" : "/logo/main-logo.png"}
                     alt="logo"
-                    width={450}
+                    width={10000}
                     height={80}
                     // fill
                     // objectFit="contain"
-                    className={cn("max-w-[450px] h-full left-0 ease-in-out duration-500 cursor-pointer", {
-                        "max-w-sm": isScrolled,
-                    })}
+                    className={cn(
+                        "md:min-w-[450px] max-w-[60px] h-full left-0 ease-in-out duration-500 cursor-pointer"
+                        // {
+                        //     "max-w-sm": isScrolled,
+                        // }
+                    )}
                     onClick={() => router.push("/")}
                 />
             </div>

@@ -1,0 +1,26 @@
+.fade-in-view-r2l {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease-out, transform 0.5s ease-out;
+    transform: translateX(20vh);
+}
+
+.fade-in-view-l2r {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease-out, transform 0.5s ease-out;
+    transform: translateX(-20vh);
+}
+
+.fade-in-view-b2t {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.8s ease-out, transform 0.5s ease-out;
+    transform: translateY(20vh);
+}
+
+.in-view {
+    opacity: 1;
+    transform: none;
+    visibility: visible;
+}

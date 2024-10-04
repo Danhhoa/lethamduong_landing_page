@@ -1,12 +1,11 @@
 "use client";
 
 import { YoutubeVideoIframe } from "@/app/components/YoutubeVideoIframe";
-import { useDimension } from "@/app/hooks/useDimension";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
+import { useState } from "react";
 
 export const VideoSlider = () => {
-    const { isMobile } = useDimension();
     const data = [
         {
             src: "https://www.youtube.com/embed/D0ccqQe3c_s",
@@ -18,6 +17,7 @@ export const VideoSlider = () => {
             src: "https://www.youtube.com/embed/xN_q9OjKBSA",
         },
     ];
+
     return (
         <div className="mx-auto max-w-5xl my-20">
             <h4 className="text-4xl font-bold text-center my-10">Các video phổ biến</h4>
@@ -28,15 +28,15 @@ export const VideoSlider = () => {
                 className="w-full"
                 plugins={[
                     Autoplay({
-                        delay: 3000,
+                        delay: 6000,
                     }),
                 ]}
             >
-                <CarouselContent>
+                <CarouselContent className="">
                     {data.map((item, index) => {
                         return (
-                            <CarouselItem key={index} className="w-full">
-                                <YoutubeVideoIframe url={item.src} />
+                            <CarouselItem key={index} className="">
+                                <YoutubeVideoIframe index={index} url={item.src} />
                             </CarouselItem>
                         );
                     })}
