@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
@@ -47,7 +49,7 @@ export const Blog: FC<Props> = (params) => {
             <Link href={detailUrl} className="text-lg font-semibold px-5">
                 {title}
             </Link>
-            <div className="font-semibold text-base text-primary px-5 mt-3">{`${author} | ${parseDate}`}</div>
+            <div className="font-semibold text-base text-primary px-5 mt-3">{parseDate}</div>
             {/* <Button size={"lg"} variant={"outline"}>
                 Xem chi tiết
             </Button> */}

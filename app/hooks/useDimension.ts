@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 export const useDimension = () => {
-    const [windowWidth, setWindowWidth] = useState<any>(null);
+    const [windowWidth, setWindowWidth] = useState<number>(0);
 
     const isWindow = typeof window !== "undefined";
 
@@ -20,5 +20,5 @@ export const useDimension = () => {
         //eslint-disable-next-line
     }, [isWindow]);
 
-    return { isMobile: windowWidth < 768 };
+    return { isMobile: windowWidth && windowWidth < 768 };
 };
