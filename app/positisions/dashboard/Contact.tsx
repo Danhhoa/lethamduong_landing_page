@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { ImageRotate } from "../../components/ImageRotate";
+import { FadeInView } from "@/app/components/fade-in-view/FadeInView";
 
 export const Contact = () => {
     return (
         <div className="bg-light-90">
             <div className="flex lg:flex-row flex-col xl:mx-48 lg:mx-20 mt-20 md:px-10 px-5 py-10">
-                <div className="flex flex-col gap-3 lg:w-[50%]">
+                <FadeInView dir="fade-in" className="flex flex-col gap-3 lg:w-[50%]">
                     <h2 className="font-semibold md:text-4xl text-2xl">
                         Liên hệ <br />
                         với TS Lê Thẩm Dương
@@ -20,7 +21,7 @@ export const Contact = () => {
                     >
                         Thông tin liên hệ
                     </Link>
-                </div>
+                </FadeInView>
                 <div className="lg:w-[50%] md:ml-10 mt-10">
                     <div className="flex items-center justify-center lg:gap-10 gap-4 max-h-[500px]">
                         <ImageRotate
