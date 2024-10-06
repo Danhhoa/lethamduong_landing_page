@@ -2,6 +2,7 @@
 
 import { CollapsibleFilterControl } from "@/app/components/filter-controller/CollapsibleFilterControl";
 import { Chrono } from "@/app/components/timeline/ChronoClient";
+import { useDimension } from "@/app/hooks/useDimension";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -18,6 +19,8 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
         from: dayjs().year(Number(startYear)).startOf("years").toDate(),
         to: dayjs().year(Number(endYear)).endOf("years").toDate(),
     });
+    const { isMobile } = useDimension();
+    const [openControl, setOpenControl] = useState(false);
 
     const courses = [
         {
@@ -36,11 +39,11 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
 
     const locations = [
         {
-            id: "1",
+            id: "lo-1",
             title: "TP Hồ Chí Minh",
         },
         {
-            id: "2",
+            id: "lo-2",
             title: "Hà Nội",
         },
     ];
@@ -157,9 +160,29 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
     ];
 
     return (
-        <div className="flex items-center lg:flex-row flex-col justify-center bg-light-90 mt-[100px] py-20">
-            <div className="lg:w-1/3 lg:flex sm:hidden sticky left-0 top-[120px] flex-col self-start">
-                <div className="xl:w-2/3 ml-20 bg-white rounded-lg px-4 divide-y-2">
+        <div className="flex items-center lg:flex-row flex-col justify-center bg-light-90 mt-[100px] lg:py-20">
+            <div
+                className="fixed left-0 flex items-center justify-center top-[120px] h-20 w-8 bg-white rounded-e-lg shadow-lg cursor-pointer text-center hover:scale-125 transition-transform duration-300"
+                onClick={() => setOpenControl(!openControl)}
+            >
+                <p className="[writing-mode:vertical-lr] rotate-180 text-sm">Lọc</p>
+            </div>
+            <div
+                className={cn(
+                    "lg:w-1/3 lg:flex sticky left-0 top-[120px] flex-col self-start z-50 transition-all ease-in-out duration-200",
+                    {
+                        "lg:w-0": openControl,
+                    }
+                )}
+            >
+                <div
+                    className={cn(
+                        "fixed max-w-1/3 lg:ml-20 lg:mt-0 ml-10 mt-10 bg-white rounded-lg px-4 divide-y-2 opacity-0 transition-all ease-in-out duration-300 scale-0",
+                        {
+                            "opacity-100 scale-100": !openControl,
+                        }
+                    )}
+                >
                     <CollapsibleFilterControl
                         title="Chuyên đề"
                         content={courses}
@@ -215,7 +238,7 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
                     </div>
                 </div>
             </div>
-            <div className="lg:w-2/3 w-full p-5 self-end">
+            <div className={cn("lg:w-2/3 w-full p-5 self-end", { "lg:w-full": openControl })}>
                 <Chrono
                     items={items}
                     mode="VERTICAL_ALTERNATING"
