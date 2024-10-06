@@ -17,7 +17,7 @@ export const FadeInView: FC<Props> = ({ dir = "l2r", className, children }) => {
     const { ref, inView, entry } = useInView({
         /* Optional options */
         threshold: 0,
-        triggerOnce: false,
+        triggerOnce: true,
         rootMargin: "50px",
     });
 
