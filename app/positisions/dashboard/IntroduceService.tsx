@@ -26,7 +26,7 @@ export const IntroduceService = () => {
                     allow="accelerometer; modestbranding; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerPolicy="strict-origin-when-cross-origin"
                     allowFullScreen
-                    className="lg:w-1/2 w-full float-right xl:ml-10 mb-6 rounded-3xl"
+                    className="lg:w-1/2 w-full float-right xl:ml-10 mb-6 rounded-3xl mt-5"
                     height={480}
 
                     // className="w-[300%] h-full ml-[-100%]"

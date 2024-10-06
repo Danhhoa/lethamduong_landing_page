@@ -16,7 +16,7 @@ export const Contact = () => {
                         hệ với thông tin sau.
                     </p>
                     <Link
-                        href={"#"}
+                        href={"/lien-he"}
                         className="bg-primary-dark text-white text-lg text-center font-bold content-center rounded-md px-8 py-3 max-w-60 hover:scale-90 transition-all"
                     >
                         Thông tin liên hệ
@@ -27,12 +27,12 @@ export const Contact = () => {
                         <ImageRotate
                             src="/thumbnails/contact-1.webp"
                             alt=""
-                            className={`h-full w-[45%] rounded-lg md:mt-0`}
+                            className={`h-full w-[35%] rounded-lg md:mt-0`}
                         />
                         <ImageRotate
                             src="/thumbnails/contact-2.webp"
                             alt=""
-                            className={`h-full w-[45%] rounded-lg mt-10`}
+                            className={`h-full w-[35%] rounded-lg mt-10`}
                         />
                     </div>
                 </div>

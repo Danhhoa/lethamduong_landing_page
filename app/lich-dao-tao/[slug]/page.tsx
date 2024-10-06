@@ -177,7 +177,7 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
             >
                 <div
                     className={cn(
-                        "fixed max-w-1/3 lg:ml-20 lg:mt-0 ml-10 mt-10 bg-white rounded-lg px-4 divide-y-2 opacity-0 transition-all ease-in-out duration-300 scale-0",
+                        "fixed max-w-1/3 lg:ml-20 lg:mt-0 ml-10 mt-10 bg-white rounded-lg px-4 divide-y-2 shadow-2xl opacity-0 transition-all ease-in-out duration-300 scale-0",
                         {
                             "opacity-100 scale-100": !openControl,
                         }
