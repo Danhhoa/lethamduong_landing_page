@@ -1,4 +1,5 @@
 "use client";
+import { FadeInView } from "@/app/components/fade-in-view/FadeInView";
 import { Blog } from "../../components/Blog";
 import { CarouselSlider } from "../../components/carousel/CarouselSlider";
 
@@ -37,21 +38,23 @@ export const News = () => {
         <div className="flex flex-col items-center justify-center mt-20 py-10 gap-5 bg-light-90">
             <h2 className="md:text-4xl text-2xl font-semibold">Tin Tức</h2>
             <div className="mx-auto w-full lg:px-20 px-5 md:max-w-5xl max-w-sm">
-                <CarouselSlider
-                    slides={data.map((item, index) => {
-                        return (
-                            <Blog
-                                key={item.text + index}
-                                title={item.text}
-                                imageUrl={item.imageUrl}
-                                alt={item.text}
-                                author={item.author}
-                                datePublished={item.datePublished}
-                                detailUrl={item.detailUrl}
-                            />
-                        );
-                    })}
-                />
+                <FadeInView dir="fade-in">
+                    <CarouselSlider
+                        slides={data.map((item, index) => {
+                            return (
+                                <Blog
+                                    key={item.text + index}
+                                    title={item.text}
+                                    imageUrl={item.imageUrl}
+                                    alt={item.text}
+                                    author={item.author}
+                                    datePublished={item.datePublished}
+                                    detailUrl={item.detailUrl}
+                                />
+                            );
+                        })}
+                    />
+                </FadeInView>
             </div>
         </div>
     );
