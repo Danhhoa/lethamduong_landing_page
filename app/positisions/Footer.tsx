@@ -22,9 +22,9 @@ export const Footer = () => {
                     <p className="mt-3">
                         <strong>Email: </strong>congtrong@lethamduong.edu.vn
                     </p>
-                    <p className="mt-3">
+                    <a href="tel:+84 981 405 186" className="mt-3">
                         <strong>Hotline: </strong>+84 981 405 186
-                    </p>
+                    </a>
                 </div>
 
                 <div className="flex flex-col gap-5 font-bold text-slate-500 uppercase mt-8 ms-3">

@@ -1,4 +1,5 @@
 "use client";
+import { FadeInView } from "@/app/components/fade-in-view/FadeInView";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
@@ -29,42 +30,45 @@ export const NewVideos = () => {
         },
     ];
     return (
-        <div className="flex flex-col justify-center items-center gap-8 mt-20">
-            <h2 className="font-semibold lg:text-4xl text-2xl lg:max-w-[40%] text-center px-10 py-5">
-                Những video mới nhất của TS Lê Thẩm Dương
-            </h2>
-            <Carousel
-                opts={{
-                    align: "center",
-                    loop: true,
-                }}
-                plugins={[
-                    Autoplay({
-                        delay: 3000,
-                    }),
-                ]}
-                className="w-full max-w-6xl"
-            >
-                <CarouselContent className="">
-                    {videos.map((video, index) => {
-                        return (
-                            <CarouselItem
-                                key={`${video.url}-${index}`}
-                                className="flex flex-col justify-center items-center lg:basis-1/3 gap-4"
-                            >
-                                <Link
-                                    href={video.url}
-                                    className=" text-center font-medium content-center rounded-md px-5 py-2"
-                                >
-                                    <div className="relative group">
-                                        <Image
-                                            src={video.thumbnail}
-                                            alt={video.label}
-                                            width={1000}
-                                            height={1000}
-                                            className="object-contain lg:max-w-[350px] max-w-[450px] w-full p-2 rounded-2xl"
-                                        />
-                                        {/* <span className="absolute  flex items-center justify-center inset-0 rounded-2xl bg-bg-black opacity-0 group-hover:opacity-70 transition-opacity duration-300 before:content-[''] before:absolute before:inset-0 before:bg-black before:bg-opacity-60 before:opacity-0 before:transition-opacity before:duration-300 group-hover:before:opacity-70 before:rounded-2xl">
+        <>
+            <FadeInView dir="fade-in">
+                <div className="flex flex-col justify-center items-center mt-20">
+                    <h2 className="font-semibold lg:text-4xl text-2xl lg:max-w-[40%] text-center px-10 my-5">
+                        Những video mới nhất của TS Lê Thẩm Dương
+                    </h2>
+                    <Carousel
+                        opts={{
+                            align: "center",
+                            loop: true,
+                        }}
+                        plugins={[
+                            Autoplay({
+                                delay: 3000,
+                            }),
+                        ]}
+                        className="w-full max-w-6xl"
+                    >
+                        <CarouselContent className="py-10">
+                            {videos.map((video, index) => {
+                                return (
+                                    <CarouselItem
+                                        key={`${video.url}-${index}`}
+                                        className="flex flex-col justify-center items-center lg:basis-1/3 gap-4 transition-transform ease-linear duration-200 hover:scale-110"
+                                    >
+                                        <Link
+                                            href={video.url}
+                                            className=" text-center font-medium content-center rounded-md px-5 py-2"
+                                            target="blank"
+                                        >
+                                            <div className="relative group">
+                                                <Image
+                                                    src={video.thumbnail}
+                                                    alt={video.label}
+                                                    width={1000}
+                                                    height={1000}
+                                                    className="object-contain lg:max-w-[350px] max-w-[450px] w-full p-2 rounded-2xl"
+                                                />
+                                                {/* <span className="absolute  flex items-center justify-center inset-0 rounded-2xl bg-bg-black opacity-0 group-hover:opacity-70 transition-opacity duration-300 before:content-[''] before:absolute before:inset-0 before:bg-black before:bg-opacity-60 before:opacity-0 before:transition-opacity before:duration-300 group-hover:before:opacity-70 before:rounded-2xl">
                                             <Image
                                                 src={"/icons/export.png"}
                                                 alt="Go to video"
@@ -73,14 +77,16 @@ export const NewVideos = () => {
                                                 className=""
                                             />
                                         </span> */}
-                                    </div>
-                                    <span className="text-center font-semibold text-xl">{video.label}</span>
-                                </Link>
-                            </CarouselItem>
-                        );
-                    })}
-                </CarouselContent>
-            </Carousel>
-        </div>
+                                            </div>
+                                            <span className="text-center font-semibold text-xl">{video.label}</span>
+                                        </Link>
+                                    </CarouselItem>
+                                );
+                            })}
+                        </CarouselContent>
+                    </Carousel>
+                </div>
+            </FadeInView>
+        </>
     );
 };

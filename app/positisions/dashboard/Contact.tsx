@@ -5,7 +5,7 @@ import { FadeInView } from "@/app/components/fade-in-view/FadeInView";
 export const Contact = () => {
     return (
         <div className="bg-light-90">
-            <div className="flex lg:flex-row flex-col xl:mx-48 lg:mx-20 mt-20 md:px-10 px-5 py-10">
+            <div className="flex lg:flex-row flex-col max-w-screen-lg mx-auto mt-20 md:px-10 px-5 py-10">
                 <FadeInView dir="fade-in" className="flex flex-col gap-3 lg:w-[50%]">
                     <h2 className="font-semibold md:text-4xl text-2xl">
                         Liên hệ <br />
@@ -27,12 +27,12 @@ export const Contact = () => {
                         <ImageRotate
                             src="/thumbnails/contact-1.webp"
                             alt=""
-                            className={`h-full w-[35%] rounded-lg md:mt-0`}
+                            className={`h-full w-[45%] rounded-lg md:mt-0`}
                         />
                         <ImageRotate
                             src="/thumbnails/contact-2.webp"
                             alt=""
-                            className={`h-full w-[35%] rounded-lg mt-10`}
+                            className={`h-full w-[45%] rounded-lg mt-10`}
                         />
                     </div>
                 </div>

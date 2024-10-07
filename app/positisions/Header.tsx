@@ -1,14 +1,13 @@
 "use client";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { MobileMenu } from "../components/MobileMenu";
-import { useScroll } from "../hooks/useScroll";
-import { useRouter } from "next/navigation";
 import { useDimension } from "../hooks/useDimension";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Badge } from "@/components/ui/badge";
+import { useScroll } from "../hooks/useScroll";
 
 export const Header = () => {
     const [openPop, setOpenPop] = useState(false);
@@ -70,17 +69,21 @@ export const Header = () => {
                             />
                         </div>
                     </PopoverTrigger>
-                    <PopoverContent align="end" className="bg-white border rounded-md shadow-lg">
+                    <PopoverContent
+                        align="end"
+                        className="bg-white border rounded-md shadow-lg"
+                        onMouseLeave={() => setOpenPop(false)}
+                    >
                         <div className="flex flex-col font-normal divide-y-2">
                             {trainingCalendar.map((item) => (
                                 <Link
                                     key={item.title}
                                     href={item.href}
-                                    className="px-5 py-2 hover:bg-primary-light hover:text-white rounded-md"
+                                    className="px-5 py-2 hover:bg-primary-light hover:text-white rounded-md transition-all duration-150 ease-linear"
+                                    onClick={() => setOpenPop(false)}
                                 >
                                     <div className="flex gap-3 justify-around items-center">
                                         <Image src={item.icon} alt="education-icon" width={35} height={35} />
-
                                         <p>{item.title}</p>
                                     </div>
                                 </Link>
