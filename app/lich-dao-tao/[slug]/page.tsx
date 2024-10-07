@@ -19,8 +19,9 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
         from: dayjs().year(Number(startYear)).startOf("years").toDate(),
         to: dayjs().year(Number(endYear)).endOf("years").toDate(),
     });
-    const { isMobile } = useDimension();
     const [openControl, setOpenControl] = useState(false);
+
+    console.log({ openControl });
 
     const courses = [
         {
@@ -165,21 +166,21 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
                 className="fixed left-0 flex items-center justify-center top-[120px] h-20 w-8 bg-white rounded-e-lg shadow-lg cursor-pointer text-center hover:scale-125 transition-transform duration-300"
                 onClick={() => setOpenControl(!openControl)}
             >
-                <p className="[writing-mode:vertical-lr] rotate-180 text-sm">Lọc</p>
+                <Image src={"/icons/setting-animate.gif"} alt="setting" width={50} height={50} />
             </div>
             <div
                 className={cn(
                     "lg:w-1/3 lg:flex sticky left-0 top-[120px] flex-col self-start z-50 transition-all ease-in-out duration-200",
                     {
-                        "lg:w-0": openControl,
+                        "lg:w-0": !openControl,
                     }
                 )}
             >
                 <div
                     className={cn(
-                        "fixed max-w-1/3 lg:ml-20 lg:mt-0 ml-10 mt-10 bg-white rounded-lg px-4 divide-y-2 opacity-0 transition-all ease-in-out duration-300 scale-0",
+                        "fixed max-w-1/3 lg:ml-20 lg:mt-0 ml-10 mt-10 bg-white rounded-lg px-4 divide-y-2 shadow-2xl opacity-0 transition-all ease-in-out duration-300 scale-0",
                         {
-                            "opacity-100 scale-100": !openControl,
+                            "opacity-100 scale-100": openControl,
                         }
                     )}
                 >
@@ -250,8 +251,6 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
                         title: "1rem",
                     }}
                     disableToolbar={true}
-                    className={{ card: "fade-in-view-b2t in-view" }}
-                    slideShowType={""}
                 />
             </div>
         </div>

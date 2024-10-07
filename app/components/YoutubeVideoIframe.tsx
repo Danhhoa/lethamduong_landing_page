@@ -6,9 +6,12 @@ interface Props {
     index: number;
     playingId?: string;
     className?: string;
+    onPlayVideo?: () => void;
+    onPauseVideo?: () => void;
+    onEndVideo?: () => void;
 }
 
-export const YoutubeVideoIframe: FC<Props> = ({ url, index, className }) => {
+export const YoutubeVideoIframe: FC<Props> = ({ url, index, className, onPlayVideo, onPauseVideo, onEndVideo }) => {
     const opts = {
         height: "460px",
         width: "100%",
@@ -20,14 +23,14 @@ export const YoutubeVideoIframe: FC<Props> = ({ url, index, className }) => {
     const tmp = videoId + "_" + index;
 
     return (
-        <>
-            <YouTube videoId={videoId} id={tmp} opts={opts} />
-            {/* {domLoaded && (
-                // <div className="relative">
-                //     <ReactPlayer url={url} width="100%" className="absolute top-0 left-0 h-[460px]" />
-                // </div>
-            )} */}
-        </>
+        <YouTube
+            videoId={videoId}
+            id={tmp}
+            opts={opts}
+            onPlay={() => onPlayVideo && onPlayVideo()}
+            onPause={() => onPauseVideo}
+            onEnd={() => onEndVideo}
+        />
 
         // <iframe
         //     src={url + "?autoplay=0&mute=1&loop=0&color=white&controls=1&modestbranding=0&playsinline=1&rel=0"}

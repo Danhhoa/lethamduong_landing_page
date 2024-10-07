@@ -39,7 +39,7 @@ const ContactMeItem: FC<{ imgUrl: string; title: string; subTitle: string }> = (
     return (
         <div className="flex flex-col lg:gap-5 gap-3 items-center justify-center lg:px-20 lg:py-10 p-5 max-w-[380px]">
             <Image src={imgUrl} alt="mail" width={40} height={40} />
-            <p className="font-bold">{title}</p>
+            <div className="font-bold">{title}</div>
             <p className="text-center">{subTitle}</p>
         </div>
     );

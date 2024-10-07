@@ -1,5 +1,6 @@
 "use client";
 
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,10 +8,26 @@ import { useState } from "react";
 
 export const MobileMenu = () => {
     const [openMennu, setOpenMenu] = useState(false);
+    const [isCollapsibleOpen, setIsCollapsibleOpen] = useState(false);
 
     const toggleMobileMenu = () => {
         setOpenMenu(!openMennu);
     };
+
+    const trainingCalendar = [
+        {
+            href: "/lich-dao-tao/2023-2024",
+            title: "2023 - 2024",
+            icon: "/icons/online-education.png",
+        },
+        {
+            href: "/lich-dao-tao/2024-2025",
+            title: "2024 - 2025",
+            icon: "/icons/online-education-2.png",
+        },
+    ];
+
+    console.log({ isOpen: isCollapsibleOpen });
 
     return (
         <>
@@ -24,13 +41,45 @@ export const MobileMenu = () => {
                 <div className="flex justify-end mb-5 mr-5 flex-1">
                     <Image src={"/icons/cross.svg"} alt="" width={32} height={32} onClick={toggleMobileMenu} />
                 </div>
-                <div className="flex flex-col justify-center items-center text-xl gap-8">
+                <div className="flex flex-col justify-center items-center self-start text-xl gap-8">
                     <Link href={"gioi-thieu"} aria-label="Đi đến trang thới thiệu" onClick={toggleMobileMenu}>
                         Giới Thiệu
                     </Link>
-                    <Link href={"dao-tao"} aria-label="Đi đến trang đào tạo" onClick={toggleMobileMenu}>
-                        Lịch Đào Tạo
-                    </Link>
+                    <div className="flex flex-col">
+                        <Collapsible
+                            open={isCollapsibleOpen}
+                            onOpenChange={() => setIsCollapsibleOpen(!isCollapsibleOpen)}
+                            className={`w-full transition-all`}
+                        >
+                            <div className="flex items-center justify-between space-x-4">
+                                <CollapsibleTrigger asChild onClick={() => setIsCollapsibleOpen(!isCollapsibleOpen)}>
+                                    <div className="flex items-center justify-center gap-3">
+                                        <h4 className="">{"Lịch đào tạo"}</h4>
+                                        <Image
+                                            src={"/icons/chevron-down-black.svg"}
+                                            alt=""
+                                            width={16}
+                                            height={16}
+                                            className={cn("transition ease-in-out ", {
+                                                "rotate-180": isCollapsibleOpen,
+                                            })}
+                                        />
+                                    </div>
+                                </CollapsibleTrigger>
+                            </div>
+                            <CollapsibleContent className="space-y-2 flex flex-col transition-all">
+                                <ul className="flex flex-col gap-4 relative right-0 text-end">
+                                    {trainingCalendar.map((item) => {
+                                        return (
+                                            <Link href={item.href} className="text-lg" onClick={toggleMobileMenu}>
+                                                {item.title}
+                                            </Link>
+                                        );
+                                    })}
+                                </ul>
+                            </CollapsibleContent>
+                        </Collapsible>
+                    </div>
                     <Link href={"lien-he"} aria-label="Đi đến trang liên hệ" onClick={toggleMobileMenu}>
                         Liên Hệ
                     </Link>
