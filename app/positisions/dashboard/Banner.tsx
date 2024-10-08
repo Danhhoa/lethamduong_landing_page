@@ -13,7 +13,7 @@ export const Banner = () => {
                         </p>
                         <p className="text-primary md:text-5xl text-2xl font-bold text-center">TS Lê Thẩm Dương</p>
                         <Link
-                            href="#"
+                            href="/lich-dao-tao/2024-2025"
                             className="relative group bg-white px-10 py-6 text-lg font-bold text-primary rounded transition ease-in-out duration-300"
                         >
                             <span className="flex items-center justify-center">

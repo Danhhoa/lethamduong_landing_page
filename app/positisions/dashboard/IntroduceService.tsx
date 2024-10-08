@@ -26,7 +26,7 @@ export const IntroduceService = () => {
                     allow="accelerometer; modestbranding; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerPolicy="strict-origin-when-cross-origin"
                     allowFullScreen
-                    className="lg:w-1/2 w-full float-right xl:ml-10 mb-6 rounded-3xl mt-5"
+                    className="lg:w-1/2 w-full float-right xl:ml-10 mb-6 lg:rounded-xl mt-5"
                     height={480}
 
                     // className="w-[300%] h-full ml-[-100%]"
@@ -37,7 +37,7 @@ export const IntroduceService = () => {
                         <div className="text-primary text-4xl font-bold mb-10 lg:mt-20 mt-10">Trường Doanh Nhân PR</div>
                     </FadeInView>
                     <FadeInView dir="b2t">
-                        <div className="text-xl leading-10">
+                        <div className="lg:text-xl lg:leading-10 text-lg leading-8">
                             <p className="mb-6">
                                 Trường Doanh Nhân PR là một trong những đơn vị đào tạo doanh nhân đi đầu về chất lượng
                                 giảng dạy tại Việt Nam. Dưới pháp nhân là Công ty cổ phần phát triển giáo dục PR, được
