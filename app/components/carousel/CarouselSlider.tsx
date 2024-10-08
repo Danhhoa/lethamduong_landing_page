@@ -3,6 +3,8 @@ import { EmblaOptionsType } from "embla-carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { FC, ReactNode, useEffect, useState } from "react";
 import { DotButton } from "./CarouselButton";
+import { cn } from "@/lib/utils";
+import { useDimension } from "@/app/hooks/useDimension";
 
 interface Props {
     slides: Array<ReactNode>;
@@ -14,6 +16,7 @@ export const CarouselSlider: FC<Props> = ({ slides, options = {} }) => {
     const [current, setCurrent] = useState(0);
     const [current2, setCurrent2] = useState<number>(-1);
     const [count, setCount] = useState(0);
+    const { isMobile } = useDimension();
 
     useEffect(() => {
         if (!api) {
@@ -39,6 +42,8 @@ export const CarouselSlider: FC<Props> = ({ slides, options = {} }) => {
         }
     }, [current2]);
 
+    const indexScale = current;
+
     return (
         <Carousel
             plugins={[
@@ -54,9 +59,23 @@ export const CarouselSlider: FC<Props> = ({ slides, options = {} }) => {
             className="w-full"
             setApi={setApi}
         >
-            <CarouselContent>
+            <CarouselContent className="transition-all duration-200 ease-out lg:py-10">
                 {slides.map((slide, index) => (
-                    <CarouselItem key={index} className="lg:basis-1/3">
+                    <CarouselItem
+                        key={index}
+                        className={cn("lg:basis-1/3 duration-500", {
+                            "lg:scale-110": indexScale === index,
+                        })}
+                        style={{
+                            transform: !isMobile
+                                ? index < indexScale
+                                    ? "perspective(300px) rotateY(30deg) scale(0.75)"
+                                    : index > indexScale
+                                    ? "perspective(300px) rotateY(-30deg) scale(0.75)"
+                                    : ""
+                                : "",
+                        }}
+                    >
                         {slide}
                     </CarouselItem>
                 ))}
