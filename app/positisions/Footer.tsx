@@ -19,27 +19,41 @@ export const Footer = () => {
                         <strong>Địa chỉ: </strong> 99 đường số 14, Khu phố 3, Phường An Khánh, Thành Phố Thủ Đức, Thành
                         Phố Hồ Chí Minh
                     </p>
-                    <p className="mt-3">
+                    <a href="mailto:congtrong@lethamduong.edu.vn" className="mt-3 hover:text-orange-500">
                         <strong>Email: </strong>congtrong@lethamduong.edu.vn
-                    </p>
+                    </a>
                     <a href="tel:+84 981 405 186" className="mt-3">
-                        <strong>Hotline: </strong>+84 981 405 186
+                        <p className="hover:text-orange-500">
+                            <strong>Hotline: </strong>+84 981 405 186
+                        </p>
                     </a>
                 </div>
 
                 <div className="flex flex-col gap-5 font-bold text-slate-500 uppercase mt-8 ms-3">
-                    <Link href={"/gioi-thieu"}>Giới thiệu</Link>
-                    <Link href={"/lich-dao-tao"}>Lịch Đào tạo</Link>
-                    <Link href={"/lien-he"}>Liên hệ</Link>
+                    <Link href={"/gioi-thieu"} className="hover:text-orange-500">
+                        Giới thiệu
+                    </Link>
+                    <Link href={"/lich-dao-tao/2024-2025"} className="hover:text-orange-500">
+                        Lịch Đào tạo
+                    </Link>
+                    <Link href={"/lien-he"} className="hover:text-orange-500">
+                        Liên hệ
+                    </Link>
                 </div>
             </div>
             <div className="mx-auto w-[80%] h-0.5 bg-slate-400 mt-20" />
-            <div className="flex items-center justify-center gap-4 mt-5">
+            <div className="flex items-center justify-center gap-4 mt-5 transition-transform duration-300">
                 <Link href={"https://www.facebook.com/lethamduong.edu.vn"}>
-                    <Image src="/icons/facebook.png" alt="facebook" width={30} height={30} />
+                    <Image
+                        src="/icons/facebook.png"
+                        alt="facebook"
+                        width={30}
+                        height={30}
+                        className="hover:scale-110"
+                    />
                 </Link>
                 <Link href={"https://www.youtube.com/c/lethamduongeduvn"}>
-                    <Image src="/icons/video.png" alt="youtube" width={30} height={30} />
+                    <Image src="/icons/video.png" alt="youtube" width={30} height={30} className="hover:scale-110" />
                 </Link>
             </div>
             <p className="text-xs font-light text-gray-400 py-5 text-center">

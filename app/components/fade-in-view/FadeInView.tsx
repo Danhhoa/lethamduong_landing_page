@@ -21,8 +21,6 @@ export const FadeInView: FC<Props> = ({ dir = "l2r", className, children }) => {
         rootMargin: "50px",
     });
 
-    console.log({ inView, entry });
-
     return (
         <div ref={ref} className={cn(`show-in-view-${dir} ${className}`, { "in-view": inView })}>
             {children}

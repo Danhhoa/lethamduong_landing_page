@@ -27,8 +27,6 @@ export const MobileMenu = () => {
         },
     ];
 
-    console.log({ isOpen: isCollapsibleOpen });
-
     return (
         <>
             <Image src="/icons/hambuger.svg" alt="" width={32} height={32} onClick={toggleMobileMenu} />
@@ -71,7 +69,12 @@ export const MobileMenu = () => {
                                 <ul className="flex flex-col gap-4 relative right-0 text-end">
                                     {trainingCalendar.map((item) => {
                                         return (
-                                            <Link href={item.href} className="text-lg" onClick={toggleMobileMenu}>
+                                            <Link
+                                                key={item.href}
+                                                href={item.href}
+                                                className="text-lg"
+                                                onClick={toggleMobileMenu}
+                                            >
                                                 {item.title}
                                             </Link>
                                         );

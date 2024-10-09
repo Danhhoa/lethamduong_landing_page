@@ -73,6 +73,7 @@ const config = {
                 "landing-1": 'url("/banner/landing-background.png")',
                 "app-3": 'url("/backgrounds/background-3.png")',
                 "app-4": 'url("/backgrounds/background-4.png")',
+                "simple-white": 'url("/backgrounds/white-bg.jpg")',
             },
             backgroundSize: {
                 "80%": "80%",
