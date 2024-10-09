@@ -8,7 +8,7 @@ import { News } from "./positisions/dashboard/News";
 
 export default function HomePage() {
     return (
-        <div className="relative mt-[80px]">
+        <div className="relative mt-[80px] bg-simple-white bg-center">
             <Banner />
             <IntroduceService />
             <NewVideos />

@@ -74,6 +74,8 @@ const config = {
                 "app-3": 'url("/backgrounds/background-3.png")',
                 "app-4": 'url("/backgrounds/background-4.png")',
                 "simple-white": 'url("/backgrounds/white-bg.jpg")',
+                "simple-white-2": 'url("/backgrounds/white-bg-2.jpg")',
+                "simple-white-3": 'url("/backgrounds/white-bg-3.jpg")',
             },
             backgroundSize: {
                 "80%": "80%",
