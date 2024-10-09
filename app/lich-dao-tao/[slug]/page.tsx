@@ -1,5 +1,6 @@
 "use client";
 
+import { PhoneContact } from "@/app/components/PhoneContact";
 import { CollapsibleFilterControl } from "@/app/components/filter-controller/CollapsibleFilterControl";
 import { Chrono } from "@/app/components/timeline/ChronoClient";
 import { useDimension } from "@/app/hooks/useDimension";
@@ -20,8 +21,6 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
         to: dayjs().year(Number(endYear)).endOf("years").toDate(),
     });
     const [openControl, setOpenControl] = useState(false);
-
-    console.log({ openControl });
 
     const courses = [
         {
@@ -161,12 +160,12 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
     ];
 
     return (
-        <div className="flex items-center lg:flex-row flex-col justify-center bg-light-90 mt-[100px] lg:py-20">
+        <div className="flex items-center lg:flex-row flex-col justify-center mt-[100px] lg:py-20 bg-simple-white-3 bg-cover bg-center bg-no-repeat">
             <div
                 className="fixed left-0 flex items-center justify-center top-[120px] h-20 w-8 bg-white rounded-e-lg shadow-lg cursor-pointer text-center hover:scale-125 transition-transform duration-300"
                 onClick={() => setOpenControl(!openControl)}
             >
-                <Image src={"/icons/setting-animate.gif"} alt="setting" width={50} height={50} />
+                <Image src={"/icons/setting-animate.gif"} alt="setting" width={50} height={50} unoptimized />
             </div>
             <div
                 className={cn(
@@ -252,6 +251,9 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
                     }}
                     disableToolbar={true}
                 />
+            </div>
+            <div className="fixed lg:right-10 lg:bottom-5 bottom-0 right-0  flex justify-end h-[100px] w-[100px]">
+                <PhoneContact />
             </div>
         </div>
     );

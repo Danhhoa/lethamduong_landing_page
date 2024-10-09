@@ -18,7 +18,6 @@ export const ImageRotate: FC<Props> = (params) => {
         const mouseX = (x / rect!.width - 0.5) * 5; // Max rotateY of 15 degrees
         const mouseY = (y / rect!.height - 0.5) * -5; // Max rotateX of 15 degrees
         setMousePosition({ mouseX, mouseY });
-        console.log({ mouseX, mouseY });
     };
     return (
         <Image

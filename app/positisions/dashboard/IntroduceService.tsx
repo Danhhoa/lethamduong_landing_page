@@ -93,7 +93,6 @@ export const IntroduceService = () => {
                                 alt={service.title}
                                 width={800}
                                 height={800}
-                                objectFit="cover"
                                 className={cn("w-full h-full", {
                                     "lg:rounded-ss-full rounded-ss-full": isReverse,
                                     "lg:rounded-ss-full rounded-ee-full": !isReverse,

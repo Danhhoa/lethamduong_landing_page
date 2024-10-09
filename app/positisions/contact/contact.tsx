@@ -3,7 +3,7 @@ import React from "react";
 
 export const Contact = () => {
     return (
-        <div className="flex flex-col lg:flex-row md:py-20 py-10 md:px-10 px-5 mx-auto max-w-[1170px]">
+        <div className="flex flex-col lg:flex-row md:py-20 py-10 md:px-10 px-5 mx-auto max-w-[1170px] bg-white rounded-xl shadow-2xl">
             {/* Contact Information */}
             <div className="lg:basis-1/2 flex flex-col gap-6 mx-auto">
                 <h2 className="md:text-5xl text-3xl font-bold mb-5">LIÊN HỆ</h2>
