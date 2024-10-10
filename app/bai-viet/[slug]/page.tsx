@@ -83,7 +83,7 @@ export default function BlogDetails({ params }: { params: { slug: string } }) {
                         <h4 className="text-5xl font-semibold">Bài viết liên quan</h4>
                         <div className="flex gap-5 flex-wrap items-center justify-center">
                             {data.relatedBlog.map((blog) => {
-                                return <BlogCard data={blog} className="w-[30%]"></BlogCard>;
+                                return <BlogCard data={blog} className="lg:w-[30%] md:w-[45%]"></BlogCard>;
                             })}
                         </div>
                     </div>
@@ -106,8 +106,6 @@ interface Props {
 }
 
 const BlogCard: FC<Props> = ({ data, className }) => {
-    console.log(data);
-
     return (
         <Link
             href={data.slug}
