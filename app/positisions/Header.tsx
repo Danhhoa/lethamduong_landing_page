@@ -31,8 +31,8 @@ export const Header = () => {
     return (
         <nav
             className={cn(
-                "fixed w-full top-0 flex justify-between items-center h-24 lg:px-18 md:px-10 px-5 bg-white z-10 transition-all ease-linear duration-500",
-                { "h-16 shadow-md": isScrolled }
+                "fixed w-full top-0 flex justify-between items-center h-24 lg:px-18 md:px-10 px-5 bg-white z-10 transition-all ease-linear duration-500 shadow-md",
+                { "h-16": isScrolled }
             )}
         >
             <div className="transition-all">
