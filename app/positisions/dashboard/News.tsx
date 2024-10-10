@@ -10,28 +10,28 @@ export const News = () => {
             text: "Hoàn Thành Lớp Học “Quản Trị Rủi Ro Trong Kinh Doanh” Online Trên Zoom – 16 & 17/10/2021",
             author: "Cong Trong",
             datePublished: "10-10-2019",
-            detailUrl: "https://google.com",
+            detailUrl: "slug-here",
         },
         {
             imageUrl: "/phones/phone-2.png",
             text: "Hoàn Thành Lớp Học “Quản Trị Rủi Ro Trong Kinh Doanh” Online Trên Zoom – 16 & 17/10/2021",
             author: "Cong Trong",
             datePublished: "10-10-2019",
-            detailUrl: "https://google.com",
+            detailUrl: "slug-here",
         },
         {
             imageUrl: "/phones/phone-3.png",
             text: "Hoàn Thành Lớp Học “Quản Trị Rủi Ro Trong Kinh Doanh” Online Trên Zoom – 16 & 17/10/2021",
             author: "Cong Trong",
             datePublished: "10-10-2019",
-            detailUrl: "https://google.com",
+            detailUrl: "slug-here",
         },
         {
             imageUrl: "/phones/phone-4.png",
             text: "Hoàn Thành Lớp Học “Quản Trị Rủi Ro Trong Kinh Doanh” Online Trên Zoom – 16 & 17/10/2021",
             author: "Cong Trong",
             datePublished: "10-10-2019",
-            detailUrl: "https://google.com",
+            detailUrl: "slug-here",
         },
     ];
     return (

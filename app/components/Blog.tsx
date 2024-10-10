@@ -21,6 +21,7 @@ interface Props {
 export const Blog: FC<Props> = (params) => {
     const { title, author, datePublished, detailUrl, imageUrl, alt, className } = params;
     const parseDate = dayjs(datePublished).format("ddd MM, YYYY");
+    const url = `${process.env.NEXT_PUBLIC_BASE_URL}/bai-viet/${detailUrl}`;
     return (
         <div
             className={cn(
@@ -39,14 +40,14 @@ export const Blog: FC<Props> = (params) => {
                 />
                 <div className="absolute flex items-center justify-center top-0 left-0 w-full h-full rounded-md transition-all ease-in-out duration-400 scale-100 bg-[rgba(0,26,87,0.5)] opacity-0 hover:opacity-100">
                     <Link
-                        href={detailUrl}
+                        href={url}
                         className="px-5 py-2 top-[20%] left-[25%] bg-white text-primary-dark hover:text-white hover:bg-blue-950 rounded-lg"
                     >
                         Xem chi tiết
                     </Link>
                 </div>
             </div>
-            <Link href={detailUrl} className="text-lg font-semibold px-5">
+            <Link href={url} className="text-lg font-semibold px-5 line-clamp-4">
                 {title}
             </Link>
             <div className="font-semibold text-base text-primary px-5 mt-3">{parseDate}</div>
