@@ -87,7 +87,7 @@ export const IntroduceService = () => {
                             className={cn(`bg-cover bg-no-repeat bg-center basis-1/2 w-full h-[400px]`)}
                             style={{ backgroundImage: `url(${service.imgUrl})` }}
                         /> */}
-                        <FadeInView dir={isReverse ? "r2l" : "l2r"} className="flex lg:basis-1/2">
+                        <FadeInView dir={"fade-in"} className="flex lg:basis-1/2">
                             <Image
                                 src={service.imgUrl}
                                 alt={service.title}

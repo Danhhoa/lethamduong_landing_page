@@ -6,7 +6,7 @@ import { VideoSlider } from "../positisions/introduce/VideoSlider";
 
 export default function IntroducePage() {
     return (
-        <div className="mt-[80px] bg-simple-white bg-cover bg-no-repeat">
+        <div className="bg-simple-white bg-cover bg-no-repeat">
             <Banner />
             <Content />
             <VideoSlider />

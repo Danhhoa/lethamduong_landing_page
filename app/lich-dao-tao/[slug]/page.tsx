@@ -160,7 +160,7 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
     ];
 
     return (
-        <div className="flex items-center lg:flex-row flex-col justify-center mt-[100px] lg:py-20 bg-simple-white-3 bg-cover bg-center bg-no-repeat">
+        <div className="flex items-center lg:flex-row flex-col justify-center lg:py-20 bg-simple-white-3 bg-cover bg-center bg-no-repeat">
             <div
                 className="fixed left-0 flex items-center justify-center top-[120px] h-20 w-8 bg-white rounded-e-lg shadow-lg cursor-pointer text-center hover:scale-125 transition-transform duration-300"
                 onClick={() => setOpenControl(!openControl)}
