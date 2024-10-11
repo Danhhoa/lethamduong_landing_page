@@ -21,7 +21,7 @@ interface Props {
 export const Blog: FC<Props> = (params) => {
     const { title, author, datePublished, detailUrl, imageUrl, alt, className } = params;
     const parseDate = dayjs(datePublished).format("ddd MM, YYYY");
-    const url = `${process.env.NEXT_PUBLIC_BASE_URL}/bai-viet/${detailUrl}`;
+    const url = `/bai-viet/${detailUrl}`;
     return (
         <div
             className={cn(
