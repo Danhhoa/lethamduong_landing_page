@@ -31,7 +31,7 @@ export const Header = () => {
     return (
         <nav
             className={cn(
-                "fixed w-full top-0 flex justify-between items-center h-24 lg:px-18 md:px-10 px-5 bg-white z-10 transition-all ease-linear duration-500 shadow-md",
+                "sticky w-full top-0 flex justify-between items-center h-20 lg:px-18 md:px-10 px-5 bg-white z-10 transition-all ease-linear duration-500 shadow-md",
                 { "h-16": isScrolled }
             )}
         >
@@ -41,10 +41,8 @@ export const Header = () => {
                     alt="logo"
                     width={10000}
                     height={80}
-                    // fill
-                    // objectFit="contain"
                     className={cn(
-                        "md:min-w-[450px] max-w-[60px] h-full left-0 ease-in-out duration-500 cursor-pointer",
+                        "md:min-w-[450px] max-w-[50px] h-full left-0 ease-in-out duration-500 cursor-pointer",
                         {
                             "md:min-w-[400px]": isScrolled,
                         }

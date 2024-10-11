@@ -63,7 +63,7 @@ export default function BlogDetails({ params }: { params: { slug: string } }) {
 
     return (
         <div className="bg-simple-white bg-cover bg-center bg-no-repeat">
-            <div className="flex flex-col items-center justify-center lg:gap-8 gap-5 mt-[100px] lg:py-20 md:px-10 px-5 lg:max-w-7xl mx-auto">
+            <div className="flex flex-col items-center justify-center lg:gap-8 gap-5 lg:py-20 md:px-10 px-5 lg:max-w-7xl mx-auto">
                 <h2 className="text-4xl font-medium text-center">{data.title}</h2>
                 <span className="text-2xl">{`Đăng ngày: ${data.publishedDate}`}</span>
                 <span>{`TÁC GIẢ: ${data.author}`}</span>

@@ -9,18 +9,12 @@ export const Banner = () => {
                     <p className="lg:text-5xl text-3xl font-bold font-sans">TS Lê Thẩm Dương</p>
                     <p className="lg:text-3xl text-xl font-sans">Diễn giả, người truyền cảm hứng đến mọi người</p>
                     <Link
-                        href=""
+                        href="/lich-dao-tao/2024-2025"
                         className="relative bg-white lg:px-10 lg:py-6 px-5 py-3 text-lg font-bold text-primary rounded"
                     >
                         <span className="flex items-center justify-center">
                             <p>Lịch đào tạo</p>
-                            <Image
-                                src={"/icons/arrow-right.svg"}
-                                alt=""
-                                width={20}
-                                height={20}
-                                // className="  hover:opacity-[100]"
-                            />
+                            <Image src={"/icons/arrow-right.svg"} alt="" width={20} height={20} />
                         </span>
                         <span className="absolute left-0 bottom-0 w-full transition-all duration-500 h-1.5 bg-primary"></span>
                     </Link>
