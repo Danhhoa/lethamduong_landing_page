@@ -20,7 +20,7 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
         from: dayjs().year(Number(startYear)).startOf("years").toDate(),
         to: dayjs().year(Number(endYear)).endOf("years").toDate(),
     });
-    const [openControl, setOpenControl] = useState(false);
+    const [openFilter, setOpenFilter] = useState(true);
 
     const courses = [
         {
@@ -163,7 +163,7 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
         <div className="flex items-center lg:flex-row flex-col justify-center lg:py-20 bg-simple-white-3 bg-cover bg-center bg-no-repeat">
             <div
                 className="fixed left-0 flex items-center justify-center top-[120px] h-20 w-8 bg-white rounded-e-lg shadow-lg cursor-pointer text-center hover:scale-125 transition-transform duration-300"
-                onClick={() => setOpenControl(!openControl)}
+                onClick={() => setOpenFilter(!openFilter)}
             >
                 <Image src={"/icons/setting-animate.gif"} alt="setting" width={50} height={50} unoptimized />
             </div>
@@ -171,7 +171,7 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
                 className={cn(
                     "lg:w-1/3 lg:flex sticky left-0 top-[120px] flex-col self-start z-50 transition-all ease-in-out duration-200",
                     {
-                        "lg:w-0": !openControl,
+                        "lg:w-0": !openFilter,
                     }
                 )}
             >
@@ -179,7 +179,7 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
                     className={cn(
                         "fixed max-w-1/3 lg:ml-20 lg:mt-0 ml-10 mt-10 bg-white rounded-lg px-4 divide-y-2 shadow-2xl opacity-0 transition-all ease-in-out duration-300 scale-0",
                         {
-                            "opacity-100 scale-100": openControl,
+                            "opacity-100 scale-100": openFilter,
                         }
                     )}
                 >
@@ -238,7 +238,7 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
                     </div>
                 </div>
             </div>
-            <div className={cn("lg:w-2/3 w-full p-5 self-end", { "lg:w-full": openControl })}>
+            <div className={cn("lg:w-2/3 w-full p-5 self-end", { "lg:w-full": openFilter })}>
                 <Chrono
                     items={items}
                     mode="VERTICAL_ALTERNATING"
