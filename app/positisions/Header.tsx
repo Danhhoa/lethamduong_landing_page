@@ -69,7 +69,7 @@ export const Header = () => {
                     </PopoverTrigger>
                     <PopoverContent
                         align="end"
-                        className="bg-white border rounded-md shadow-lg"
+                        className="bg-white border rounded-md shadow-lg max-w-40"
                         onMouseLeave={() => setOpenPop(false)}
                     >
                         <div className="flex flex-col font-normal divide-y-2">
@@ -80,10 +80,10 @@ export const Header = () => {
                                     className="px-5 py-2 hover:bg-primary-light hover:text-white rounded-md transition-all duration-150 ease-linear"
                                     onClick={() => setOpenPop(false)}
                                 >
-                                    <div className="flex gap-3 justify-around items-center">
-                                        <Image src={item.icon} alt="education-icon" width={35} height={35} />
-                                        <p>{item.title}</p>
-                                    </div>
+                                    {/* <div className="flex gap-3 justify-around items-center"> */}
+                                    {/* <Image src={item.icon} alt="education-icon" width={35} height={35} /> */}
+                                    <p>{item.title}</p>
+                                    {/* </div> */}
                                 </Link>
                             ))}
                         </div>
