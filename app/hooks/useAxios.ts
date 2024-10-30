@@ -5,31 +5,30 @@ type HTTPMethods = "get" | "post" | "put" | "patch" | "delete";
 interface useAxiosProps {
     url: string;
     method: HTTPMethods;
-    body: any;
-    headers: any;
+    body?: any;
+    headers?: any;
 }
 
-const useAxios = ({ url, method, body = null, headers = null }: useAxiosProps) => {
-    const [response, setResponse] = useState(null);
+const useAxios = <T>({ url, method, body = null, headers = null }: useAxiosProps) => {
+    const [response, setResponse] = useState<T | null>(null);
     const [error, setError] = useState("");
-    const [loading, setloading] = useState(true);
+    const [loading, setLoading] = useState(true);
 
-    const fetchData = () => {
-        axios[method](url, JSON.parse(headers), JSON.parse(body))
-            .then((res) => {
-                setResponse(res.data);
-            })
-            .catch((err) => {
-                setError(err);
-            })
-            .finally(() => {
-                setloading(false);
-            });
+    const fetchData = async () => {
+        try {
+            const res = await axios[method](url, body, headers);
+
+            setResponse(res.data.data);
+        } catch (err: any) {
+            setError(err);
+        } finally {
+            setLoading(false);
+        }
     };
 
     useEffect(() => {
         fetchData();
-    }, [method, url, body, headers]);
+    }, [url]);
 
     return { response, error, loading };
 };
