@@ -3,12 +3,12 @@ import { cn } from "@/lib/utils";
 export interface ISVGProps extends React.SVGProps<SVGSVGElement> {
     size?: number;
     className?: string;
+    parentClassName?: string;
 }
 
-export const LoadingSpinner = ({ size = 24, className, ...props }: ISVGProps) => {
+export const LoadingSpinner = ({ size = 24, className, parentClassName, ...props }: ISVGProps) => {
     return (
-        <div className="flex items-center justify-center">
-            {" "}
+        <div className={cn("flex items-center justify-center", parentClassName)}>
             <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width={size}

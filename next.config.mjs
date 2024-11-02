@@ -4,6 +4,11 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: "https",
+                hostname: "cus-api.biiline.com",
+                port: "",
+            },
+            {
+                protocol: "https",
                 hostname: "lethamduong.edu.vn",
                 port: "",
             },

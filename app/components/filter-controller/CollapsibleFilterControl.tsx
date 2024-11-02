@@ -7,15 +7,45 @@ import { ChevronsUpDown } from "lucide-react";
 import Image from "next/image";
 import { FC, useState } from "react";
 import { ClassNameValue } from "tailwind-merge";
+import { LoadingSpinner } from "../Spinner";
 
 interface Props {
     title: string;
     titleIcon?: string;
-    content: Array<{ id: string; title: string }>;
+    content: Array<{ id: string; name: string }>;
     className?: ClassNameValue;
+    onFilter?: (typeId: string[]) => void;
 }
-export const CollapsibleFilterControl: FC<Props> = ({ title, titleIcon, content, className }) => {
+export const CollapsibleFilterControl: FC<Props> = ({ title, titleIcon, content, className, onFilter }) => {
     const [isOpen, setIsOpen] = useState(true);
+    const [filters, setFilters] = useState<string[]>([]);
+
+    const handleFilters = (event: any) => {
+        const value = event.target.value;
+
+        const updatedCourseTypes = filters.includes(value)
+            ? filters.filter((item) => item !== value)
+            : [...filters, value];
+
+        setFilters(updatedCourseTypes);
+
+        if (onFilter) {
+            console.log({ updatedCourseTypes });
+
+            onFilter(updatedCourseTypes);
+        }
+        // setFilters((prev) => {
+        //     const updatedCourseTypes = prev.includes(value) ? prev.filter((item) => item !== value) : [...prev, value];
+
+        //     // // Pass the updated list to the parent component if handleFilter is provided
+        //     if (handleFilter) handleFilter(updatedCourseTypes);
+
+        //     return updatedCourseTypes;
+        // });
+        // setFilter((prev: any) => ({ ...prev, courseType: chooseCourseType }));
+    };
+
+    console.log({ content: content.length });
 
     return (
         <Collapsible open={isOpen} onOpenChange={setIsOpen} className={`w-full transition-all ${className}`}>
@@ -33,19 +63,25 @@ export const CollapsibleFilterControl: FC<Props> = ({ title, titleIcon, content,
                 </CollapsibleTrigger>
             </div>
             <CollapsibleContent className="space-y-2 flex flex-col gap-3 transition-all">
-                {content.map((item, index) => {
-                    return (
-                        <div key={index} className="xl:ml-10 ml-5 flex gap-4 ease-in-out duration-500">
-                            <Checkbox id={item.id} onClick={() => console.log("click")} />
-                            <label
-                                htmlFor={item.id}
-                                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                            >
-                                {item.title}
-                            </label>
-                        </div>
-                    );
-                })}
+                {!content ? (
+                    <LoadingSpinner />
+                ) : (
+                    <>
+                        {content.map((item, index) => {
+                            return (
+                                <div key={index} className="xl:ml-10 ml-5 flex gap-4 ease-in-out duration-500">
+                                    <Checkbox id={item.id} value={item.id} onClick={(event) => handleFilters(event)} />
+                                    <label
+                                        htmlFor={item.id}
+                                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                    >
+                                        {item.name}
+                                    </label>
+                                </div>
+                            );
+                        })}
+                    </>
+                )}
             </CollapsibleContent>
         </Collapsible>
     );

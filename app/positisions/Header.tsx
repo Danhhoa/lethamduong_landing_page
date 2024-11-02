@@ -28,7 +28,7 @@ export const Header = () => {
     const router = useRouter();
     const { isMobile } = useDimension();
 
-    let {
+    const {
         response: calendarSchoolYear,
         loading,
         error,
