@@ -23,29 +23,14 @@ export const CollapsibleFilterControl: FC<Props> = ({ title, titleIcon, content,
     const handleFilters = (event: any) => {
         const value = event.target.value;
 
-        const updatedCourseTypes = filters.includes(value)
-            ? filters.filter((item) => item !== value)
-            : [...filters, value];
+        const updateFilters = filters.includes(value) ? filters.filter((item) => item !== value) : [...filters, value];
 
-        setFilters(updatedCourseTypes);
+        setFilters(updateFilters);
 
         if (onFilter) {
-            console.log({ updatedCourseTypes });
-
-            onFilter(updatedCourseTypes);
+            onFilter(updateFilters);
         }
-        // setFilters((prev) => {
-        //     const updatedCourseTypes = prev.includes(value) ? prev.filter((item) => item !== value) : [...prev, value];
-
-        //     // // Pass the updated list to the parent component if handleFilter is provided
-        //     if (handleFilter) handleFilter(updatedCourseTypes);
-
-        //     return updatedCourseTypes;
-        // });
-        // setFilter((prev: any) => ({ ...prev, courseType: chooseCourseType }));
     };
-
-    console.log({ content: content.length });
 
     return (
         <Collapsible open={isOpen} onOpenChange={setIsOpen} className={`w-full transition-all ${className}`}>

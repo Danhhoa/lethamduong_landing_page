@@ -34,12 +34,11 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
     });
     const [openFilter, setOpenFilter] = useState(true);
     const [filter, setFilter] = useState<IFilterCourse>({
-        courseType: ["2", "3"],
+        courseType: [],
         locations: [],
         rangeDate: { from: startOfYear, to: endOfYear },
     });
-    const [courseItems, setCourseItems] = useState();
-    const [courseItems2, setCourseItems2] = useState();
+    const [courseItems, setCourseItems] = useState<any[]>();
 
     const { response: coursesType, loading } = useAxios<any>({
         method: "get",
@@ -66,33 +65,65 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
         if (!courses) {
             return;
         }
-        console.log("rerender", filter);
 
-        const courseItems = courses.filter((course: any) => filter.courseType.includes(course.type.key.toString()));
+        if (coursesType && !filter.courseType.length) {
+            const defaultCourseType = coursesType.map((type: any) => type.id.toString());
+            setFilter((prev) => ({ ...prev, courseType: defaultCourseType }));
+        }
 
-        const courseItems2 = courses
-            .filter((course: any) => filter.courseType.includes(course.type.key.toString()))
-            .map((course: any) => {
-                return {
-                    cardTitle: course?.name,
-                    media: {
-                        name: course?.name,
-                        source: {
-                            url: getMediaUrl(course.thumbnail),
-                        },
-                        type: "IMAGE",
-                    },
-                    cardDetailedText: getCourseCalendar(course),
-                };
-            });
-        setCourseItems(courseItems);
-
-        setCourseItems2(courseItems2);
-    }, [filter, courses]);
+        setCourseItems(filterCourses());
+    }, [filter, courses, coursesType, date]);
 
     if (!courses) {
         return <LoadingSpinner size={50} parentClassName="w-screen h-screen mx-auto" />;
     }
+
+    const filterCourses = () => {
+        let courseFiltered = courses;
+        // Filter by type
+        if (filter.courseType.length) {
+            courseFiltered = courseFiltered.filter((course: any) =>
+                filter.courseType.includes(course.type.key.toString())
+            );
+        }
+
+        // Filter by location
+        if (filter.locations.length) {
+            // HCMC filter
+            if (filter.locations.includes("1")) {
+                courseFiltered = courseFiltered.filter((course: any) => course.hcm_t_s && course.hcm_t_e);
+            }
+
+            // HANOI filter
+            if (filter.locations.includes("2")) {
+                courseFiltered = courseFiltered.filter((course: any) => course.hanoi_t_s && course.hanoi_t_e);
+            }
+        }
+
+        courseFiltered = courseFiltered.filter(
+            (course: any) =>
+                dayjs(course.hanoi_t_s).isAfter(date?.from) &&
+                dayjs(course.hanoi_t_e).isBefore(date?.to) &&
+                dayjs(course.hcm_t_s).isAfter(date?.from) &&
+                dayjs(course.hcm_t_e).isBefore(date?.to)
+        );
+
+        const courseItems = courseFiltered.map((course: any) => {
+            return {
+                cardTitle: course?.name,
+                media: {
+                    name: course?.name,
+                    source: {
+                        url: getMediaUrl(course.thumbnail),
+                    },
+                    type: "IMAGE",
+                },
+                cardDetailedText: getCourseCalendar(course),
+            };
+        });
+
+        return courseItems;
+    };
 
     const getCourseCalendar = (course: any) => {
         const arrCalendarText = [];
@@ -111,10 +142,14 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
         return arrCalendarText;
     };
 
-    console.log({ courseItems2 });
+    const handleCourseTypeFilter = (data: any) => {
+        const defaultCourseType = coursesType.map((type: any) => type.id.toString());
+        setFilter((prev) => ({ ...prev, courseType: data?.length ? data : defaultCourseType }));
+    };
 
-    const handleFilter = (data: any) => {
-        setFilter((prev) => ({ ...prev, courseType: data }));
+    const handleLocationFilter = (data: any) => {
+        const defaultLocation = locations.map((location) => location.id.toString());
+        setFilter((prev) => ({ ...prev, locations: data?.length ? data : defaultLocation }));
     };
 
     return (
@@ -151,7 +186,7 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
                                 content={coursesType}
                                 titleIcon="/icons/education.png"
                                 className="w-[350px] space-y-2 m-3 py-5"
-                                onFilter={handleFilter}
+                                onFilter={handleCourseTypeFilter}
                             />
 
                             <CollapsibleFilterControl
@@ -159,6 +194,7 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
                                 titleIcon="/icons/location.png"
                                 content={locations}
                                 className="w-[350px] space-y-2 m-3 py-5"
+                                onFilter={handleLocationFilter}
                             />
                             <div className="m-3 py-5">
                                 <div className="flex gap-3">
@@ -213,7 +249,8 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
                     <SkeletonCard />
                 ) : (
                     <Chrono
-                        items={courseItems2}
+                        key={courseItems?.length}
+                        items={courseItems}
                         mode="VERTICAL_ALTERNATING"
                         cardHeight={300}
                         cardWidth={650}
@@ -223,22 +260,10 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
                             title: "1rem",
                         }}
                         disableToolbar={true}
-                    >
-                        {/* {courseItems?.map((course: any, index) => {
-                            return (
-                                <CourseCard
-                                    key={course.id + index}
-                                    src={getMediaUrl(course.thumbnail)}
-                                    title={course.name}
-                                    cardDetailedText={getCourseCalendar(course)}
-                                ></CourseCard>
-                            );
-                        })} */}
-                    </Chrono>
+                    />
                 )}
             </div>
             {/* Timeline */}
-
             <div className="fixed lg:right-10 lg:bottom-5 bottom-0 right-0  flex justify-end h-[100px] w-[100px]">
                 <PhoneContact />
             </div>
