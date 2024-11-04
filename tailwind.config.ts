@@ -64,10 +64,24 @@ const config = {
                     from: { height: "var(--radix-accordion-content-height)" },
                     to: { height: "0" },
                 },
+                rotateSkew: {
+                    "0%, 50%, 100%": { transform: "rotate(0deg) scale(1) skew(1deg)" },
+                    "10%": { transform: "rotate(-25deg) scale(1) skew(1deg)" },
+                    "20%": { transform: "rotate(25deg) scale(1) skew(1deg)" },
+                    "30%": { transform: "rotate(-25deg) scale(1) skew(1deg)" },
+                    "40%": { transform: "rotate(25deg) scale(1) skew(1deg)" },
+                },
+                pluseSmall: {
+                    "0%": { transform: "scale(0)", opacity: "1" },
+                    "50%": { opacity: "0.6" },
+                    "100%": { transform: "scale(1.4)", opacity: "0" },
+                },
             },
             animation: {
                 "accordion-down": "accordion-down 0.2s ease-out",
                 "accordion-up": "accordion-up 0.2s ease-out",
+                rotateSkew: "rotateSkew 1s infinite ease-out",
+                pluseSmall: "pluseSmall 2s infinite",
             },
             backgroundImage: {
                 "landing-1": 'url("/banner/landing-background.png")',

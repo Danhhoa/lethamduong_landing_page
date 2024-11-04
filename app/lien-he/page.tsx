@@ -1,4 +1,4 @@
-import { PhoneContact } from "../components/PhoneContact";
+import { PhoneContact } from "../components/phone-contact/PhoneContact";
 import { Contact } from "../positisions/contact/contact";
 
 export default function ContractPage() {

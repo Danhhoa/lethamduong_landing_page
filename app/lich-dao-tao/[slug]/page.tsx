@@ -1,10 +1,9 @@
 "use client";
 
-import { CourseCard } from "@/app/components/CourseCard";
-import { PhoneContact } from "@/app/components/PhoneContact";
 import { SkeletonCard } from "@/app/components/SkeletonCard";
 import { LoadingSpinner } from "@/app/components/Spinner";
 import { CollapsibleFilterControl } from "@/app/components/filter-controller/CollapsibleFilterControl";
+import { PhoneContact } from "@/app/components/phone-contact/PhoneContact";
 import { Chrono } from "@/app/components/timeline/ChronoClient";
 import useAxios from "@/app/hooks/useAxios";
 import { getMediaUrl } from "@/app/utils/media";
@@ -15,7 +14,7 @@ import { cn } from "@/lib/utils";
 import dayjs from "dayjs";
 import { CalendarIcon } from "lucide-react";
 import Image from "next/image";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { DateRange } from "react-day-picker";
 
 interface IFilterCourse {
@@ -264,9 +263,7 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
                 )}
             </div>
             {/* Timeline */}
-            <div className="fixed lg:right-10 lg:bottom-5 bottom-0 right-0  flex justify-end h-[100px] w-[100px]">
-                <PhoneContact />
-            </div>
+            <PhoneContact />
         </div>
     );
 }
