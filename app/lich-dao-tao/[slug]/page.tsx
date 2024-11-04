@@ -1,9 +1,12 @@
 "use client";
 
-import { PhoneContact } from "@/app/components/PhoneContact";
+import { SkeletonCard } from "@/app/components/SkeletonCard";
+import { LoadingSpinner } from "@/app/components/Spinner";
 import { CollapsibleFilterControl } from "@/app/components/filter-controller/CollapsibleFilterControl";
+import { PhoneContact } from "@/app/components/phone-contact/PhoneContact";
 import { Chrono } from "@/app/components/timeline/ChronoClient";
-import { useDimension } from "@/app/hooks/useDimension";
+import useAxios from "@/app/hooks/useAxios";
+import { getMediaUrl } from "@/app/utils/media";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
@@ -11,156 +14,145 @@ import { cn } from "@/lib/utils";
 import dayjs from "dayjs";
 import { CalendarIcon } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { DateRange } from "react-day-picker";
+
+interface IFilterCourse {
+    courseType: string[];
+    locations: string[];
+    rangeDate: { from: Date; to: Date };
+}
 
 export default function SheduleCoursePage({ params }: { params: { slug: string } }) {
     const [startYear, endYear] = params.slug.split("-");
+    const startOfYear = dayjs().year(Number(startYear)).startOf("years").toDate();
+    const endOfYear = dayjs().year(Number(endYear)).endOf("years").toDate();
     const [date, setDate] = useState<DateRange | undefined>({
-        from: dayjs().year(Number(startYear)).startOf("years").toDate(),
-        to: dayjs().year(Number(endYear)).endOf("years").toDate(),
+        from: startOfYear,
+        to: endOfYear,
     });
     const [openFilter, setOpenFilter] = useState(true);
+    const [filter, setFilter] = useState<IFilterCourse>({
+        courseType: [],
+        locations: [],
+        rangeDate: { from: startOfYear, to: endOfYear },
+    });
+    const [courseItems, setCourseItems] = useState<any[]>();
 
-    const courses = [
-        {
-            id: "1",
-            title: "Chuỗi chương trình quản trị kinh doanh",
-        },
-        {
-            id: "2",
-            title: "Chuỗi Chương Trình Chuyên Sâu Học Qua Zoom",
-        },
-        {
-            id: "3",
-            title: "Chuỗi Chương Trình Phát Triển Bản Thân",
-        },
-    ];
+    const { response: coursesType, loading } = useAxios<any>({
+        method: "get",
+        url: "https://cus-api.biiline.com/items/course_type",
+    });
+
+    const { response: courses, loading: courseLoading } = useAxios<any>({
+        method: "get",
+        url: "https://cus-api.biiline.com/items/courses?filter[status][_neq]=archived",
+    });
 
     const locations = [
         {
-            id: "lo-1",
-            title: "TP Hồ Chí Minh",
+            id: "1",
+            name: "TP Hồ Chí Minh",
         },
         {
-            id: "lo-2",
-            title: "Hà Nội",
-        },
-    ];
-    const items = [
-        {
-            title: "11 2023",
-            cardTitle: "Chuyên đề 1: Mô hình kinh doanh & Các nguyên lý quản trị bất biến",
-            media: {
-                name: "dunkirk beach",
-                source: {
-                    url: "https://lethamduong.edu.vn/wp-content/uploads/2023/10/1-Mô-Hình-Kinh-Doanh-Các-nguyên-lý-quản-trị-bất-biến.webp ",
-                },
-                type: "IMAGE",
-            },
-            cardDetailedText: ["TP. Hà Nội: 11 & 12/11/2023", "TP. Hồ Chí Minh: 18 & 19/11/2023"],
-            url: "https://google.com",
-        },
-        {
-            title: "11 2023",
-            cardTitle: "Chuyên đề 2: Chiến lược kinh doanh – Xây dựng & vận hành",
-            media: {
-                name: "dunkirk beach",
-                source: {
-                    url: "https://lethamduong.edu.vn/wp-content/uploads/2023/10/1-Mô-Hình-Kinh-Doanh-Các-nguyên-lý-quản-trị-bất-biến.webp ",
-                },
-                type: "IMAGE",
-            },
-            cardDetailedText: ["TP. Hà Nội: 11 & 12/11/2023", "TP. Hồ Chí Minh: 18 & 19/11/2023"],
-        },
-        {
-            title: "11 2023",
-            cardTitle: "Chuyên đề 3: Lãnh đạo và các kỹ năng lãnh đạo",
-            media: {
-                name: "dunkirk beach",
-                source: {
-                    url: "https://lethamduong.edu.vn/wp-content/uploads/2023/10/1-Mô-Hình-Kinh-Doanh-Các-nguyên-lý-quản-trị-bất-biến.webp ",
-                },
-                type: "IMAGE",
-            },
-            cardDetailedText: ["TP. Hà Nội: 11 & 12/11/2023", "TP. Hồ Chí Minh: 18 & 19/11/2023"],
-        },
-        {
-            title: "11 2023",
-            cardTitle: "Chuyên đề 4: Xây dựng doanh nghiệp thực thi & đam mê khách hàng",
-            media: {
-                name: "dunkirk beach",
-                source: {
-                    url: "https://lethamduong.edu.vn/wp-content/uploads/2023/10/1-Mô-Hình-Kinh-Doanh-Các-nguyên-lý-quản-trị-bất-biến.webp ",
-                },
-                type: "IMAGE",
-            },
-            cardDetailedText: ["TP. Hà Nội: 11 & 12/11/2023", "TP. Hồ Chí Minh: 18 & 19/11/2023"],
-        },
-        {
-            title: "11 2023",
-            cardTitle: "Chuyên đề 5: Chiến lược nhân sự",
-            media: {
-                name: "dunkirk beach",
-                source: {
-                    url: "https://lethamduong.edu.vn/wp-content/uploads/2023/10/1-Mô-Hình-Kinh-Doanh-Các-nguyên-lý-quản-trị-bất-biến.webp ",
-                },
-                type: "IMAGE",
-            },
-            cardDetailedText: ["TP. Hà Nội: 11 & 12/11/2023", "TP. Hồ Chí Minh: 18 & 19/11/2023"],
-        },
-        {
-            title: "11 2023",
-            cardTitle: "Chuyên đề 6: Chiến lược tài chính",
-            media: {
-                name: "dunkirk beach",
-                source: {
-                    url: "https://lethamduong.edu.vn/wp-content/uploads/2023/10/1-Mô-Hình-Kinh-Doanh-Các-nguyên-lý-quản-trị-bất-biến.webp ",
-                },
-                type: "IMAGE",
-            },
-            cardDetailedText: ["TP. Hà Nội: 11 & 12/11/2023", "TP. Hồ Chí Minh: 18 & 19/11/2023"],
-        },
-        {
-            title: "11 2023",
-            cardTitle: "Chuyên đề 7: Chiến lược Marketing",
-            media: {
-                name: "dunkirk beach",
-                source: {
-                    url: "https://lethamduong.edu.vn/wp-content/uploads/2023/10/1-Mô-Hình-Kinh-Doanh-Các-nguyên-lý-quản-trị-bất-biến.webp ",
-                },
-                type: "IMAGE",
-            },
-            cardDetailedText: ["TP. Hà Nội: 11 & 12/11/2023", "TP. Hồ Chí Minh: 18 & 19/11/2023"],
-        },
-        {
-            title: "11 2023",
-            cardTitle: "Chuyên đề 8: Bán hàng chuyên nghiệp",
-            media: {
-                name: "dunkirk beach",
-                source: {
-                    url: "https://lethamduong.edu.vn/wp-content/uploads/2023/10/1-Mô-Hình-Kinh-Doanh-Các-nguyên-lý-quản-trị-bất-biến.webp ",
-                },
-                type: "IMAGE",
-            },
-            cardDetailedText: ["TP. Hà Nội: 11 & 12/11/2023", "TP. Hồ Chí Minh: 18 & 19/11/2023"],
-        },
-        {
-            title: "11 2023",
-            cardTitle: "Chuyên đề 9: Xây dựng văn hóa doanh nghiệp",
-            media: {
-                name: "dunkirk beach",
-                source: {
-                    url: "https://lethamduong.edu.vn/wp-content/uploads/2023/10/1-Mô-Hình-Kinh-Doanh-Các-nguyên-lý-quản-trị-bất-biến.webp ",
-                },
-                type: "IMAGE",
-            },
-            cardDetailedText: ["TP. Hà Nội: 11 & 12/11/2023", "TP. Hồ Chí Minh: 18 & 19/11/2023"],
+            id: "2",
+            name: "Hà Nội",
         },
     ];
 
+    useEffect(() => {
+        if (!courses) {
+            return;
+        }
+
+        if (coursesType && !filter.courseType.length) {
+            const defaultCourseType = coursesType.map((type: any) => type.id.toString());
+            setFilter((prev) => ({ ...prev, courseType: defaultCourseType }));
+        }
+
+        setCourseItems(filterCourses());
+    }, [filter, courses, coursesType, date]);
+
+    if (!courses) {
+        return <LoadingSpinner size={50} parentClassName="w-screen h-screen mx-auto" />;
+    }
+
+    const filterCourses = () => {
+        let courseFiltered = courses;
+        // Filter by type
+        if (filter.courseType.length) {
+            courseFiltered = courseFiltered.filter((course: any) =>
+                filter.courseType.includes(course.type.key.toString())
+            );
+        }
+
+        // Filter by location
+        if (filter.locations.length) {
+            // HCMC filter
+            if (filter.locations.includes("1")) {
+                courseFiltered = courseFiltered.filter((course: any) => course.hcm_t_s && course.hcm_t_e);
+            }
+
+            // HANOI filter
+            if (filter.locations.includes("2")) {
+                courseFiltered = courseFiltered.filter((course: any) => course.hanoi_t_s && course.hanoi_t_e);
+            }
+        }
+
+        courseFiltered = courseFiltered.filter(
+            (course: any) =>
+                dayjs(course.hanoi_t_s).isAfter(date?.from) &&
+                dayjs(course.hanoi_t_e).isBefore(date?.to) &&
+                dayjs(course.hcm_t_s).isAfter(date?.from) &&
+                dayjs(course.hcm_t_e).isBefore(date?.to)
+        );
+
+        const courseItems = courseFiltered.map((course: any) => {
+            return {
+                cardTitle: course?.name,
+                media: {
+                    name: course?.name,
+                    source: {
+                        url: getMediaUrl(course.thumbnail),
+                    },
+                    type: "IMAGE",
+                },
+                cardDetailedText: getCourseCalendar(course),
+            };
+        });
+
+        return courseItems;
+    };
+
+    const getCourseCalendar = (course: any) => {
+        const arrCalendarText = [];
+        if (course?.hanoi_t_s && course?.hanoi_t_e) {
+            arrCalendarText.push(
+                `TP.Hà Nội: ${dayjs(course.hanoi_t_s).get("date")} & ${dayjs(course.hanoi_t_e).format("DD-MM-YYYY")}`
+            );
+        }
+
+        if (course?.hcm_t_s && course?.hcm_t_e) {
+            arrCalendarText.push(
+                `TP.Hồ Chí Minh: ${dayjs(course.hcm_t_s).get("date")} & ${dayjs(course.hcm_t_e).format("DD-MM-YYYY")}`
+            );
+        }
+
+        return arrCalendarText;
+    };
+
+    const handleCourseTypeFilter = (data: any) => {
+        const defaultCourseType = coursesType.map((type: any) => type.id.toString());
+        setFilter((prev) => ({ ...prev, courseType: data?.length ? data : defaultCourseType }));
+    };
+
+    const handleLocationFilter = (data: any) => {
+        const defaultLocation = locations.map((location) => location.id.toString());
+        setFilter((prev) => ({ ...prev, locations: data?.length ? data : defaultLocation }));
+    };
+
     return (
-        <div className="flex items-center lg:flex-row flex-col justify-center lg:py-20 bg-simple-white-3 bg-cover bg-center bg-no-repeat">
+        <div className="flex items-center lg:flex-row flex-col justify-center lg:py-20 bg-simple-white-3 bg-cover bg-center bg-no-repeat min-h-screen">
             <div
                 className="fixed left-0 flex items-center justify-center top-[120px] h-20 w-8 bg-white rounded-e-lg shadow-lg cursor-pointer text-center hover:scale-125 transition-transform duration-300"
                 onClick={() => setOpenFilter(!openFilter)}
@@ -183,78 +175,95 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
                         }
                     )}
                 >
-                    <CollapsibleFilterControl
-                        title="Chuyên đề"
-                        content={courses}
-                        titleIcon="/icons/education.png"
-                        className="w-[350px] space-y-2 m-3 py-5"
-                    />
-                    <CollapsibleFilterControl
-                        title="Vị trí"
-                        titleIcon="/icons/location.png"
-                        content={locations}
-                        className="w-[350px] space-y-2 m-3 py-5"
-                    />
-                    <div className="m-3 py-5">
-                        <div className="flex gap-3">
-                            <Image src={"/icons/timetable.png"} alt="title-icon" width={20} height={20} />
-                            <h4 className="text-sm font-semibold">Thời gian</h4>
-                        </div>
-                        <Popover>
-                            <PopoverTrigger className="mt-3" asChild>
-                                <Button
-                                    variant={"outline"}
-                                    className={cn(
-                                        "justify-start text-left font-normal",
-                                        !date && "text-muted-foreground"
-                                    )}
-                                >
-                                    <CalendarIcon className="mr-2 h-4 w-4" />
-                                    {date?.from ? (
-                                        date.to ? (
-                                            <>
-                                                {dayjs(date.from).format("DD-MM-YYYY")} -{" "}
-                                                {dayjs(date.to).format("DD-MM-YYYY")}
-                                            </>
-                                        ) : (
-                                            dayjs(date.from).format("DD-MM-YYYY")
-                                        )
-                                    ) : (
-                                        <span>Chọn khoảng thời gian</span>
-                                    )}
-                                </Button>
-                            </PopoverTrigger>
-                            <PopoverContent className="w-auto">
-                                <Calendar
-                                    initialFocus
-                                    mode="range"
-                                    defaultMonth={date?.from}
-                                    selected={date}
-                                    onSelect={setDate}
-                                    numberOfMonths={2}
-                                />
-                            </PopoverContent>
-                        </Popover>
-                    </div>
+                    {/* Filters components */}
+                    {loading ? (
+                        <LoadingSpinner parentClassName="lg:min-w-[300px] lg:min-h-[450px] min-w-[200px] min-h-[400px]" />
+                    ) : (
+                        <>
+                            <CollapsibleFilterControl
+                                title="Chuyên đề"
+                                content={coursesType}
+                                titleIcon="/icons/education.png"
+                                className="w-[350px] space-y-2 m-3 py-5"
+                                onFilter={handleCourseTypeFilter}
+                            />
+
+                            <CollapsibleFilterControl
+                                title="Vị trí"
+                                titleIcon="/icons/location.png"
+                                content={locations}
+                                className="w-[350px] space-y-2 m-3 py-5"
+                                onFilter={handleLocationFilter}
+                            />
+                            <div className="m-3 py-5">
+                                <div className="flex gap-3">
+                                    <Image src={"/icons/timetable.png"} alt="title-icon" width={20} height={20} />
+                                    <h4 className="text-sm font-semibold">Thời gian</h4>
+                                </div>
+                                <Popover>
+                                    <PopoverTrigger className="mt-3" asChild>
+                                        <Button
+                                            variant={"outline"}
+                                            className={cn(
+                                                "justify-start text-left font-normal",
+                                                !date && "text-muted-foreground"
+                                            )}
+                                        >
+                                            <CalendarIcon className="mr-2 h-4 w-4" />
+                                            {date?.from ? (
+                                                date.to ? (
+                                                    <>
+                                                        {dayjs(date.from).format("DD-MM-YYYY")} -{" "}
+                                                        {dayjs(date.to).format("DD-MM-YYYY")}
+                                                    </>
+                                                ) : (
+                                                    dayjs(date.from).format("DD-MM-YYYY")
+                                                )
+                                            ) : (
+                                                <span>Chọn khoảng thời gian</span>
+                                            )}
+                                        </Button>
+                                    </PopoverTrigger>
+                                    <PopoverContent className="w-auto">
+                                        <Calendar
+                                            initialFocus
+                                            mode="range"
+                                            defaultMonth={date?.from}
+                                            selected={date}
+                                            onSelect={setDate}
+                                            numberOfMonths={2}
+                                        />
+                                    </PopoverContent>
+                                </Popover>
+                            </div>
+                        </>
+                    )}
                 </div>
             </div>
+            {/* Filters components */}
+
+            {/* Timeline */}
             <div className={cn("lg:w-2/3 w-full p-5 self-end", { "lg:w-full": openFilter })}>
-                <Chrono
-                    items={items}
-                    mode="VERTICAL_ALTERNATING"
-                    cardHeight={300}
-                    cardWidth={650}
-                    mediaHeight={200}
-                    contentDetailsHeight={100}
-                    fontSizes={{
-                        title: "1rem",
-                    }}
-                    disableToolbar={true}
-                />
+                {courseLoading ? (
+                    <SkeletonCard />
+                ) : (
+                    <Chrono
+                        key={courseItems?.length}
+                        items={courseItems}
+                        mode="VERTICAL_ALTERNATING"
+                        cardHeight={300}
+                        cardWidth={650}
+                        mediaHeight={200}
+                        contentDetailsHeight={100}
+                        fontSizes={{
+                            title: "1rem",
+                        }}
+                        disableToolbar={true}
+                    />
+                )}
             </div>
-            <div className="fixed lg:right-10 lg:bottom-5 bottom-0 right-0  flex justify-end h-[100px] w-[100px]">
-                <PhoneContact />
-            </div>
+            {/* Timeline */}
+            <PhoneContact />
         </div>
     );
 }

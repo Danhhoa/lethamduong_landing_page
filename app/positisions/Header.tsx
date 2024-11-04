@@ -8,6 +8,19 @@ import { useState } from "react";
 import { MobileMenu } from "../components/MobileMenu";
 import { useDimension } from "../hooks/useDimension";
 import { useScroll } from "../hooks/useScroll";
+import useAxios from "../hooks/useAxios";
+import { LoadingSpinner } from "../components/Spinner";
+
+interface IResponseSchoolYear {
+    id: number;
+    status: string;
+    sort: number;
+    user_created: string;
+    date_created: Date;
+    user_updated: string;
+    date_updated: Date;
+    name: string;
+}
 
 export const Header = () => {
     const [openPop, setOpenPop] = useState(false);
@@ -15,18 +28,14 @@ export const Header = () => {
     const router = useRouter();
     const { isMobile } = useDimension();
 
-    const trainingCalendar = [
-        {
-            href: "/lich-dao-tao/2023-2024",
-            title: "2023 - 2024",
-            icon: "/icons/online-education.png",
-        },
-        {
-            href: "/lich-dao-tao/2024-2025",
-            title: "2024 - 2025",
-            icon: "/icons/online-education-2.png",
-        },
-    ];
+    const {
+        response: calendarSchoolYear,
+        loading,
+        error,
+    } = useAxios<IResponseSchoolYear[]>({
+        method: "get",
+        url: "https://cus-api.biiline.com/items/school_year",
+    });
 
     return (
         <nav
@@ -51,7 +60,7 @@ export const Header = () => {
                 />
             </div>
             <div className="lg:flex items-center font-semibold gap-8 hidden">
-                <Link href={"/gioi-thieu"} aria-label="Đi đến trang giới thiệu" className="">
+                <Link href={"/gioi-thieu"} aria-label="Đi đến trang giới thiệu">
                     Giới Thiệu
                 </Link>
                 <Popover onOpenChange={() => setOpenPop(!openPop)} open={openPop}>
@@ -63,7 +72,7 @@ export const Header = () => {
                                 alt=""
                                 width={16}
                                 height={16}
-                                className={cn("transition ease-in-out ", { "rotate-180": openPop })}
+                                className={cn("transition ease-in-out", { "rotate-180": openPop })}
                             />
                         </div>
                     </PopoverTrigger>
@@ -73,19 +82,22 @@ export const Header = () => {
                         onMouseLeave={() => setOpenPop(false)}
                     >
                         <div className="flex flex-col font-normal divide-y-2">
-                            {trainingCalendar.map((item) => (
-                                <Link
-                                    key={item.title}
-                                    href={item.href}
-                                    className="px-5 py-2 hover:bg-primary-light hover:text-white rounded-md transition-all duration-150 ease-linear"
-                                    onClick={() => setOpenPop(false)}
-                                >
-                                    {/* <div className="flex gap-3 justify-around items-center"> */}
-                                    {/* <Image src={item.icon} alt="education-icon" width={35} height={35} /> */}
-                                    <p>{item.title}</p>
-                                    {/* </div> */}
-                                </Link>
-                            ))}
+                            {loading ? (
+                                <LoadingSpinner />
+                            ) : calendarSchoolYear?.length ? (
+                                calendarSchoolYear.map((item) => (
+                                    <Link
+                                        key={item.id}
+                                        href={`/lich-dao-tao/${item.name}`}
+                                        className="px-3 py-2 hover:bg-primary-light hover:text-white rounded-md transition-all duration-150 ease-linear"
+                                        onClick={() => setOpenPop(false)}
+                                    >
+                                        <p>{item.name.replace("-", " - ")}</p>
+                                    </Link>
+                                ))
+                            ) : (
+                                <p className="text-sm font-light text-gray-400 text-center">Chưa có lịch</p>
+                            )}
                         </div>
                     </PopoverContent>
                 </Popover>

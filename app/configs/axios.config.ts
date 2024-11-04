@@ -9,14 +9,17 @@ const axios = Axios.create({
 axios.interceptors.request.use(
     async (config) => {
         // Implement function to get token
-        const token = {
-            accessToken: "my-access-token",
-            refreshToken: "my-refresh-token",
-        };
+        // const token = {
+        //     accessToken: null,
+        //     refreshToken: null,
+        // };
 
-        if (token?.accessToken) {
-            config.headers.Authorization = `Bearer ${token?.accessToken}`;
-        }
+        // if (token?.accessToken) {
+        //     config.headers.Authorization = `Bearer ${token?.accessToken}`;
+        // }
+
+        config.headers["Content-Type"] = "application/json";
+
         return config;
     },
     (error) => Promise.reject(error)

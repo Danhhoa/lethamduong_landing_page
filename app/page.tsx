@@ -1,4 +1,4 @@
-import { PhoneContact } from "./components/PhoneContact";
+import { PhoneContact } from "./components/phone-contact/PhoneContact";
 import { Banner } from "./positisions/dashboard/Banner";
 import { Contact } from "./positisions/dashboard/Contact";
 import { Customer } from "./positisions/dashboard/Customer";
@@ -15,9 +15,7 @@ export default function HomePage() {
             <Contact />
             <Customer />
             <News />
-            <div className="fixed lg:right-10 lg:bottom-5 bottom-0 right-0  flex justify-end h-[100px] w-[100px]">
-                <PhoneContact />
-            </div>
+            <PhoneContact />
         </div>
     );
 }
