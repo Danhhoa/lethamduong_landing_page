@@ -10,7 +10,7 @@ interface useAxiosProps {
 }
 
 const useAxios = <T>({ url, method, body = null, headers = null }: useAxiosProps) => {
-    const [response, setResponse] = useState<T | null>(null);
+    const [response, setResponse] = useState<T>();
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(true);
 
