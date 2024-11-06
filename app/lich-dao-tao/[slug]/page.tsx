@@ -1,11 +1,13 @@
 "use client";
 
+import { CourseCard } from "@/app/components/CourseCard";
 import { SkeletonCard } from "@/app/components/SkeletonCard";
 import { LoadingSpinner } from "@/app/components/Spinner";
 import { CollapsibleFilterControl } from "@/app/components/filter-controller/CollapsibleFilterControl";
 import { PhoneContact } from "@/app/components/phone-contact/PhoneContact";
 import { Chrono } from "@/app/components/timeline/ChronoClient";
 import useAxios from "@/app/hooks/useAxios";
+import { ICourseType, ICourses } from "@/app/interfaces";
 import { getMediaUrl } from "@/app/utils/media";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -25,21 +27,21 @@ interface IFilterCourse {
 
 export default function SheduleCoursePage({ params }: { params: { slug: string } }) {
     const [startYear, endYear] = params.slug.split("-");
-    const startOfYear = dayjs().year(Number(startYear)).startOf("years").toDate();
+    const today = dayjs().startOf("dates").toDate();
     const endOfYear = dayjs().year(Number(endYear)).endOf("years").toDate();
     const [date, setDate] = useState<DateRange | undefined>({
-        from: startOfYear,
+        from: today,
         to: endOfYear,
     });
     const [openFilter, setOpenFilter] = useState(true);
     const [filter, setFilter] = useState<IFilterCourse>({
         courseType: [],
-        locations: [],
-        rangeDate: { from: startOfYear, to: endOfYear },
+        locations: ["1", "2"], // DEFAULT hcm and hanoi
+        rangeDate: { from: today, to: endOfYear },
     });
-    const [courseItems, setCourseItems] = useState<any[]>();
+    const [courseItems, setCourseItems] = useState<ICourses[]>();
 
-    const { response: coursesType, loading } = useAxios<any>({
+    const { response: coursesType, loading } = useAxios<ICourseType[]>({
         method: "get",
         url: "https://cus-api.biiline.com/items/course_type",
     });
@@ -99,6 +101,7 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
             }
         }
 
+        // Filtẻ by date
         courseFiltered = courseFiltered.filter(
             (course: any) =>
                 dayjs(course.hanoi_t_s).isAfter(date?.from) &&
@@ -107,32 +110,34 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
                 dayjs(course.hcm_t_e).isBefore(date?.to)
         );
 
-        const courseItems = courseFiltered.map((course: any) => {
-            return {
-                cardTitle: course?.name,
-                media: {
-                    name: course?.name,
-                    source: {
-                        url: getMediaUrl(course.thumbnail),
-                    },
-                    type: "IMAGE",
-                },
-                cardDetailedText: getCourseCalendar(course),
-            };
-        });
+        return courseFiltered;
 
-        return courseItems;
+        // const courseItems = courseFiltered.map((course: any) => {
+        //     return {
+        //         cardTitle: course?.name,
+        //         media: {
+        //             name: course?.name,
+        //             source: {
+        //                 url: getMediaUrl(course.thumbnail),
+        //             },
+        //             type: "IMAGE",
+        //         },
+        //         cardDetailedText: getCourseCalendar(course),
+        //     };
+        // });
+
+        // return courseItems;
     };
 
     const getCourseCalendar = (course: any) => {
         const arrCalendarText = [];
-        if (course?.hanoi_t_s && course?.hanoi_t_e) {
+        if (filter.locations.includes("2") && course?.hanoi_t_s && course?.hanoi_t_e) {
             arrCalendarText.push(
                 `TP.Hà Nội: ${dayjs(course.hanoi_t_s).get("date")} & ${dayjs(course.hanoi_t_e).format("DD-MM-YYYY")}`
             );
         }
 
-        if (course?.hcm_t_s && course?.hcm_t_e) {
+        if (filter.locations.includes("1") && course?.hcm_t_s && course?.hcm_t_e) {
             arrCalendarText.push(
                 `TP.Hồ Chí Minh: ${dayjs(course.hcm_t_s).get("date")} & ${dayjs(course.hcm_t_e).format("DD-MM-YYYY")}`
             );
@@ -142,6 +147,10 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
     };
 
     const handleCourseTypeFilter = (data: any) => {
+        if (!coursesType) {
+            return;
+        }
+
         const defaultCourseType = coursesType.map((type: any) => type.id.toString());
         setFilter((prev) => ({ ...prev, courseType: data?.length ? data : defaultCourseType }));
     };
@@ -179,87 +188,109 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
                     {loading ? (
                         <LoadingSpinner parentClassName="lg:min-w-[300px] lg:min-h-[450px] min-w-[200px] min-h-[400px]" />
                     ) : (
-                        <>
-                            <CollapsibleFilterControl
-                                title="Chuyên đề"
-                                content={coursesType}
-                                titleIcon="/icons/education.png"
-                                className="w-[350px] space-y-2 m-3 py-5"
-                                onFilter={handleCourseTypeFilter}
-                            />
+                        coursesType && (
+                            <>
+                                <CollapsibleFilterControl
+                                    title="Chuyên đề"
+                                    content={coursesType as any}
+                                    titleIcon="/icons/education.png"
+                                    className="w-[350px] space-y-2 m-3 py-5"
+                                    onFilter={handleCourseTypeFilter}
+                                />
 
-                            <CollapsibleFilterControl
-                                title="Vị trí"
-                                titleIcon="/icons/location.png"
-                                content={locations}
-                                className="w-[350px] space-y-2 m-3 py-5"
-                                onFilter={handleLocationFilter}
-                            />
-                            <div className="m-3 py-5">
-                                <div className="flex gap-3">
-                                    <Image src={"/icons/timetable.png"} alt="title-icon" width={20} height={20} />
-                                    <h4 className="text-sm font-semibold">Thời gian</h4>
-                                </div>
-                                <Popover>
-                                    <PopoverTrigger className="mt-3" asChild>
-                                        <Button
-                                            variant={"outline"}
-                                            className={cn(
-                                                "justify-start text-left font-normal",
-                                                !date && "text-muted-foreground"
-                                            )}
-                                        >
-                                            <CalendarIcon className="mr-2 h-4 w-4" />
-                                            {date?.from ? (
-                                                date.to ? (
-                                                    <>
-                                                        {dayjs(date.from).format("DD-MM-YYYY")} -{" "}
-                                                        {dayjs(date.to).format("DD-MM-YYYY")}
-                                                    </>
+                                <CollapsibleFilterControl
+                                    title="Vị trí"
+                                    titleIcon="/icons/location.png"
+                                    content={locations}
+                                    className="w-[350px] space-y-2 m-3 py-5"
+                                    onFilter={handleLocationFilter}
+                                />
+                                <div className="m-3 py-5">
+                                    <div className="flex gap-3">
+                                        <Image src={"/icons/timetable.png"} alt="title-icon" width={20} height={20} />
+                                        <h4 className="text-sm font-semibold">Thời gian</h4>
+                                    </div>
+                                    <Popover>
+                                        <PopoverTrigger className="mt-3" asChild>
+                                            <Button
+                                                variant={"outline"}
+                                                className={cn(
+                                                    "justify-start text-left font-normal",
+                                                    !date && "text-muted-foreground"
+                                                )}
+                                            >
+                                                <CalendarIcon className="mr-2 h-4 w-4" />
+                                                {date?.from ? (
+                                                    date.to ? (
+                                                        <>
+                                                            {dayjs(date.from).format("DD-MM-YYYY")} -{" "}
+                                                            {dayjs(date.to).format("DD-MM-YYYY")}
+                                                        </>
+                                                    ) : (
+                                                        dayjs(date.from).format("DD-MM-YYYY")
+                                                    )
                                                 ) : (
-                                                    dayjs(date.from).format("DD-MM-YYYY")
-                                                )
-                                            ) : (
-                                                <span>Chọn khoảng thời gian</span>
-                                            )}
-                                        </Button>
-                                    </PopoverTrigger>
-                                    <PopoverContent className="w-auto">
-                                        <Calendar
-                                            initialFocus
-                                            mode="range"
-                                            defaultMonth={date?.from}
-                                            selected={date}
-                                            onSelect={setDate}
-                                            numberOfMonths={2}
-                                        />
-                                    </PopoverContent>
-                                </Popover>
-                            </div>
-                        </>
+                                                    <span>Chọn khoảng thời gian</span>
+                                                )}
+                                            </Button>
+                                        </PopoverTrigger>
+                                        <PopoverContent className="w-auto">
+                                            <Calendar
+                                                initialFocus
+                                                mode="range"
+                                                defaultMonth={date?.from}
+                                                selected={date}
+                                                onSelect={setDate}
+                                                numberOfMonths={2}
+                                            />
+                                        </PopoverContent>
+                                    </Popover>
+                                </div>
+                            </>
+                        )
                     )}
                 </div>
             </div>
             {/* Filters components */}
 
             {/* Timeline */}
-            <div className={cn("lg:w-2/3 w-full p-5 self-end", { "lg:w-full": openFilter })}>
+            <div className={cn("lg:w-2/3 w-full p-5 self-end", { "lg:w-3/4": !openFilter })}>
                 {courseLoading ? (
                     <SkeletonCard />
                 ) : (
                     <Chrono
                         key={courseItems?.length}
-                        items={courseItems}
+                        // items={courseItems}
                         mode="VERTICAL_ALTERNATING"
-                        cardHeight={300}
                         cardWidth={650}
-                        mediaHeight={200}
+                        mediaHeight={280}
                         contentDetailsHeight={100}
                         fontSizes={{
                             title: "1rem",
                         }}
                         disableToolbar={true}
-                    />
+                        classNames={{
+                            card: "w-full !h-auto !min-h-[300px]",
+                        }}
+                        theme={{
+                            titleColorActive: "red",
+                        }}
+                    >
+                        {courseItems?.map((course, index) => {
+                            return (
+                                <CourseCard
+                                    id={index.toString()}
+                                    key={course.id + index}
+                                    src={getMediaUrl(course.thumbnail)}
+                                    title={course.name}
+                                    cardDetailedText={getCourseCalendar(course)}
+                                    badgeText={
+                                        coursesType && coursesType.find((type) => type.id === course.type.key)?.name
+                                    }
+                                />
+                            );
+                        })}
+                    </Chrono>
                 )}
             </div>
             {/* Timeline */}
