@@ -46,7 +46,7 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
         url: "https://cus-api.biiline.com/items/course_type",
     });
 
-    const { response: courses, loading: courseLoading } = useAxios<any>({
+    const { response: courses, loading: courseLoading } = useAxios<ICourses[]>({
         method: "get",
         url: "https://cus-api.biiline.com/items/courses?filter[status][_neq]=archived",
     });
@@ -103,11 +103,9 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
 
         // Filtẻ by date
         courseFiltered = courseFiltered.filter(
-            (course: any) =>
-                dayjs(course.hanoi_t_s).isAfter(date?.from) &&
-                dayjs(course.hanoi_t_e).isBefore(date?.to) &&
-                dayjs(course.hcm_t_s).isAfter(date?.from) &&
-                dayjs(course.hcm_t_e).isBefore(date?.to)
+            (course) =>
+                (dayjs(course.hanoi_t_s) >= dayjs(date?.from) && dayjs(course.hanoi_t_e) <= dayjs(date?.to)) ||
+                (dayjs(course.hcm_t_s) >= dayjs(date?.from) && dayjs(course.hcm_t_e) <= dayjs(date?.to))
         );
 
         return courseFiltered;
