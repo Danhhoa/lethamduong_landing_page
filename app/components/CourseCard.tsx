@@ -3,6 +3,7 @@ import Image from "next/image";
 import { FC } from "react";
 
 interface Props {
+    id: string;
     src: string;
     title: string;
     badgeText?: string;
@@ -15,9 +16,9 @@ interface Props {
     };
 }
 
-export const CourseCard: FC<Props> = ({ src, title, cardDetailedText, badgeText, cardDetail }) => {
+export const CourseCard: FC<Props> = ({ id, src, title, cardDetailedText, badgeText, cardDetail }) => {
     return (
-        <div key={title} className="flex flex-col">
+        <div id={id} key={title} className="flex flex-col">
             <Image
                 src={src}
                 alt={title}

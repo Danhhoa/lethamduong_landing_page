@@ -36,7 +36,7 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
     const [openFilter, setOpenFilter] = useState(true);
     const [filter, setFilter] = useState<IFilterCourse>({
         courseType: [],
-        locations: [],
+        locations: ["1", "2"], // DEFAULT hcm and hanoi
         rangeDate: { from: today, to: endOfYear },
     });
     const [courseItems, setCourseItems] = useState<ICourses[]>();
@@ -101,6 +101,7 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
             }
         }
 
+        // Filtẻ by date
         courseFiltered = courseFiltered.filter(
             (course: any) =>
                 dayjs(course.hanoi_t_s).isAfter(date?.from) &&
@@ -271,10 +272,14 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
                         classNames={{
                             card: "w-full !h-auto !min-h-[300px]",
                         }}
+                        theme={{
+                            titleColorActive: "red",
+                        }}
                     >
                         {courseItems?.map((course, index) => {
                             return (
                                 <CourseCard
+                                    id={index.toString()}
                                     key={course.id + index}
                                     src={getMediaUrl(course.thumbnail)}
                                     title={course.name}
