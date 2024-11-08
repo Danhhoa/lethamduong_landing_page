@@ -5,6 +5,7 @@ import { FC, ReactNode, useEffect, useState } from "react";
 import { DotButton } from "./CarouselButton";
 import { cn } from "@/lib/utils";
 import { useDimension } from "@/app/hooks/useDimension";
+import "./style.css";
 
 interface Props {
     slides: Array<ReactNode>;
@@ -13,7 +14,7 @@ interface Props {
 
 export const CarouselSlider: FC<Props> = ({ slides, options = {} }) => {
     const [api, setApi] = useState<CarouselApi>();
-    const [current, setCurrent] = useState(0);
+    const [activeIndex, setActiveIndex] = useState(1);
     const [current2, setCurrent2] = useState<number>(-1);
     const [count, setCount] = useState(0);
     const { isMobile } = useDimension();
@@ -24,10 +25,10 @@ export const CarouselSlider: FC<Props> = ({ slides, options = {} }) => {
         }
 
         setCount(api.scrollSnapList().length);
-        setCurrent(api.selectedScrollSnap() + 1);
+        setActiveIndex(api.selectedScrollSnap() + 1);
 
         api.on("select", () => {
-            setCurrent(api.selectedScrollSnap() + 1);
+            setActiveIndex(api.selectedScrollSnap() + 1);
         });
     }, [api]);
 
@@ -37,12 +38,39 @@ export const CarouselSlider: FC<Props> = ({ slides, options = {} }) => {
         }
         api.scrollTo(current2);
 
-        if ((api?.plugins() as any)?.autoplay.isPlaying()) {
-            (api?.plugins() as any)?.autoplay.stop();
+        if ((api?.plugins() as any)?.autoplay?.isPlaying()) {
+            (api?.plugins() as any)?.autoplay?.stop();
         }
     }, [current2]);
 
-    const indexScale = current;
+    const cssTransform = (index: number) => {
+        if (isMobile || index === activeIndex) {
+            return "";
+        }
+
+        const result =
+            index < activeIndex
+                ? "perspective(300px) rotateY(30deg) scale(0.75)"
+                : "perspective(300px) rotateY(-30deg) scale(0.75)";
+
+        return result;
+    };
+
+    const cssTransform2 = (index: number) => {
+        if (isMobile) return "";
+
+        if (index === activeIndex - 1) {
+            return "scale(1.1)";
+        } else if (index === activeIndex) {
+            return "scale(1.25)";
+        } else if (index === activeIndex + 1) {
+            return "scale(1.1)";
+        } else {
+            return "scale(0.9)";
+        }
+    };
+
+    // console.log("@@@", { activeIndex, slides: slides.length });
 
     return (
         <Carousel
@@ -55,28 +83,37 @@ export const CarouselSlider: FC<Props> = ({ slides, options = {} }) => {
             opts={{
                 align: "start",
                 loop: true,
+                active: true,
             }}
             className="w-full"
             setApi={setApi}
         >
-            <CarouselContent className="transition-all duration-200 ease-out lg:py-10">
+            <CarouselContent className="transition-all duration-200 ease-out lg:py-10 ">
                 {slides.map((slide, index) => (
                     <CarouselItem
                         key={index}
                         className={cn("lg:basis-1/3 duration-500", {
-                            "lg:scale-110": indexScale === index,
+                            "lg:scale-110": activeIndex == index,
+                            "lg:scale-90": activeIndex !== index,
+                            // "transform-3d-ltr": index > activeIndex && index !== slides.length - 1,
+                            // "transform-3d-rtl": index < activeIndex,
                         })}
-                        style={{
-                            transform: !isMobile
-                                ? index < indexScale
-                                    ? "perspective(300px) rotateY(30deg) scale(0.75)"
-                                    : index > indexScale
-                                    ? "perspective(300px) rotateY(-30deg) scale(0.75)"
-                                    : ""
-                                : "",
-                        }}
+                        style={
+                            {
+                                // transform:
+                                //     index < indexScale
+                                //         ? "perspective(300px) rotateY(30deg) scale(0.75)"
+                                //         : "perspective(300px) rotateY(-30deg) scale(0.75)",
+                                // transform: cssTransform(index),
+                                // transform: "perspective(300px) rotateY(30deg) scale(0.75)",
+                                // transform: cssTransform(index),
+                            }
+                        }
                     >
-                        {slide}
+                        <>
+                            <div>{index}</div>
+                            {slide}
+                        </>
                     </CarouselItem>
                 ))}
             </CarouselContent>
@@ -87,7 +124,7 @@ export const CarouselSlider: FC<Props> = ({ slides, options = {} }) => {
                         key={index}
                         aria-label="slider button"
                         onClick={() => setCurrent2(index)}
-                        active={index === current - 1}
+                        active={index === activeIndex - 1}
                     />
                 ))}
             </div>

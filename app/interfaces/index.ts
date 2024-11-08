@@ -29,3 +29,22 @@ export interface ICourseType {
     sort: number;
     name: string;
 }
+
+export interface INews {
+    id: number;
+    status: string;
+    sort: number;
+    user_created: string;
+    date_created: string;
+    user_updated: string;
+    date_updated: string;
+    title: string;
+    slug: string;
+    summary: string;
+    image: string;
+    content: string;
+    author: {
+        id: number;
+        name: string;
+    };
+}

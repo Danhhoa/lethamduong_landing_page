@@ -1,15 +1,16 @@
 "use client";
 
+import { cn } from "@/lib/utils";
+import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
-import dayjs from "dayjs";
-import { Button } from "@/components/ui/button";
 import { ClassNameValue } from "tailwind-merge";
-import { cn } from "@/lib/utils";
 
 interface Props {
+    id: number;
     title: string;
+    content: string;
     author: string;
     datePublished: string;
     imageUrl: string;
@@ -19,9 +20,9 @@ interface Props {
 }
 
 export const Blog: FC<Props> = (params) => {
-    const { title, author, datePublished, detailUrl, imageUrl, alt, className } = params;
+    const { id, title, content, author, datePublished, detailUrl, imageUrl, alt, className } = params;
     const parseDate = dayjs(datePublished).format("ddd MM, YYYY");
-    const url = `/bai-viet/${detailUrl}`;
+    const url = `/bai-viet/${detailUrl}?id=${id}`;
     return (
         <div
             className={cn(
@@ -32,11 +33,11 @@ export const Blog: FC<Props> = (params) => {
         >
             <div className="relative">
                 <Image
-                    src={"https://lethamduong.edu.vn/wp-content/uploads/2021/12/quan-tri-rui-ro-980x549.webp"}
+                    src={imageUrl}
                     alt={alt}
                     width={340}
                     height={340}
-                    className="w-full object-cover rounded-md"
+                    className="w-full lg:min-h-[150px] min-h-[180px] object-cover rounded-md"
                 />
                 <div className="absolute flex items-center justify-center top-0 left-0 w-full h-full rounded-md transition-all ease-in-out duration-400 scale-100 bg-[rgba(0,26,87,0.5)] opacity-0 hover:opacity-100">
                     <Link
@@ -47,13 +48,10 @@ export const Blog: FC<Props> = (params) => {
                     </Link>
                 </div>
             </div>
-            <Link href={url} className="text-lg font-semibold px-5 line-clamp-4">
+            <Link href={url} className="text-lg font-semibold px-5 line-clamp-3">
                 {title}
             </Link>
-            {parseDate && <div className="font-semibold text-base text-primary px-5 mt-3">{datePublished}</div>}
-            {/* <Button size={"lg"} variant={"outline"}>
-                Xem chi tiết
-            </Button> */}
+            {parseDate && <div className="font-semibold text-base text-primary px-5 mt-3">{parseDate}</div>}
         </div>
     );
 };
