@@ -33,7 +33,12 @@ export const CourseCard: FC<Props> = ({ id, src, title, cardDetailedText, badgeT
 
             <h4 className="text-blue-500 py-2 font-semibold">{title}</h4>
             <div className="flex flex-col gap-2 mt-4">
-                {cardDetailedText && cardDetailedText?.map((text, index) => <p key={index}>{text}</p>)}
+                {cardDetailedText &&
+                    cardDetailedText?.map((text, index) => (
+                        <p key={index} className="font-normal">
+                            📍 {text}
+                        </p>
+                    ))}
             </div>
         </div>
     );

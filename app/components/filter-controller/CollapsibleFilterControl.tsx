@@ -8,6 +8,7 @@ import Image from "next/image";
 import { FC, useState } from "react";
 import { ClassNameValue } from "tailwind-merge";
 import { LoadingSpinner } from "../Spinner";
+import { slugify } from "@/app/utils/string";
 
 interface Props {
     title: string;
@@ -53,12 +54,13 @@ export const CollapsibleFilterControl: FC<Props> = ({ title, titleIcon, content,
                 ) : (
                     <>
                         {content.map((item, index) => {
+                            const id = item.id + slugify(item.name);
                             return (
                                 <div key={index} className="xl:ml-10 ml-5 flex gap-4 ease-in-out duration-500">
-                                    <Checkbox id={item.id} value={item.id} onClick={(event) => handleFilters(event)} />
+                                    <Checkbox id={id} value={item.id} onClick={(event) => handleFilters(event)} />
                                     <label
-                                        htmlFor={item.id}
-                                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                        htmlFor={id}
+                                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
                                     >
                                         {item.name}
                                     </label>
