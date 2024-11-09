@@ -1,9 +1,24 @@
+"use client";
+
+import { LoadingSpinner } from "@/app/components/Spinner";
+import useAxios from "@/app/hooks/useAxios";
+import { getMediaUrl } from "@/app/utils/media";
+import dayjs from "dayjs";
 import Image from "next/image";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { FC } from "react";
 import { ClassNameValue } from "tailwind-merge";
 
 export default function BlogDetails({ params }: { params: { slug: string } }) {
+    const searchParams = useSearchParams();
+    const id = searchParams.get("id");
+
+    const { response, loading } = useAxios<any>({
+        url: `https://cus-api.biiline.com/items/posts/${id}?fields[]=*&fields[]=author.id&fields[]=author.name`,
+        method: "get",
+    });
+
     const data = {
         title: "Hoàn Thành Lớp Học “Xây Dựng Văn Hóa Doanh Nghiệp” Tại TP. Hồ Chí Minh– 17 & 18/04/2021",
         publishedDate: "09/12/2021",
@@ -61,33 +76,38 @@ export default function BlogDetails({ params }: { params: { slug: string } }) {
         ],
     };
 
+    if (!response || loading) {
+        return <LoadingSpinner />;
+    }
+
+    const publishedDate = dayjs(response.date_created).format("DD/MM/YYYY");
     return (
         <div className="bg-simple-white bg-cover bg-center bg-no-repeat">
             <div className="flex flex-col items-center justify-center lg:gap-8 gap-5 lg:py-20 md:px-10 px-5 lg:max-w-7xl mx-auto">
-                <h2 className="text-4xl font-medium text-center">{data.title}</h2>
-                <span className="text-2xl">{`Đăng ngày: ${data.publishedDate}`}</span>
-                <span>{`TÁC GIẢ: ${data.author}`}</span>
+                <h2 className="text-4xl font-medium text-center">{response.title}</h2>
+                <span className="text-2xl">{`Đăng ngày: ${publishedDate}`}</span>
+                <span>{`TÁC GIẢ: ${response.author.name}`}</span>
                 <Image
-                    src={data.thumbnail}
-                    alt={data.title}
-                    width={800}
-                    height={600}
-                    className="w-full h-full object-contain md:max-w-[60%]"
+                    src={getMediaUrl(response?.image)}
+                    alt={response.title}
+                    width={850}
+                    height={470}
+                    className="object-contain"
                 />
                 <pre
-                    dangerouslySetInnerHTML={{ __html: data.content }}
+                    dangerouslySetInnerHTML={{ __html: response.content }}
                     className="text-wrap text-xl mt-6 lg:px-10 px-3"
                 />
-                {data.relatedBlog?.length && (
+                {/* {data.relatedBlog?.length && (
                     <div className="mt-20 flex flex-col lg:gap-8 gap-5">
                         <h4 className="text-5xl font-semibold">Bài viết liên quan</h4>
                         <div className="flex gap-5 flex-wrap items-center justify-center">
-                            {data.relatedBlog.map((blog) => {
-                                return <BlogCard data={blog} className="lg:w-[30%] md:w-[45%]"></BlogCard>;
+                            {data.relatedBlog.map((blog, index) => {
+                                return <BlogCard key={index} data={blog} className="lg:w-[30%] md:w-[45%]"></BlogCard>;
                             })}
                         </div>
                     </div>
-                )}
+                )} */}
             </div>
         </div>
     );

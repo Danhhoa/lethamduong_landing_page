@@ -33,14 +33,15 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
         from: today,
         to: endOfYear,
     });
-    const [openFilter, setOpenFilter] = useState(true);
-    const [filter, setFilter] = useState<IFilterCourse>({
+    const [openControl, setOpenControl] = useState(true);
+    const [filters, setFilters] = useState<IFilterCourse>({
         courseType: [],
         locations: ["1", "2"], // DEFAULT hcm and hanoi
         rangeDate: { from: today, to: endOfYear },
     });
     const [courseItems, setCourseItems] = useState<ICourses[]>();
 
+    // Fetch data API
     const { response: coursesType, loading } = useAxios<ICourseType[]>({
         method: "get",
         url: "https://cus-api.biiline.com/items/course_type",
@@ -51,6 +52,7 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
         url: "https://cus-api.biiline.com/items/courses?filter[status][_neq]=archived",
     });
 
+    // Default object locations
     const locations = [
         {
             id: "1",
@@ -67,13 +69,13 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
             return;
         }
 
-        if (coursesType && !filter.courseType.length) {
+        if (coursesType && !filters.courseType.length) {
             const defaultCourseType = coursesType.map((type: any) => type.id.toString());
-            setFilter((prev) => ({ ...prev, courseType: defaultCourseType }));
+            setFilters((prev) => ({ ...prev, courseType: defaultCourseType }));
         }
 
         setCourseItems(filterCourses());
-    }, [filter, courses, coursesType, date]);
+    }, [filters, courses, coursesType, date]);
 
     if (!courses) {
         return <LoadingSpinner size={50} parentClassName="w-screen h-screen mx-auto" />;
@@ -82,31 +84,34 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
     const filterCourses = () => {
         let courseFiltered = courses;
         // Filter by type
-        if (filter.courseType.length) {
+        if (filters.courseType.length) {
             courseFiltered = courseFiltered.filter((course: any) =>
-                filter.courseType.includes(course.type.key.toString())
+                filters.courseType.includes(course.type.key.toString())
             );
         }
 
         // Filter by location
-        if (filter.locations.length) {
+        if (filters.locations.length) {
             // HCMC filter
-            if (filter.locations.includes("1")) {
+            if (filters.locations.includes("1")) {
                 courseFiltered = courseFiltered.filter((course: any) => course.hcm_t_s && course.hcm_t_e);
             }
 
             // HANOI filter
-            if (filter.locations.includes("2")) {
+            if (filters.locations.includes("2")) {
                 courseFiltered = courseFiltered.filter((course: any) => course.hanoi_t_s && course.hanoi_t_e);
             }
         }
 
-        // Filtẻ by date
-        courseFiltered = courseFiltered.filter(
-            (course) =>
-                (dayjs(course.hanoi_t_s) >= dayjs(date?.from) && dayjs(course.hanoi_t_e) <= dayjs(date?.to)) ||
-                (dayjs(course.hcm_t_s) >= dayjs(date?.from) && dayjs(course.hcm_t_e) <= dayjs(date?.to))
-        );
+        // Filter by date
+        courseFiltered = courseFiltered.filter((course) => {
+            const matchingHanoiCalendar =
+                dayjs(course.hanoi_t_s) >= dayjs(date?.from) && dayjs(course.hanoi_t_e) <= dayjs(date?.to);
+            const matchingHCMCalendar =
+                dayjs(course.hcm_t_s) >= dayjs(date?.from) && dayjs(course.hcm_t_e) <= dayjs(date?.to);
+
+            return matchingHanoiCalendar || matchingHCMCalendar;
+        });
 
         return courseFiltered;
 
@@ -129,16 +134,26 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
 
     const getCourseCalendar = (course: any) => {
         const arrCalendarText = [];
-        if (filter.locations.includes("2") && course?.hanoi_t_s && course?.hanoi_t_e) {
-            arrCalendarText.push(
-                `TP.Hà Nội: ${dayjs(course.hanoi_t_s).get("date")} & ${dayjs(course.hanoi_t_e).format("DD-MM-YYYY")}`
-            );
+        const hanoiTimeStart = dayjs(course?.hanoi_t_s);
+        const hanoiTimeEnd = dayjs(course?.hanoi_t_e);
+        const hcmTimeStart = dayjs(course?.hcm_t_s);
+        const hcmTimeEnd = dayjs(course?.hcm_t_e);
+
+        const hanoiTimeBetweenFilter = hanoiTimeStart >= dayjs(date?.from) && hanoiTimeEnd <= dayjs(date?.to);
+        const hcmTimeBetweenFilter =
+            hcmTimeStart.toDate() >= dayjs(date?.from).toDate() && hcmTimeEnd.toDate() <= dayjs(date?.to).toDate();
+
+        const showHanoiCalendar =
+            course?.hanoi_t_s && course?.hanoi_t_e && filters.locations.includes("2") && hanoiTimeBetweenFilter;
+        const showHcmCalendar =
+            course?.hcm_t_s && course?.hcm_t_e && filters.locations.includes("1") && hcmTimeBetweenFilter;
+
+        if (showHanoiCalendar) {
+            arrCalendarText.push(`TP.Hà Nội: ${hanoiTimeStart.get("date")} & ${hanoiTimeEnd.format("DD-MM-YYYY")}`);
         }
 
-        if (filter.locations.includes("1") && course?.hcm_t_s && course?.hcm_t_e) {
-            arrCalendarText.push(
-                `TP.Hồ Chí Minh: ${dayjs(course.hcm_t_s).get("date")} & ${dayjs(course.hcm_t_e).format("DD-MM-YYYY")}`
-            );
+        if (showHcmCalendar) {
+            arrCalendarText.push(`TP.Hồ Chí Minh: ${hcmTimeStart.get("date")} & ${hcmTimeEnd.format("DD-MM-YYYY")}`);
         }
 
         return arrCalendarText;
@@ -150,19 +165,19 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
         }
 
         const defaultCourseType = coursesType.map((type: any) => type.id.toString());
-        setFilter((prev) => ({ ...prev, courseType: data?.length ? data : defaultCourseType }));
+        setFilters((prev) => ({ ...prev, courseType: data?.length ? data : defaultCourseType }));
     };
 
     const handleLocationFilter = (data: any) => {
         const defaultLocation = locations.map((location) => location.id.toString());
-        setFilter((prev) => ({ ...prev, locations: data?.length ? data : defaultLocation }));
+        setFilters((prev) => ({ ...prev, locations: data?.length ? data : defaultLocation }));
     };
 
     return (
         <div className="flex items-center lg:flex-row flex-col justify-center lg:py-20 bg-simple-white-3 bg-cover bg-center bg-no-repeat min-h-screen">
             <div
                 className="fixed left-0 flex items-center justify-center top-[120px] h-20 w-8 bg-white rounded-e-lg shadow-lg cursor-pointer text-center hover:scale-125 transition-transform duration-300"
-                onClick={() => setOpenFilter(!openFilter)}
+                onClick={() => setOpenControl(!openControl)}
             >
                 <Image src={"/icons/setting-animate.gif"} alt="setting" width={50} height={50} unoptimized />
             </div>
@@ -170,7 +185,7 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
                 className={cn(
                     "lg:w-1/3 lg:flex sticky left-0 top-[120px] flex-col self-start z-50 transition-all ease-in-out duration-200",
                     {
-                        "lg:w-0": !openFilter,
+                        "lg:w-0": !openControl,
                     }
                 )}
             >
@@ -178,7 +193,7 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
                     className={cn(
                         "fixed max-w-1/3 lg:ml-20 lg:mt-0 ml-10 mt-10 bg-white rounded-lg px-4 divide-y-2 shadow-2xl opacity-0 transition-all ease-in-out duration-300 scale-0",
                         {
-                            "opacity-100 scale-100": openFilter,
+                            "opacity-100 scale-100": openControl,
                         }
                     )}
                 >
@@ -252,13 +267,12 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
             {/* Filters components */}
 
             {/* Timeline */}
-            <div className={cn("lg:w-2/3 w-full p-5 self-end", { "lg:w-3/4": !openFilter })}>
+            <div className={cn("lg:w-2/3 w-full p-5 self-end", { "lg:w-3/4": !openControl })}>
                 {courseLoading ? (
                     <SkeletonCard />
                 ) : (
                     <Chrono
                         key={courseItems?.length}
-                        // items={courseItems}
                         mode="VERTICAL_ALTERNATING"
                         cardWidth={650}
                         mediaHeight={280}
