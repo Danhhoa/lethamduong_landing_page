@@ -49,7 +49,7 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
 
     const { response: courses, loading: courseLoading } = useAxios<ICourses[]>({
         method: "get",
-        url: "https://cus-api.biiline.com/items/courses?filter[status][_neq]=archived",
+        url: "https://cus-api.biiline.com/items/courses?filter[status][_neq]=archived&sort[]=ordinal",
     });
 
     // Default object locations
