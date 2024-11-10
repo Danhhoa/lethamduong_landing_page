@@ -10,17 +10,7 @@ import { useDimension } from "../hooks/useDimension";
 import { useScroll } from "../hooks/useScroll";
 import useAxios from "../hooks/useAxios";
 import { LoadingSpinner } from "../components/Spinner";
-
-interface IResponseSchoolYear {
-    id: number;
-    status: string;
-    sort: number;
-    user_created: string;
-    date_created: Date;
-    user_updated: string;
-    date_updated: Date;
-    name: string;
-}
+import { IResponseSchoolYear } from "../interfaces";
 
 export const Header = () => {
     const [openPop, setOpenPop] = useState(false);
@@ -40,7 +30,7 @@ export const Header = () => {
     return (
         <nav
             className={cn(
-                "sticky w-full top-0 flex justify-between items-center h-20 lg:px-18 md:px-10 px-5 bg-white z-10 transition-all ease-linear duration-500 shadow-md",
+                "sticky w-full top-0 flex justify-between items-center h-20 lg:px-18 md:px-10 px-5 bg-white z-50 transition-all ease-linear duration-500 shadow-md",
                 { "h-16": isScrolled }
             )}
         >
