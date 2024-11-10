@@ -5,6 +5,9 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { IResponseSchoolYear } from "../interfaces";
+import useAxios from "../hooks/useAxios";
+import { LoadingSpinner } from "./Spinner";
 
 export const MobileMenu = () => {
     const [openMennu, setOpenMenu] = useState(false);
@@ -14,25 +17,21 @@ export const MobileMenu = () => {
         setOpenMenu(!openMennu);
     };
 
-    const trainingCalendar = [
-        {
-            href: "/lich-dao-tao/2023-2024",
-            title: "2023 - 2024",
-            icon: "/icons/online-education.png",
-        },
-        {
-            href: "/lich-dao-tao/2024-2025",
-            title: "2024 - 2025",
-            icon: "/icons/online-education-2.png",
-        },
-    ];
+    const {
+        response: calendarSchoolYear,
+        loading,
+        error,
+    } = useAxios<IResponseSchoolYear[]>({
+        method: "get",
+        url: "https://cus-api.biiline.com/items/school_year",
+    });
 
     return (
         <>
             <Image src="/icons/hambuger.svg" alt="" width={32} height={32} onClick={toggleMobileMenu} />
             <div
                 className={cn(
-                    "fixed top-0 left-0 lg:w-[70%] w-full z-30 backdrop-sepia-0 bg-white/[97%] py-5 h-full overflow-y-scroll ease-in-out duration-300",
+                    "fixed top-0 left-0 lg:w-[70%] w-full z-[100] backdrop-sepia-0 bg-white/[97%] py-5 h-full overflow-y-scroll ease-in-out duration-300",
                     { "translate-x-0": openMennu, "translate-x-full": !openMennu }
                 )}
             >
@@ -67,18 +66,22 @@ export const MobileMenu = () => {
                             </div>
                             <CollapsibleContent className="space-y-2 flex flex-col transition-all">
                                 <ul className="flex flex-col gap-4 relative right-0 text-end">
-                                    {trainingCalendar.map((item) => {
-                                        return (
+                                    {loading ? (
+                                        <LoadingSpinner />
+                                    ) : calendarSchoolYear?.length ? (
+                                        calendarSchoolYear.map((item) => (
                                             <Link
-                                                key={item.href}
-                                                href={item.href}
-                                                className="text-lg"
-                                                onClick={toggleMobileMenu}
+                                                key={item.id}
+                                                href={`/lich-dao-tao/${item.name}`}
+                                                className="px-3 py-2 hover:bg-primary-light hover:text-white rounded-md transition-all duration-150 ease-linear"
+                                                onClick={() => toggleMobileMenu()}
                                             >
-                                                {item.title}
+                                                <p>{item.name.replace("-", " - ")}</p>
                                             </Link>
-                                        );
-                                    })}
+                                        ))
+                                    ) : (
+                                        <p className="text-sm font-light text-gray-400 text-center">Chưa có lịch</p>
+                                    )}
                                 </ul>
                             </CollapsibleContent>
                         </Collapsible>

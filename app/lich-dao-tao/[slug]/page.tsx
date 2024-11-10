@@ -183,7 +183,7 @@ export default function SheduleCoursePage({ params }: { params: { slug: string }
             </div>
             <div
                 className={cn(
-                    "lg:w-1/3 lg:flex sticky left-0 top-[120px] flex-col self-start z-50 transition-all ease-in-out duration-200",
+                    "lg:w-1/3 lg:flex sticky left-0 top-[120px] flex-col self-start z-20 transition-all ease-in-out duration-200",
                     {
                         "lg:w-0": !openControl,
                     }

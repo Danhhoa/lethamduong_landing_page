@@ -48,3 +48,14 @@ export interface INews {
         name: string;
     };
 }
+
+export interface IResponseSchoolYear {
+    id: number;
+    status: string;
+    sort: number;
+    user_created: string;
+    date_created: Date;
+    user_updated: string;
+    date_updated: Date;
+    name: string;
+}
