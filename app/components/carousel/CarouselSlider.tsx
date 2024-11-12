@@ -1,10 +1,9 @@
 import { Carousel, CarouselApi, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import { cn } from "@/lib/utils";
 import { EmblaOptionsType } from "embla-carousel";
 import Autoplay from "embla-carousel-autoplay";
 import { FC, ReactNode, useEffect, useState } from "react";
 import { DotButton } from "./CarouselButton";
-import { cn } from "@/lib/utils";
-import { useDimension } from "@/app/hooks/useDimension";
 import "./style.css";
 
 interface Props {
@@ -17,7 +16,6 @@ export const CarouselSlider: FC<Props> = ({ slides, options = {} }) => {
     const [activeIndex, setActiveIndex] = useState(1);
     const [current2, setCurrent2] = useState<number>(-1);
     const [count, setCount] = useState(0);
-    const { isMobile } = useDimension();
 
     useEffect(() => {
         if (!api) {
@@ -43,35 +41,6 @@ export const CarouselSlider: FC<Props> = ({ slides, options = {} }) => {
         }
     }, [current2]);
 
-    const cssTransform = (index: number) => {
-        if (isMobile || index === activeIndex) {
-            return "";
-        }
-
-        const result =
-            index < activeIndex
-                ? "perspective(300px) rotateY(30deg) scale(0.75)"
-                : "perspective(300px) rotateY(-30deg) scale(0.75)";
-
-        return result;
-    };
-
-    const cssTransform2 = (index: number) => {
-        if (isMobile) return "";
-
-        if (index === activeIndex - 1) {
-            return "scale(1.1)";
-        } else if (index === activeIndex) {
-            return "scale(1.25)";
-        } else if (index === activeIndex + 1) {
-            return "scale(1.1)";
-        } else {
-            return "scale(0.9)";
-        }
-    };
-
-    // console.log("@@@", { activeIndex, slides: slides.length });
-
     return (
         <Carousel
             plugins={[
@@ -95,20 +64,7 @@ export const CarouselSlider: FC<Props> = ({ slides, options = {} }) => {
                         className={cn("lg:basis-1/3 duration-500", {
                             "lg:scale-110": activeIndex == index,
                             "lg:scale-90": activeIndex !== index,
-                            // "transform-3d-ltr": index > activeIndex && index !== slides.length - 1,
-                            // "transform-3d-rtl": index < activeIndex,
                         })}
-                        style={
-                            {
-                                // transform:
-                                //     index < indexScale
-                                //         ? "perspective(300px) rotateY(30deg) scale(0.75)"
-                                //         : "perspective(300px) rotateY(-30deg) scale(0.75)",
-                                // transform: cssTransform(index),
-                                // transform: "perspective(300px) rotateY(30deg) scale(0.75)",
-                                // transform: cssTransform(index),
-                            }
-                        }
                     >
                         <>
                             <div>{index}</div>
