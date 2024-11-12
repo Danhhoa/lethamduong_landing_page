@@ -14,7 +14,7 @@ export const NewVideos = () => {
         },
         {
             url: "https://youtu.be/7JD1AuzKpG0",
-            label: "Dồng tháp",
+            label: "Đồng tháp",
             thumbnail: "https://lethamduong.edu.vn/wp-content/uploads/2024/07/9.-So-KHDT-Dong-Thap.jpg",
         },
         {
@@ -38,7 +38,7 @@ export const NewVideos = () => {
                 <Carousel
                     opts={{
                         align: "center",
-                        loop: true,
+                        loop: false,
                     }}
                     plugins={[
                         Autoplay({
@@ -52,7 +52,7 @@ export const NewVideos = () => {
                             return (
                                 <CarouselItem
                                     key={`${video.url}-${index}`}
-                                    className="flex flex-col justify-center items-center lg:basis-1/3 gap-4 transition-transform ease-linear duration-200 hover:scale-110"
+                                    className="flex flex-col justify-center items-center lg:basis-1/3 gap-4 transition-transform ease-linear"
                                 >
                                     <Link
                                         href={video.url}
